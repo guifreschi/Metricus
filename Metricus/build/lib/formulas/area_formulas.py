@@ -3,7 +3,7 @@ class SquareCentimeter:
     def __init__(self, num: float) -> None:
         self.num = num
 
-    def square_centimeter_to(self, unit: str) -> str:
+    def to(self, unit: str) -> str:
         if unit == 'square_meter':
             result = self.num / 10000
         elif unit == 'square_foot':

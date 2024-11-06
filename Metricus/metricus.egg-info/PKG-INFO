@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: metricus
+Version: 0.1
+Summary: This Python-based unit converter is a simple and efficient tool for converting measurements between units like meters, kilometers, centimeters, and millimeters. It returns precise results formatted with or without the unit abbreviation for easy readability.
+Home-page: https://github.com/guifreschi/Metricus
+Author: Guilherme Freschi e Yaron Buchler
+Author-email: guilhermefreschix@gmail.com, amigo.email@example.com
+License: MIT
+Keywords: conversion units temperature
