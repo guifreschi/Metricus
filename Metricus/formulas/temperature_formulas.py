@@ -1,5 +1,6 @@
 from typing import Union
 
+# Celsius
 class Celsius:
     def __init__(self, num: float, with_unit: bool) -> None:
         self.num = num
