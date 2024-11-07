@@ -15,7 +15,7 @@ class Millimeter:
             result = str(self.num / 1_000_000) + ' km'
         elif unit == 'mile':
             result = str(self.num / 1_609_344) + ' mi'
-        elif unit == 'nautical mile':
+        elif unit == 'nautical_mile':
             result = str(self.num / 1_852_000) + ' NM'
         else:
             raise ValueError("The measurement has an unknown unit")
@@ -39,7 +39,7 @@ class Centimeter:
             result = str(self.num / 100_000) + ' km'
         elif unit == 'mile':
             result = str(self.num / 160_934) + ' mi'
-        elif unit == 'nautical mile':
+        elif unit == 'nautical_mile':
             result = str(self.num / 185200) + ' NM'
         else:
             raise ValueError("The measurement has an unknown unit")
@@ -63,7 +63,7 @@ class Inch:
             result = str(self.num / 39_370.1) + ' km'
         elif unit == 'mile':
             result = str(self.num / 63_360) + ' mi'
-        elif unit == 'nautical mile':
+        elif unit == 'nautical_mile':
             result = str(self.num / 73057.3) + ' NM'
         else:
             raise ValueError("The measurement has an unknown unit")
@@ -87,7 +87,7 @@ class Foot:
             result = str(self.num / 3280.84) + ' km'
         elif unit == 'mile':
             result = str(self.num / 5280) + ' mi'
-        elif unit == 'nautical mile':
+        elif unit == 'nautical_mile':
             result = str(self.num / 6076.12) + ' NM'
         else:
             raise ValueError("The measurement has an unknown unit")
@@ -111,7 +111,7 @@ class Meter:
             result = str(self.num / 1000) + ' km'
         elif unit == 'mile':
             result = str(self.num / 1609.34) + ' mi'
-        elif unit == 'nautical mile':
+        elif unit == 'nautical_mile':
             result = str(self.num / 1852) + ' NM'
         else:
             raise ValueError("The measurement has an unknown unit")
@@ -135,7 +135,7 @@ class Kilometer:
             result = str(self.num * 1000) + ' m'
         elif unit == 'mile':
             result = str(self.num / 1.60934) + ' mi'
-        elif unit == 'nautical mile':
+        elif unit == 'nautical_mile':
             result = str(self.num / 1.852) + ' NM'
         else:
             raise ValueError("The measurement has an unknown unit")
@@ -159,7 +159,7 @@ class Mile:
             result = str(self.num * 1609.34) + ' m'
         elif unit == 'kilometer':
             result = str(self.num * 1.60934) + ' km'
-        elif unit == 'nautical mile':
+        elif unit == 'nautical_mile':
             result = str(self.num * 0.868976) + ' NM'
         else:
             raise ValueError("The measurement has an unknown unit")
