@@ -6,7 +6,7 @@ class Electronvolt:
         self.num = num
         self.with_unit = with_unit
 
-    def to(self, unit: str) -> Union[float, str]:
+    def electronvolt_to(self, unit: str) -> Union[float, str]:
         if unit == 'calorie':
             result = (self.num * 1.60218e-19) / 4.184
         elif unit == 'joule':
@@ -41,7 +41,7 @@ class Calorie:
         self.num = num
         self.with_unit = with_unit
 
-    def to(self, unit: str) -> Union[float, str]:
+    def calorie_to(self, unit: str) -> Union[float, str]:
         if unit == 'electronvolt':
             result = (self.num * 4.184) / 1.60218e-19
         elif unit == 'joule':
@@ -76,7 +76,7 @@ class Joule:
         self.num = num
         self.with_unit = with_unit
 
-    def to(self, unit: str) -> Union[float, str]:
+    def joule_to(self, unit: str) -> Union[float, str]:
         if unit == 'electronvolt':
             result = self.num / 1.60218e-19
         elif unit == 'calorie':
@@ -111,7 +111,7 @@ class BritishThermalUnit:
         self.num = num
         self.with_unit = with_unit
 
-    def to(self, unit: str) -> Union[float, str]:
+    def btu_to(self, unit: str) -> Union[float, str]:
         if unit == 'electronvolt':
             result = (self.num * 1055.06) / 1.60218e-19
         elif unit == 'calorie':
@@ -146,7 +146,7 @@ class Kilocalorie:
         self.num = num
         self.with_unit = with_unit
 
-    def to(self, unit: str) -> Union[float, str]:
+    def kilocalorie_to(self, unit: str) -> Union[float, str]:
         if unit == 'electronvolt':
             result = (self.num * 4184) / 1.60218e-19
         elif unit == 'calorie':
@@ -180,7 +180,7 @@ class KilowattHour:
         self.num = num
         self.with_unit = with_unit
 
-    def to(self, unit: str) -> Union[float, str]:
+    def kilowatt_hour_to(self, unit: str) -> Union[float, str]:
         if unit == 'electronvolt':
             result = (self.num * 3.6e6) / 1.60218e-19
         elif unit == 'calorie':
@@ -207,3 +207,4 @@ class KilowattHour:
                 return f"{result} kcal"
         else:
             return result
+
