@@ -1,151 +1,56 @@
-# Classe base para Velocidade
-class Speed:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        """
-        Inicializa um objeto Speed.
+"""
+This module provides classes for converting speeds between different units.
 
-        :param num: Valor da velocidade.
-        :type num: float
-        :param with_unit: Flag para determinar se a unidade deve ser incluída na saída.
-        :type with_unit: bool
-        """
-        self.num = num
-        self.with_unit = with_unit
+Classes:
 
-    def format_result(self, result: float, unit: str) -> Union[float, str]:
-        """
-        Formata o resultado da conversão adicionando a unidade, se necessário.
+    - Speed: A base class for speed conversions. It handles the speed value and whether or not the unit should be included in the output.
+    - MetersPerSecond: A class for converting speeds from meters per second (m/s) to other units such as kilometers per hour (km/h), miles per hour (mph), and knots (kn).
+    - KilometersPerHour: A class for converting speeds from kilometers per hour (km/h) to other units such as meters per second (m/s), miles per hour (mph), and knots (kn).
+    - MilesPerHour: A class for converting speeds from miles per hour (mph) to other units such as meters per second (m/s), kilometers per hour (km/h), and knots (kn).
+    - Knots: A class for converting speeds from knots (kn) to other units such as meters per second (m/s), kilometers per hour (km/h), and miles per hour (mph).
 
-        :param result: Resultado da conversão.
-        :type result: float
-        :param unit: Unidade a ser adicionada ao resultado.
-        :type unit: str
-        :return: Resultado formatado com ou sem unidade.
-        :rtype: Union[float, str]
-        """
-        return f"{result} {unit}" if self.with_unit else result
+Usage Example:
 
+    # Create a MetersPerSecond object
+    speed = MetersPerSecond(10, with_unit=True)
 
-# Metros por segundo (m/s)
-class MetersPerSecond(Speed):
-    """
-    Classe para converter velocidades em metros por segundo (m/s) para outras unidades de velocidade.
-
-    Herda da classe base Speed.
-    """
+    # Convert 10 meters per second to kilometers per hour
+    result = speed.mps_to('km/h')
+    print(result)  # Output: "36.0 km/h"
     
-    def to(self, unit: str) -> Union[float, str]:
-        """
-        Converte a velocidade de metros por segundo (m/s) para a unidade especificada.
+    # Create a KilometersPerHour object
+    speed = KilometersPerHour(36, with_unit=True)
 
-        :param unit: Unidade para a qual a velocidade será convertida. Pode ser 'km/h', 'mph' ou 'kn'.
-        :type unit: str
-        :return: Valor convertido na unidade especificada. Se `with_unit` for True, retorna uma string com o valor e a unidade; caso contrário, retorna um float.
-        :rtype: Union[float, str]
-        :raises ValueError: Se a unidade especificada não for reconhecida.
-        """
-        if unit == 'km/h':
-            result = self.num * 3.6
-        elif unit == 'mph':
-            result = self.num * 2.23694
-        elif unit == 'kn':
-            result = self.num * 1.94384
-        else:
-            raise ValueError("The measurement has an unknown unit")
-        return self.format_result(result, unit)
+    # Convert 36 km/h to miles per hour
+    result = speed.kmph_to('mph')
+    print(result)  # Output: "22.36936357528714 mph"
 
+    # Create a MilesPerHour object
+    speed = MilesPerHour(22, with_unit=False)
 
-# Quilômetros por hora (km/h)
-class KilometersPerHour(Speed):
-    """
-    Classe para converter velocidades em quilômetros por hora (km/h) para outras unidades de velocidade.
+    # Convert 22 mph to knots
+    result = speed.mph_to('kn')
+    print(result)  # Output: 19.1159
 
-    Herda da classe base Speed.
-    """
-    
-    def to(self, unit: str) -> Union[float, str]:
-        """
-        Converte a velocidade de quilômetros por hora (km/h) para a unidade especificada.
+    # Create a Knots object
+    speed = Knots(20, with_unit=True)
 
-        :param unit: Unidade para a qual a velocidade será convertida. Pode ser 'm/s', 'mph' ou 'kn'.
-        :type unit: str
-        :return: Valor convertido na unidade especificada. Se `with_unit` for True, retorna uma string com o valor e a unidade; caso contrário, retorna um float.
-        :rtype: Union[float, str]
-        :raises ValueError: Se a unidade especificada não for reconhecida.
-        """
-        if unit == 'm/s':
-            result = self.num / 3.6
-        elif unit == 'mph':
-            result = self.num / 1.60934
-        elif unit == 'kn':
-            result = self.num / 1.852
-        else:
-            raise ValueError("The measurement has an unknown unit")
-        return self.format_result(result, unit)
-
-
-# Milhas por hora (mph)
-class MilesPerHour(Speed):
-    """
-    Classe para converter velocidades em milhas por hora (mph) para outras unidades de velocidade.
-
-    Herda da classe base Speed.
-    """
-    
-    def to(self, unit: str) -> Union[float, str]:
-        """
-        Converte a velocidade de milhas por hora (mph) para a unidade especificada.
-
-        :param unit: Unidade para a qual a velocidade será convertida. Pode ser 'm/s', 'km/h' ou 'kn'.
-        :type unit: str
-        :return: Valor convertido na unidade especificada. Se `with_unit` for True, retorna uma string com o valor e a unidade; caso contrário, retorna um float.
-        :rtype: Union[float, str]
-        :raises ValueError: Se a unidade especificada não for reconhecida.
-        """
-        if unit == 'm/s':
-            result = self.num / 2.23694
-        elif unit == 'km/h':
-            result = self.num * 1.60934
-        elif unit == 'kn':
-            result = self.num / 1.15078
-        else:
-            raise ValueError("The measurement has an unknown unit")
-        return self.format_result(result, unit)
-
-
-# Nós (kn)
-class Knots(Speed):
-    """
-    Classe para converter velocidades em nós (kn) para outras unidades de velocidade.
-
-    Herda da classe base Speed.
-    """
-    
-    def to(self, unit: str) -> Union[float, str]:
-       """
-        Converte a velocidade de nós (kn) para a unidade especificada.
-
-        :param unit: Unidade para a qual a velocidade será convertida. Pode ser 'm/s', 'km/h' ou 'mph'.
-        :type unit: str
-        :return: Valor convertido na unidade especificada. Se `with_unit` for True, retorna uma string com o valor e a unidade; caso contrário, retorna um float.
-        :rtype: Union[float, str]
-        :raises ValueError: Se a unidade especificada não for reconhe """
-
-
+    # Convert 20 knots to meters per second
+    result = speed.knots_to('m/s')
+    print(result)  # Output: "10.288 m/s"
+"""
 
 from typing import Union
 
-# Classe base para Velocidade
-
-
+# Speed
 class Speed:
     def __init__(self, num: float, with_unit: bool) -> None:
         """
-        Inicializa um objeto Speed.
+        Initializes a Speed object.
 
-        :param num: Valor da velocidade.
+        :param num: Speed value.
         :type num: float
-        :param with_unit: Flag para determinar se a unidade deve ser incluída na saída.
+        :param with_unit: Flag to determine if the unit should be included in the output.
         :type with_unit: bool
         """
         self.num = num
@@ -153,37 +58,35 @@ class Speed:
 
     def format_result(self, result: float, unit: str) -> Union[float, str]:
         """
-        Formata o resultado da conversão adicionando a unidade, se necessário.
+        Formats the conversion result by adding the unit if necessary.
 
-        :param result: Resultado da conversão.
+        :param result: Conversion result.
         :type result: float
-        :param unit: Unidade a ser adicionada ao resultado.
+        :param unit: Unit to be added to the result.
         :type unit: str
-        :return: Resultado formatado com ou sem unidade.
+        :return: Formatted result with or without the unit.
         :rtype: Union[float, str]
         """
         return f"{result} {unit}" if self.with_unit else result
 
 
-# Metros por segundo (m/s)
-
-
+# MetersPerSecond
 class MetersPerSecond(Speed):
     """
-    Classe para converter velocidades em metros por segundo (m/s) para outras unidades de velocidade.
+    Class to convert speeds from meters per second (m/s) to other speed units.
 
-    Herda da classe base Speed.
+    Inherits from the Speed base class.
     """
     
-    def to(self, unit: str) -> Union[float, str]:
+    def mps_to(self, unit: str) -> Union[float, str]:
         """
-        Converte a velocidade de metros por segundo (m/s) para a unidade especificada.
+        Converts speed from meters per second (m/s) to the specified unit.
 
-        :param unit: Unidade para a qual a velocidade será convertida. Pode ser 'km/h', 'mph' ou 'kn'.
+        :param unit: Unit to which the speed will be converted. It can be 'km/h', 'mph', or 'kn'.
         :type unit: str
-        :return: Valor convertido na unidade especificada. Se `with_unit` for True, retorna uma string com o valor e a unidade; caso contrário, retorna um float.
+        :return: Converted value in the specified unit. If `with_unit` is True, it returns a string with the value and the unit; otherwise, it returns a float.
         :rtype: Union[float, str]
-        :raises ValueError: Se a unidade especificada não for reconhecida.
+        :raises ValueError: If the specified unit is unrecognized.
         """
         if unit == 'km/h':
             result = self.num * 3.6
@@ -196,25 +99,23 @@ class MetersPerSecond(Speed):
         return self.format_result(result, unit)
 
 
-# Quilômetros por hora (km/h)
-
-
+# KilometersPerHour
 class KilometersPerHour(Speed):
     """
-    Classe para converter velocidades em quilômetros por hora (km/h) para outras unidades de velocidade.
+    Class to convert speeds from kilometers per hour (km/h) to other speed units.
 
-    Herda da classe base Speed.
+    Inherits from the Speed base class.
     """
     
-    def to(self, unit: str) -> Union[float, str]:
+    def kmph_to(self, unit: str) -> Union[float, str]:
         """
-        Converte a velocidade de quilômetros por hora (km/h) para a unidade especificada.
+        Converts speed from kilometers per hour (km/h) to the specified unit.
 
-        :param unit: Unidade para a qual a velocidade será convertida. Pode ser 'm/s', 'mph' ou 'kn'.
+        :param unit: Unit to which the speed will be converted. It can be 'm/s', 'mph', or 'kn'.
         :type unit: str
-        :return: Valor convertido na unidade especificada. Se `with_unit` for True, retorna uma string com o valor e a unidade; caso contrário, retorna um float.
+        :return: Converted value in the specified unit. If `with_unit` is True, it returns a string with the value and the unit; otherwise, it returns a float.
         :rtype: Union[float, str]
-        :raises ValueError: Se a unidade especificada não for reconhecida.
+        :raises ValueError: If the specified unit is unrecognized.
         """
         if unit == 'm/s':
             result = self.num / 3.6
@@ -227,25 +128,23 @@ class KilometersPerHour(Speed):
         return self.format_result(result, unit)
 
 
-# Milhas por hora (mph)
-
-
+# MilesPerHour
 class MilesPerHour(Speed):
     """
-    Classe para converter velocidades em milhas por hora (mph) para outras unidades de velocidade.
+    Class to convert speeds from miles per hour (mph) to other speed units.
 
-    Herda da classe base Speed.
+    Inherits from the Speed base class.
     """
     
-    def to(self, unit: str) -> Union[float, str]:
+    def mph_to(self, unit: str) -> Union[float, str]:
         """
-        Converte a velocidade de milhas por hora (mph) para a unidade especificada.
+        Converts speed from miles per hour (mph) to the specified unit.
 
-        :param unit: Unidade para a qual a velocidade será convertida. Pode ser 'm/s', 'km/h' ou 'kn'.
+        :param unit: Unit to which the speed will be converted. It can be 'm/s', 'km/h', or 'kn'.
         :type unit: str
-        :return: Valor convertido na unidade especificada. Se `with_unit` for True, retorna uma string com o valor e a unidade; caso contrário, retorna um float.
+        :return: Converted value in the specified unit. If `with_unit` is True, it returns a string with the value and the unit; otherwise, it returns a float.
         :rtype: Union[float, str]
-        :raises ValueError: Se a unidade especificada não for reconhecida.
+        :raises ValueError: If the specified unit is unrecognized.
         """
         if unit == 'm/s':
             result = self.num / 2.23694
@@ -258,25 +157,23 @@ class MilesPerHour(Speed):
         return self.format_result(result, unit)
 
 
-# Nós (kn)
-
-
+# Knots
 class Knots(Speed):
     """
-    Classe para converter velocidades em nós (kn) para outras unidades de velocidade.
+    Class to convert speeds from knots (kn) to other speed units.
 
-    Herda da classe base Speed.
+    Inherits from the Speed base class.
     """
     
-    def to(self, unit: str) -> Union[float, str]:
+    def kn_to(self, unit: str) -> Union[float, str]:
         """
-        Converte a velocidade de nós (kn) para a unidade especificada.
+        Converts speed from knots (kn) to the specified unit.
 
-        :param unit: Unidade para a qual a velocidade será convertida. Pode ser 'm/s', 'km/h' ou 'mph'.
+        :param unit: Unit to which the speed will be converted. It can be 'm/s', 'km/h', or 'mph'.
         :type unit: str
-        :return: Valor convertido na unidade especificada. Se `with_unit` for True, retorna uma string com o valor e a unidade; caso contrário, retorna um float.
+        :return: Converted value in the specified unit. If `with_unit` is True, it returns a string with the value and the unit; otherwise, it returns a float.
         :rtype: Union[float, str]
-        :raises ValueError: Se a unidade especificada não for reconhecida.
+        :raises ValueError: If the specified unit is unrecognized.
         """
         if unit == 'm/s':
             result = self.num / 1.94384
