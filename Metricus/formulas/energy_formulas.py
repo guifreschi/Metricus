@@ -1,81 +1,58 @@
 from typing import Union
 
-# Electronvolt
-class Electronvolt:
-    def __init__(self, num: float, with_unit: bool) -> None:
+# Classe base para Energia
+class EnergyUnit:
+    def __init__(self, num: float, with_unit: bool = False) -> None:
         self.num = num
         self.with_unit = with_unit
 
+    def format_result(self, result: float, unit: str) -> Union[float, str]:
+        units_map = {
+            "electronvolt": "eV",
+            "calorie": "cal",
+            "joule": "J",
+            "btu": "BTU",
+            "kilocalorie": "kcal",
+            "kilowatt_hour": "kWh",
+        }
+        return f"{result} {units_map[unit]}" if self.with_unit else result
+
+# Electronvolt 
+class Electronvolt(EnergyUnit):
     def electronvolt_to(self, unit: str) -> Union[float, str]:
         if unit == 'calorie':
-            result = (self.num * 1.60218e-19) / 4.184
+            result = self.num * 1.60218e-19 / 4.184
         elif unit == 'joule':
             result = self.num * 1.60218e-19
         elif unit == 'btu':
-            result = (self.num * 1.60218e-19) / 1055.06
+            result = self.num * 1.60218e-19 / 1055.06
         elif unit == 'kilocalorie':
-            result = (self.num * 1.60218e-19) / (4.184 * 1000)
+            result = self.num * 1.60218e-19 / (4.184 * 1000)
         elif unit == 'kilowatt_hour':
-            result = (self.num * 1.60218e-19) / 3.6e6
+            result = self.num * 1.60218e-19 / 3.6e6
         else:
             raise ValueError("The measurement has an unknown unit")
-        
-        if self.with_unit:
-            if unit == "calorie":
-                return f"{result} cal"
-            elif unit == "joule":
-                return f"{result} J"
-            elif unit == "btu":
-                return f"{result} BTU"
-            elif unit == "kilocalorie":
-                return f"{result} kcal"
-            elif unit == "kilowatt_hour":
-                return f"{result} kWh"
-        else:
-            return result
+        return self.format_result(result, unit)
 
-
-# Calorie
-class Calorie:
-    def __init__(self, num: float, with_unit: bool = False) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+# Calorie 
+class Calorie(EnergyUnit):
     def calorie_to(self, unit: str) -> Union[float, str]:
         if unit == 'electronvolt':
-            result = (self.num * 4.184) / 1.60218e-19
+            result = self.num * 4.184 / 1.60218e-19
         elif unit == 'joule':
             result = self.num * 4.184
         elif unit == 'btu':
-            result = (self.num * 4.184) / 1055.06
+            result = self.num * 4.184 / 1055.06
         elif unit == 'kilocalorie':
             result = self.num / 1000
         elif unit == 'kilowatt_hour':
-            result = (self.num * 4.184) / 3.6e6
+            result = self.num * 4.184 / 3.6e6
         else:
             raise ValueError("The measurement has an unknown unit")
-        
-        if self.with_unit:
-            if unit == 'electronvolt':
-                return f"{result} eV"
-            elif unit == 'joule':
-                return f"{result} J"
-            elif unit == 'btu':
-                return f"{result} BTU"
-            elif unit == 'kilocalorie':
-                return f"{result} kcal"
-            elif unit == 'kilowatt_hour':
-                return f"{result} kWh"
-        else:
-            return result
+        return self.format_result(result, unit)
 
-
-# Joule
-class Joule:
-    def __init__(self, num: float, with_unit: bool = False) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+# Joule 
+class Joule(EnergyUnit):
     def joule_to(self, unit: str) -> Union[float, str]:
         if unit == 'electronvolt':
             result = self.num / 1.60218e-19
@@ -89,28 +66,10 @@ class Joule:
             result = self.num / 3.6e6
         else:
             raise ValueError("The measurement has an unknown unit")
-        
-        if self.with_unit:
-            if unit == 'electronvolt':
-                return f"{result} eV"
-            elif unit == 'calorie':
-                return f"{result} cal"
-            elif unit == 'btu':
-                return f"{result} BTU"
-            elif unit == 'kilocalorie':
-                return f"{result} kcal"
-            elif unit == 'kilowatt_hour':
-                return f"{result} kWh"
-        else:
-            return result
+        return self.format_result(result, unit)  # Add this line to return the result
 
-
-# British Thermal Unit
-class BritishThermalUnit:
-    def __init__(self, num: float, with_unit: bool = False) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+# British Thermal Unit 
+class BritishThermalUnit(EnergyUnit):
     def btu_to(self, unit: str) -> Union[float, str]:
         if unit == 'electronvolt':
             result = (self.num * 1055.06) / 1.60218e-19
@@ -124,28 +83,10 @@ class BritishThermalUnit:
             result = (self.num * 1055.06) / 3.6e6
         else:
             raise ValueError("The measurement has an unknown unit")
-        
-        if self.with_unit:
-            if unit == 'electronvolt':
-                return f"{result} eV"
-            elif unit == 'calorie':
-                return f"{result} cal"
-            elif unit == 'joule':
-                return f"{result} J"
-            elif unit == 'kilocalorie':
-                return f"{result} kcal"
-            elif unit == 'kilowatt_hour':
-                return f"{result} kWh"
-        else:
-            return result
+        return self.format_result(result, unit)
 
-
-# Kilocalorie
-class Kilocalorie:
-    def __init__(self, num: float, with_unit: bool = False) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+# Kilocalorie 
+class Kilocalorie(EnergyUnit):
     def kilocalorie_to(self, unit: str) -> Union[float, str]:
         if unit == 'electronvolt':
             result = (self.num * 4184) / 1.60218e-19
@@ -159,27 +100,10 @@ class Kilocalorie:
             result = (self.num * 4184) / 3.6e6
         else:
             raise ValueError("The measurement has an unknown unit")
-        
-        if self.with_unit:
-            if unit == 'electronvolt':
-                return f"{result} eV"
-            elif unit == 'calorie':
-                return f"{result} cal"
-            elif unit == 'joule':
-                return f"{result} J"
-            elif unit == 'btu':
-                return f"{result} BTU"
-            elif unit == 'kilowatt_hour':
-                return f"{result} kWh"
-        else:
-            return result
+        return self.format_result(result, unit)
 
-# Kilowatt-hour
-class KilowattHour:
-    def __init__(self, num: float, with_unit: bool = False) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+# Kilowatt-hour 
+class KilowattHour(EnergyUnit):
     def kilowatt_hour_to(self, unit: str) -> Union[float, str]:
         if unit == 'electronvolt':
             result = (self.num * 3.6e6) / 1.60218e-19
@@ -193,18 +117,4 @@ class KilowattHour:
             result = (self.num * 3.6e6) / (4.184 * 1000)
         else:
             raise ValueError("The measurement has an unknown unit")
-        
-        if self.with_unit:
-            if unit == 'electronvolt':
-                return f"{result} eV"
-            elif unit == 'calorie':
-                return f"{result} cal"
-            elif unit == 'joule':
-                return f"{result} J"
-            elif unit == 'btu':
-                return f"{result} BTU"
-            elif unit == 'kilocalorie':
-                return f"{result} kcal"
-        else:
-            return result
-
+        return self.format_result(result, unit)
