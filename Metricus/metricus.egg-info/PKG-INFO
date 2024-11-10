@@ -3,7 +3,10 @@ Name: metricus
 Version: 0.1
 Summary: This Python-based unit converter is a simple and efficient tool for converting measurements between units like meters, kilometers, centimeters, and millimeters. It returns precise results formatted with or without the unit abbreviation for easy readability.
 Home-page: https://github.com/guifreschi/Metricus
-Author: Guilherme Freschi e Yaron Buchler
-Author-email: guilhermefreschix@gmail.com, amigo.email@example.com
+Author: Guilherme Freschi, Yaron Buchler
+Author-email: guilhermefreschix@gmail.com, buchleryaron@gmail.com
 License: MIT
-Keywords: conversion units temperature
+Project-URL: Yaron Buchler's GitHub, https://github.com/YaronBuchler
+Project-URL: Guilherme Freschi's GitHub, https://github.com/guifreschi
+Project-URL: Project on GitHub, https://github.com/guifreschi/Metricus
+Keywords: conversion,units,temperature,weight,length,distance,energy,volume,mass,pressure,speed,time,metric,imperial,unit converter

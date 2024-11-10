@@ -1,11 +1,25 @@
 from typing import Union
 
-# SquareCentimeter
-class SquareCentimeter:
-    def __init__(self, num: float, with_unit: bool) -> None:
+# Classe base para Área
+class Area:
+    def __init__(self, num: float, with_unit: bool = False) -> None:
         self.num = num
         self.with_unit = with_unit
 
+    def format_result(self, result: float, unit: str) -> Union[float, str]:
+        units_map = {
+            "square_centimeter": "cm²",
+            "square_foot": "ft²",
+            "square_meter": "m²",
+            "square_yard": "yd²",
+            "acre": "ac",
+            "hectare": "ha",
+            "square_kilometer": "km²",
+        }
+        return f"{result} {units_map[unit]}" if self.with_unit else result
+
+# Square Centimeter (cm²)
+class SquareCentimeter(Area):
     def square_centimeter_to(self, unit: str) -> Union[float, str]:
         if unit == 'square_foot':
             result = self.num / 929.0304
@@ -21,30 +35,10 @@ class SquareCentimeter:
             result = self.num / 1e10
         else:
             raise ValueError("The measurement has an unknown unit")
-        
-        if self.with_unit:
-            if unit == "square_foot":
-                return f"{result} ft²"
-            elif unit == "square_yard":
-                return f"{result} yd²"
-            elif unit == "square_meter":
-                return f"{result} m²"
-            elif unit == "acre":
-                return f"{result} ac"
-            elif unit == "hectare":
-                return f"{result} ha"
-            elif unit == "square_kilometer":
-                return f"{result} km²"
-        else:
-            return result
+        return self.format_result(result, unit)
 
-
-# SquareFoot
-class SquareFoot:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+# Square Foot (ft²)
+class SquareFoot(Area):
     def square_foot_to(self, unit: str) -> Union[float, str]:
         if unit == 'square_centimeter':
             result = self.num * 929.0304
@@ -60,30 +54,10 @@ class SquareFoot:
             result = self.num / 1.076e7
         else:
             raise ValueError("The measurement has an unknown unit")
-        
-        if self.with_unit:
-            if unit == "square_centimeter":
-                return f"{result} cm²"
-            elif unit == "square_meter":
-                return f"{result} m²"
-            elif unit == "square_yard":
-                return f"{result} yd²"
-            elif unit == "acre":
-                return f"{result} ac"
-            elif unit == "hectare":
-                return f"{result} ha"
-            elif unit == "square_kilometer":
-                return f"{result} km²"
-        else:
-            return result
+        return self.format_result(result, unit)
 
-
-# SquareYard
-class SquareYard:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+# Square Yard 
+class SquareYard(Area):
     def square_yard_to(self, unit: str) -> Union[float, str]:
         if unit == 'square_centimeter':
             result = self.num * 8361.2736
@@ -99,30 +73,12 @@ class SquareYard:
             result = self.num / 1.196e6
         else:
             raise ValueError("The measurement has an unknown unit")
-        
-        if self.with_unit:
-            if unit == "square_centimeter":
-                return f"{result} cm²"
-            elif unit == "square_foot":
-                return f"{result} ft²"
-            elif unit == "square_meter":
-                return f"{result} m²"
-            elif unit == "acre":
-                return f"{result} ac"
-            elif unit == "hectare":
-                return f"{result} ha"
-            elif unit == "square_kilometer":
-                return f"{result} km²"
-        else:
-            return result
+        return self.format_result(result, unit)
 
 
-# SquareMeter
-class SquareMeter:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
 
+# Square Meter (m²)
+class SquareMeter(Area):
     def square_meter_to(self, unit: str) -> Union[float, str]:
         if unit == 'square_centimeter':
             result = self.num * 10000
@@ -138,30 +94,10 @@ class SquareMeter:
             result = self.num / 1e6
         else:
             raise ValueError("The measurement has an unknown unit")
-        
-        if self.with_unit:
-            if unit == "square_centimeter":
-                return f"{result} cm²"
-            elif unit == "square_foot":
-                return f"{result} ft²"
-            elif unit == "square_yard":
-                return f"{result} yd²"
-            elif unit == "acre":
-                return f"{result} ac"
-            elif unit == "hectare":
-                return f"{result} ha"
-            elif unit == "square_kilometer":
-                return f"{result} km²"
-        else:
-            return result
+        return self.format_result(result, unit)
 
-
-# Acre
-class Acre:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+# Acre (ac)
+class Acre(Area):
     def acre_to(self, unit: str) -> Union[float, str]:
         if unit == 'square_centimeter':
             result = self.num * 4.04686e7
@@ -177,30 +113,10 @@ class Acre:
             result = self.num / 247.105
         else:
             raise ValueError("The measurement has an unknown unit")
-        
-        if self.with_unit:
-            if unit == "square_centimeter":
-                return f"{result} cm²"
-            elif unit == "square_foot":
-                return f"{result} ft²"
-            elif unit == "square_yard":
-                return f"{result} yd²"
-            elif unit == "square_meter":
-                return f"{result} m²"
-            elif unit == "hectare":
-                return f"{result} ha"
-            elif unit == "square_kilometer":
-                return f"{result} km²"
-        else:
-            return result
+        return self.format_result(result, unit)
 
-
-# Hectare
-class Hectare:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+# Hectare (ha)
+class Hectare(Area):
     def hectare_to(self, unit: str) -> Union[float, str]:
         if unit == 'square_centimeter':
             result = self.num * 1e8
@@ -216,30 +132,10 @@ class Hectare:
             result = self.num / 100
         else:
             raise ValueError("The measurement has an unknown unit")
-        
-        if self.with_unit:
-            if unit == "square_centimeter":
-                return f"{result} cm²"
-            elif unit == "square_foot":
-                return f"{result} ft²"
-            elif unit == "square_yard":
-                return f"{result} yd²"
-            elif unit == "square_meter":
-                return f"{result} m²"
-            elif unit == "acre":
-                return f"{result} ac"
-            elif unit == "square_kilometer":
-                return f"{result} km²"
-        else:
-            return result
+        return self.format_result(result, unit)
 
-
-# SquareKilometer
-class SquareKilometer:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+# Square Kilometer (km²)
+class SquareKilometer(Area):
     def square_kilometer_to(self, unit: str) -> Union[float, str]:
         if unit == 'square_centimeter':
             result = self.num * 1e10
@@ -255,19 +151,4 @@ class SquareKilometer:
             result = self.num * 100
         else:
             raise ValueError("The measurement has an unknown unit")
-        
-        if self.with_unit:
-            if unit == "square_centimeter":
-                return f"{result} cm²"
-            elif unit == "square_foot":
-                return f"{result} ft²"
-            elif unit == "square_yard":
-                return f"{result} yd²"
-            elif unit == "square_meter":
-                return f"{result} m²"
-            elif unit == "acre":
-                return f"{result} ac"
-            elif unit == "hectare":
-                return f"{result} ha"
-        else:
-            return result
+        return self.format_result(result, unit)

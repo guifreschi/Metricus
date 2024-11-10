@@ -2,7 +2,7 @@ from typing import Union
 
 # Classe base para Volume
 class Volume:
-    def __init__(self, num: float, with_unit: bool) -> None:
+    def __init__(self, num: float, with_unit: bool = False) -> None:
         self.num = num
         self.with_unit = with_unit
 

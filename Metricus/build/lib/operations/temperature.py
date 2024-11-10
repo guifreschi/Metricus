@@ -17,6 +17,3 @@ def temperature_converter(temp: float, from_unit: str, to_unit: str, with_unit: 
             return tf.Rankine(temp, with_unit=with_unit).rankine_to(to_unit)
         else:
             raise ValueError("The measurement has an unknown unit")
-
-temp = temperature_converter(25, 'fahrenheit', 'kelvin', with_unit=True) 
-print(temp)
