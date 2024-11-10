@@ -18,7 +18,7 @@ class Area:
         }
         return f"{result} {units_map[unit]}" if self.with_unit else result
 
-# Square Centimeter (cm²)
+# Square Centimeter 
 class SquareCentimeter(Area):
     def square_centimeter_to(self, unit: str) -> Union[float, str]:
         if unit == 'square_foot':
@@ -37,7 +37,7 @@ class SquareCentimeter(Area):
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
 
-# Square Foot (ft²)
+# Square Foot 
 class SquareFoot(Area):
     def square_foot_to(self, unit: str) -> Union[float, str]:
         if unit == 'square_centimeter':
@@ -77,7 +77,7 @@ class SquareYard(Area):
 
 
 
-# Square Meter (m²)
+# Square Meter 
 class SquareMeter(Area):
     def square_meter_to(self, unit: str) -> Union[float, str]:
         if unit == 'square_centimeter':
@@ -96,7 +96,7 @@ class SquareMeter(Area):
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
 
-# Acre (ac)
+# Acre 
 class Acre(Area):
     def acre_to(self, unit: str) -> Union[float, str]:
         if unit == 'square_centimeter':
@@ -115,7 +115,7 @@ class Acre(Area):
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
 
-# Hectare (ha)
+# Hectare 
 class Hectare(Area):
     def hectare_to(self, unit: str) -> Union[float, str]:
         if unit == 'square_centimeter':
@@ -134,7 +134,7 @@ class Hectare(Area):
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
 
-# Square Kilometer (km²)
+# Square Kilometer 
 class SquareKilometer(Area):
     def square_kilometer_to(self, unit: str) -> Union[float, str]:
         if unit == 'square_centimeter':
