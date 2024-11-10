@@ -1,11 +1,29 @@
 from typing import Union
 
-# Millisecond 
-class Millisecond:
-    def __init__(self, num: float, with_unit: bool) -> None:
+# Classe base para unidades de tempo
+class TimeUnit:
+    def __init__(self, num: float, with_unit: bool = False) -> None:
         self.num = num
         self.with_unit = with_unit
 
+    def format_result(self, result: float, unit: str) -> Union[float, str]:
+        units_map = {
+            "millisecond": "ms",
+            "second": "sec",
+            "minute": "min",
+            "hour": "h",
+            "day": "d",
+            "week": "wk",
+            "month": "mo",
+            "year": "yr",
+            "decade": "dec",
+            "century": "cent"
+        }
+        return f"{result} {units_map[unit]}" if self.with_unit else result
+
+
+# Millisecond
+class Millisecond(TimeUnit):
     def millisecond_to(self, unit: str) -> Union[float, str]:
         if unit == 'second':
             result = self.num / 1000
@@ -28,34 +46,11 @@ class Millisecond:
         else:
             raise ValueError("The measurement has an unknown unit")
         
-        if self.with_unit:
-            if unit == 'second':
-                return f"{result} sec"
-            elif unit == 'minute':
-                return f"{result} min"
-            elif unit == 'hour':
-                return f"{result} h"
-            elif unit == 'day':
-                return f"{result} d"
-            elif unit == 'week':
-                return f"{result} wk"
-            elif unit == 'month':
-                return f"{result} mo"
-            elif unit == 'year':
-                return f"{result} yr"
-            elif unit == 'decade':
-                return f"{result} dec"
-            elif unit == 'century':
-                return f"{result} cent"
-        else:
-            return result
+        return self.format_result(result, unit)
+
 
 # Second
-class Second:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+class Second(TimeUnit):
     def second_to(self, unit: str) -> Union[float, str]:
         if unit == 'millisecond':
             result = self.num * 1000
@@ -78,34 +73,11 @@ class Second:
         else:
             raise ValueError("The measurement has an unknown unit")
         
-        if self.with_unit:
-            if unit == 'millisecond':
-                return f"{result} ms"
-            elif unit == 'minute':
-                return f"{result} min"
-            elif unit == 'hour':
-                return f"{result} h"
-            elif unit == 'day':
-                return f"{result} d"
-            elif unit == 'week':
-                return f"{result} wk"
-            elif unit == 'month':
-                return f"{result} mo"
-            elif unit == 'year':
-                return f"{result} yr"
-            elif unit == 'decade':
-                return f"{result} dec"
-            elif unit == 'century':
-                return f"{result} cent"
-        else:
-            return result
+        return self.format_result(result, unit)
+
 
 # Minute
-class Minute:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+class Minute(TimeUnit):
     def minute_to(self, unit: str) -> Union[float, str]:
         if unit == 'millisecond':
             result = self.num * 60000
@@ -128,34 +100,10 @@ class Minute:
         else:
             raise ValueError("The measurement has an unknown unit")
         
-        if self.with_unit:
-            if unit == 'millisecond':
-                return f"{result} ms"
-            elif unit == 'second':
-                return f"{result} sec"
-            elif unit == 'hour':
-                return f"{result} h"
-            elif unit == 'day':
-                return f"{result} d"
-            elif unit == 'week':
-                return f"{result} wk"
-            elif unit == 'month':
-                return f"{result} mo"
-            elif unit == 'year':
-                return f"{result} yr"
-            elif unit == 'decade':
-                return f"{result} dec"
-            elif unit == 'century':
-                return f"{result} cent"
-        else:
-            return result
+        return self.format_result(result, unit)
 
 # Hour
-class Hour:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+class Hour(TimeUnit):
     def hour_to(self, unit: str) -> Union[float, str]:
         if unit == 'millisecond':
             result = self.num * 3.6e6
@@ -178,34 +126,11 @@ class Hour:
         else:
             raise ValueError("The measurement has an unknown unit")
         
-        if self.with_unit:
-            if unit == 'millisecond':
-                return f"{result} ms"
-            elif unit == 'second':
-                return f"{result} sec"
-            elif unit == 'minute':
-                return f"{result} min"
-            elif unit == 'day':
-                return f"{result} d"
-            elif unit == 'week':
-                return f"{result} wk"
-            elif unit == 'month':
-                return f"{result} mo"
-            elif unit == 'year':
-                return f"{result} yr"
-            elif unit == 'decade':
-                return f"{result} dec"
-            elif unit == 'century':
-                return f"{result} cent"
-        else:
-            return result
+        return self.format_result(result, unit)
+
 
 # Day
-class Day:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+class Day(TimeUnit):
     def day_to(self, unit: str) -> Union[float, str]:
         if unit == 'millisecond':
             result = self.num * 86400000
@@ -228,35 +153,11 @@ class Day:
         else:
             raise ValueError("The measurement has an unknown unit")
         
-        if self.with_unit:
-            if unit == 'millisecond':
-                return f"{result} ms"
-            elif unit == 'second':
-                return f"{result} sec"
-            elif unit == 'minute':
-                return f"{result} min"
-            elif unit == 'hour':
-                return f"{result} h"
-            elif unit == 'week':
-                return f"{result} wk"
-            elif unit == 'month':
-                return f"{result} mo"
-            elif unit == 'year':
-                return f"{result} yr"
-            elif unit == 'decade':
-                return f"{result} dec"
-            elif unit == 'century':
-                return f"{result} cent"
-        else:
-            return result
+        return self.format_result(result, unit)
 
 
 # Week
-class Week:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+class Week(TimeUnit):
     def week_to(self, unit: str) -> Union[float, str]:
         if unit == 'millisecond':
             result = self.num * 604800000 
@@ -279,35 +180,11 @@ class Week:
         else:
             raise ValueError("Unknown unit")
         
-        if self.with_unit:
-            if unit == 'millisecond':
-                return f"{result} ms"
-            elif unit == 'second':
-                return f"{result} sec"
-            elif unit == 'minute':
-                return f"{result} min"
-            elif unit == 'hour':
-                return f"{result} h"
-            elif unit == 'day':
-                return f"{result} d"
-            elif unit == 'month':
-                return f"{result} mo"
-            elif unit == 'year':
-                return f"{result} yr"
-            elif unit == 'decade':
-                return f"{result} dec"
-            elif unit == 'century':
-                return f"{result} cent"
-        else:
-            return result
+        return self.format_result(result, unit)
 
 
 # Month
-class Month:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+class Month(TimeUnit):
     def month_to(self, unit: str) -> Union[float, str]:
         if unit == 'millisecond':
             result = self.num * 2.628e9  
@@ -330,35 +207,11 @@ class Month:
         else:
             raise ValueError("The measurement has an unknown unit")
         
-        if self.with_unit:
-            if unit == 'millisecond':
-                return f"{result} ms"
-            elif unit == 'second':
-                return f"{result} sec"
-            elif unit == 'minute':
-                return f"{result} min"
-            elif unit == 'hour':
-                return f"{result} h"
-            elif unit == 'day':
-                return f"{result} d"
-            elif unit == 'week':
-                return f"{result} wk"
-            elif unit == 'year':
-                return f"{result} yr"
-            elif unit == 'decade':
-                return f"{result} dec"
-            elif unit == 'century':
-                return f"{result} cent"
-        else:
-            return result
+        return self.format_result(result, unit)
 
 
 # Year
-class Year:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+class Year(TimeUnit):
     def year_to(self, unit: str) -> Union[float, str]:
         if unit == 'millisecond':
             result = self.num * 3.154e10  
@@ -381,35 +234,11 @@ class Year:
         else:
             raise ValueError("The measurement has an unknown unit")
         
-        if self.with_unit:
-            if unit == 'millisecond':
-                return f"{result} ms"
-            elif unit == 'second':
-                return f"{result} sec"
-            elif unit == 'minute':
-                return f"{result} min"
-            elif unit == 'hour':
-                return f"{result} h"
-            elif unit == 'day':
-                return f"{result} d"
-            elif unit == 'week':
-                return f"{result} wk"
-            elif unit == 'month':
-                return f"{result} mo"
-            elif unit == 'decade':
-                return f"{result} dec"
-            elif unit == 'century':
-                return f"{result} cent"
-        else:
-            return result
+        return self.format_result(result, unit)
 
 
 # Decade
-class Decade:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+class Decade(TimeUnit):
     def decade_to(self, unit: str) -> Union[float, str]:
         if unit == 'millisecond':
             result = self.num * 3.154e11  
@@ -432,35 +261,11 @@ class Decade:
         else:
             raise ValueError("The measurement has an unknown unit")
         
-        if self.with_unit:
-            if unit == 'millisecond':
-                return f"{result} ms"
-            elif unit == 'second':
-                return f"{result} sec"
-            elif unit == 'minute':
-                return f"{result} min"
-            elif unit == 'hour':
-                return f"{result} h"
-            elif unit == 'day':
-                return f"{result} d"
-            elif unit == 'week':
-                return f"{result} wk"
-            elif unit == 'month':
-                return f"{result} mo"
-            elif unit == 'year':
-                return f"{result} yr"
-            elif unit == 'century':
-                return f"{result} cent"
-        else:
-            return result
+        return self.format_result(result, unit)
 
 
 # Century
-class Century:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+class Century(TimeUnit):
     def century_to(self, unit: str) -> Union[float, str]:
         if unit == 'millisecond':
             result = self.num * 3.154e12 
@@ -483,25 +288,5 @@ class Century:
         else:
             raise ValueError("The measurement has an unknown unit")
         
-        if self.with_unit:
-            if unit == 'millisecond':
-                return f"{result} ms"
-            elif unit == 'second':
-                return f"{result} sec"
-            elif unit == 'minute':
-                return f"{result} min"
-            elif unit == 'hour':
-                return f"{result} h"
-            elif unit == 'day':
-                return f"{result} d"
-            elif unit == 'week':
-                return f"{result} wk"
-            elif unit == 'month':
-                return f"{result} mo"
-            elif unit == 'year':
-                return f"{result} yr"
-            elif unit == 'decade':
-                return f"{result} dec"
-        else:
-            return result
+        return self.format_result(result, unit)
 
