@@ -1,12 +1,23 @@
 from typing import Union
 
-# Classe base para comprimento
+# Base class for length units
 class LengthUnit:
     def __init__(self, num: float, with_unit: bool = False) -> None:
+        """
+        Initialize a length unit instance.
+        :param num: The numerical value of the length.
+        :param with_unit: Flag to include unit in the formatted result.
+        """
         self.num = num
         self.with_unit = with_unit
 
     def format_result(self, result: float, unit: str) -> Union[float, str]:
+        """
+        Format the result with or without unit.
+        :param result: The calculated length.
+        :param unit: The unit of the result.
+        :return: Formatted length with or without unit.
+        """
         units_map = {
             "millimeter": "mm",
             "centimeter": "cm",
@@ -23,6 +34,11 @@ class LengthUnit:
 # Millimeter 
 class Millimeter(LengthUnit):
     def millimeter_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert millimeters to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted length.
+        """
         if unit == 'centimeter':
             result = self.num / 10
         elif unit == 'inch':
@@ -47,6 +63,11 @@ class Millimeter(LengthUnit):
 # Centimeter 
 class Centimeter(LengthUnit):
     def centimeter_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert centimeters to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted length.
+        """
         if unit == 'millimeter':
             result = self.num * 10
         elif unit == 'inch':
@@ -71,6 +92,11 @@ class Centimeter(LengthUnit):
 # Inch 
 class Inch(LengthUnit):
     def inch_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert inches to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted length.
+        """
         if unit == 'millimeter':
             result = self.num * 25.4
         elif unit == 'centimeter':
@@ -92,10 +118,14 @@ class Inch(LengthUnit):
 
         return self.format_result(result, unit)
 
-
 # Foot 
 class Foot(LengthUnit):
     def foot_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert feet to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted length.
+        """
         if unit == 'millimeter':
             result = self.num * 304.8
         elif unit == 'centimeter':
@@ -120,6 +150,11 @@ class Foot(LengthUnit):
 # Yard 
 class Yard(LengthUnit):
     def yard_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert yards to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted length.
+        """
         if unit == 'millimeter':
             result = self.num * 914.4
         elif unit == 'centimeter':
@@ -144,6 +179,11 @@ class Yard(LengthUnit):
 # Meter 
 class Meter(LengthUnit):
     def meter_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert meters to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted length.
+        """
         if unit == 'millimeter':
             result = self.num * 1000
         elif unit == 'centimeter':
@@ -168,6 +208,11 @@ class Meter(LengthUnit):
 # Kilometer 
 class Kilometer(LengthUnit):
     def kilometer_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert kilometers to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted length.
+        """
         if unit == 'millimeter':
             result = self.num * 1_000_000
         elif unit == 'centimeter':
@@ -189,9 +234,14 @@ class Kilometer(LengthUnit):
         
         return self.format_result(result, unit)
 
-# Mile 
+# Mile
 class Mile(LengthUnit):
     def mile_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert miles to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted length.
+        """
         if unit == 'millimeter':
             result = self.num * 1_609_344
         elif unit == 'centimeter':
@@ -213,9 +263,14 @@ class Mile(LengthUnit):
 
         return self.format_result(result, unit)
 
-# Nautical Mile 
+# Nautical Mile
 class NauticalMile(LengthUnit):
     def nautical_mile_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert nautical miles to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted length.
+        """
         if unit == 'millimeter':
             result = self.num * 1_852_000
         elif unit == 'centimeter':
