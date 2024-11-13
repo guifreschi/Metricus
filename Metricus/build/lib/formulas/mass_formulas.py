@@ -1,12 +1,63 @@
+"""
+This module provides classes for converting weight between different units.
+
+Classes:
+
+    - WeightUnit: A base class for weight conversions. It handles the weight value and whether or not the unit should be included in the output.
+    - Milligram: A class for converting weight from milligrams (mg) to other units such as carats (ct), grams (g), ounces (oz), pounds (lb), kilograms (kg), stones (st), slugs (sl), and tonnes (t).
+
+Usage Example:
+
+    # Create a Milligram object
+    weight_mg = Milligram(1000, with_unit=True)
+
+    # Convert 1000 milligrams to grams
+    result = weight_mg.milligram_to('gram')
+    print(result)  # Output: "1.0 g"
+"""
+
+
 from typing import Union
 
-# Milligram
-class Milligram:
-    def __init__(self, num: float, with_unit: bool) -> None:
+# Base class for weight units
+class WeightUnit:
+    def __init__(self, num: float, with_unit: bool = False) -> None:
+        """
+        Initialize a weight unit instance.
+        :param num: The numerical value of the weight.
+        :param with_unit: Flag to include unit in the formatted result.
+        """
         self.num = num
         self.with_unit = with_unit
 
+    def format_result(self, result: float, unit: str) -> Union[float, str]:
+        """
+        Format the result with or without unit.
+        :param result: The calculated weight.
+        :param unit: The unit of the result.
+        :return: Formatted weight with or without unit.
+        """
+        units_map = {
+            "milligram": "mg",
+            "carat": "ct",
+            "gram": "g",
+            "ounce": "oz",
+            "pound": "lb",
+            "kilogram": "kg",
+            "stone": "st",
+            "slug": "sl",
+            "tonne": "t",
+        }
+        return f"{result} {units_map[unit]}" if self.with_unit else result
+
+# Milligram
+class Milligram(WeightUnit):
     def milligram_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert milligrams to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted weight.
+        """
         if unit == 'carat':
             result = self.num / 200
         elif unit == 'gram':
@@ -26,33 +77,16 @@ class Milligram:
         else:
             raise ValueError("The measurement has an unknown unit")
         
-        if self.with_unit:
-            if unit == 'carat':
-                return f"{result} ct"
-            elif unit == 'gram':
-                return f"{result} g"
-            elif unit == 'ounce':
-                return f"{result} oz"
-            elif unit == 'pound':
-                return f"{result} lb"
-            elif unit == 'kilogram':
-                return f"{result} kg"
-            elif unit == 'stone':
-                return f"{result} st"
-            elif unit == 'slug':
-               return f"{result} sl"
-            elif unit == 'tonne':
-                return f"{result} t"
-        else:
-            return result
-    
-# Carat
-class Carat:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
+        return self.format_result(result, unit)
 
+# Carat
+class Carat(WeightUnit):
     def carat_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert carats to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted weight.
+        """
         if unit == 'milligram':
             result = self.num * 200
         elif unit == 'gram':
@@ -72,33 +106,16 @@ class Carat:
         else:
             raise ValueError("The measurement has an unknown unit")
     
-        if self.with_unit:
-            if unit == 'milligram':
-                return f"{result} mg"
-            elif unit == 'gram':
-                return f"{result} g"
-            elif unit == 'ounce':
-                return f"{result} oz"
-            elif unit == 'pound':
-                return f"{result} lb"
-            elif unit == 'kilogram':
-                return f"{result} kg"
-            elif unit == 'stone':
-                return f"{result} st"
-            elif unit == 'slug':
-               return f"{result} sl"
-            elif unit == 'tonne':
-                return f"{result} t"
-        else:
-            return result
+        return self.format_result(result, unit)
 
 # Gram
-class Gram:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+class Gram(WeightUnit):
     def gram_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert grams to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted weight.
+        """
         if unit == 'milligram':
             result = self.num * 1000
         elif unit == 'carat':
@@ -118,33 +135,16 @@ class Gram:
         else:
             raise ValueError("The measurement has an unknown unit")
         
-        if self.with_unit:
-            if unit == 'milligram':
-                return f"{result} mg"
-            elif unit == 'carat':
-                return f"{result} ct"
-            elif unit == 'ounce':
-                return f"{result} oz"
-            elif unit == 'pound':
-                return f"{result} lb"
-            elif unit == 'kilogram':
-                return f"{result} kg"
-            elif unit == 'stone':
-                return f"{result} st"
-            elif unit == 'slug':
-               return f"{result} sl"
-            elif unit == 'tonne':
-                return f"{result} t"
-        else:
-            return result
-    
-# Ounce
-class Ounce:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
+        return self.format_result(result, unit)
 
+# Ounce
+class Ounce(WeightUnit):
     def ounce_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert ounces to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted weight.
+        """
         if unit == 'milligram':
             result = self.num * 28_349.5
         elif unit == 'carat':
@@ -163,34 +163,17 @@ class Ounce:
             result = self.num / 35_274.96
         else:
             raise ValueError("The measurement has an unknown unit")
+        
+        return self.format_result(result, unit)
 
-        if self.with_unit:
-            if unit == 'milligram':
-                return f"{result} mg"
-            elif unit == 'carat':
-                return f"{result} ct"
-            elif unit == 'gram':
-                return f"{result} g"
-            elif unit == 'pound':
-                return f"{result} lb"
-            elif unit == 'kilogram':
-                return f"{result} kg"
-            elif unit == 'stone':
-                return f"{result} st"
-            elif unit == 'slug':
-               return f"{result} sl"
-            elif unit == 'tonne':
-                return f"{result} t"
-        else:
-            return result 
-    
 # Pound
-class Pound:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+class Pound(WeightUnit):
     def pound_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert pounds to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted weight.
+        """
         if unit == 'milligram':
             result = self.num * 453_592
         elif unit == 'carat':
@@ -210,33 +193,16 @@ class Pound:
         else:
             raise ValueError("The measurement has an unknown unit")
         
-        if self.with_unit:
-            if unit == 'milligram':
-                return f"{result} mg"
-            elif unit == 'carat':
-                return f"{result} ct"
-            elif unit == 'gram':
-                return f"{result} g"
-            elif unit == 'ounce':
-                return f"{result} oz"
-            elif unit == 'kilogram':
-                return f"{result} kg"
-            elif unit == 'stone':
-                return f"{result} st"
-            elif unit == 'slug':
-               return f"{result} sl"
-            elif unit == 'tonne':
-                return f"{result} t"
-        else:
-            return result 
-    
-# Kilogram
-class Kilogram:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
+        return self.format_result(result, unit)
 
+# Kilogram
+class Kilogram(WeightUnit):
     def kilogram_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert kilograms to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted weight.
+        """
         if unit == 'milligram':
             result = self.num * 1_000_000
         elif unit == 'carat':
@@ -256,33 +222,16 @@ class Kilogram:
         else:
             raise ValueError("The measurement has an unknown unit")
         
-        if self.with_unit:
-            if unit == 'milligram':
-                return f"{result} mg"
-            elif unit == 'carat':
-                return f"{result} ct"
-            elif unit == 'gram':
-                return f"{result} g"
-            elif unit == 'ounce':
-                return f"{result} oz"
-            elif unit == 'pound':
-                return f"{result} lb"
-            elif unit == 'stone':
-                return f"{result} st"
-            elif unit == 'slug':
-               return f"{result} sl"
-            elif unit == 'tonne':
-                return f"{result} t"
-        else:
-            return result 
-
+        return self.format_result(result, unit)
+    
 # Stone
-class Stone:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+class Stone(WeightUnit):
     def stone_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert stones to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted weight.
+        """
         if unit == 'milligram':
             result = self.num * 6_350_290
         elif unit == 'carat':
@@ -302,33 +251,16 @@ class Stone:
         else:
             raise ValueError("The measurement has an unknown unit")
         
-        if self.with_unit:
-            if unit == 'milligram':
-                return f"{result} mg"
-            elif unit == 'carat':
-                return f"{result} ct"
-            elif unit == 'gram':
-                return f"{result} g"
-            elif unit == 'ounce':
-                return f"{result} oz"
-            elif unit == 'pound':
-                return f"{result} lb"
-            elif unit == 'kilogram':
-                return f"{result} kg"
-            elif unit == 'slug':
-               return f"{result} sl"
-            elif unit == 'tonne':
-                return f"{result} t"
-        else:
-            return result 
-   
-# Slug
-class Slug:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
+        return self.format_result(result, unit)
 
+# Slug
+class Slug(WeightUnit):
     def slug_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert slugs to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted weight.
+        """
         if unit == 'milligram':
             result = self.num * 14_593_900
         elif unit == 'carat':
@@ -348,33 +280,16 @@ class Slug:
         else:
             raise ValueError("The measurement has an unknown unit")
         
-        if self.with_unit:
-            if unit == 'milligram':
-                return f"{result} mg"
-            elif unit == 'carat':
-                return f"{result} ct"
-            elif unit == 'gram':
-                return f"{result} g"
-            elif unit == 'ounce':
-                return f"{result} oz"
-            elif unit == 'pound':
-                return f"{result} lb"
-            elif unit == 'kilogram':
-                return f"{result} kg"
-            elif unit == 'stone':
-               return f"{result} st"
-            elif unit == 'tonne':
-                return f"{result} t"
-        else:
-            return result 
+        return self.format_result(result, unit)
 
 # Tonne
-class Tonne:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+class Tonne(WeightUnit):
     def tonne_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert tonnes to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted weight.
+        """
         if unit == 'milligram':
             result = self.num * 1_000_000_000
         elif unit == 'carat':
@@ -394,22 +309,4 @@ class Tonne:
         else:
             raise ValueError("The measurement has an unknown unit")
         
-        if self.with_unit:
-            if unit == 'milligram':
-                return f"{result} mg"
-            elif unit == 'carat':
-                return f"{result} ct"
-            elif unit == 'gram':
-                return f"{result} g"
-            elif unit == 'ounce':
-                return f"{result} oz"
-            elif unit == 'pound':
-                return f"{result} lb"
-            elif unit == 'kilogram':
-                return f"{result} kg"
-            elif unit == 'stone':
-               return f"{result} st"
-            elif unit == 'slug':
-                return f"{result} sl"
-        else:
-            return result 
+        return self.format_result(result, unit)

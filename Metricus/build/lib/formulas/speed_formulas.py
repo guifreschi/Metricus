@@ -40,18 +40,36 @@ Usage Example:
     print(result)  # Output: "10.288 m/s"
 """
 
+# Speed
 from typing import Union
 
-# Speed
 class Speed:
-    def __init__(self, num: float, with_unit: bool) -> None:
+    """
+    A class used to represent a speed value and format it with or without the unit abbreviation.
+
+    Attributes
+    ----------
+    num : float
+        The speed value.
+    with_unit : bool, optional
+        Flag to determine if the unit should be included in the output. Default is False.
+
+    Methods
+    -------
+    format_result(result: float, unit: str) -> Union[float, str]
+        Formats the conversion result by adding the unit if necessary.
+    """
+
+    def __init__(self, num: float, with_unit: bool = False) -> None:
         """
         Initializes a Speed object.
 
-        :param num: Speed value.
-        :type num: float
-        :param with_unit: Flag to determine if the unit should be included in the output.
-        :type with_unit: bool
+        Parameters
+        ----------
+        num : float
+            Speed value.
+        with_unit : bool, optional
+            Flag to determine if the unit should be included in the output. Default is False.
         """
         self.num = num
         self.with_unit = with_unit
@@ -60,12 +78,17 @@ class Speed:
         """
         Formats the conversion result by adding the unit if necessary.
 
-        :param result: Conversion result.
-        :type result: float
-        :param unit: Unit to be added to the result.
-        :type unit: str
-        :return: Formatted result with or without the unit.
-        :rtype: Union[float, str]
+        Parameters
+        ----------
+        result : float
+            Conversion result.
+        unit : str
+            Unit to be added to the result.
+
+        Returns
+        -------
+        Union[float, str]
+            Formatted result with or without the unit.
         """
         return f"{result} {unit}" if self.with_unit else result
 

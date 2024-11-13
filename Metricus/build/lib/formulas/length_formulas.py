@@ -1,12 +1,62 @@
+"""
+This module provides classes for converting length between different units.
+
+Classes:
+
+    - LengthUnit: A base class for length conversions. It handles the length value and whether or not the unit should be included in the output.
+
+Usage Example:
+
+    # Create a LengthUnit object
+    length = LengthUnit(1000, with_unit=True)
+
+    # Format the result to include the unit abbreviation
+    formatted_result = length.format_result(1000, 'meter')
+    print(formatted_result)  # Output: "1000 m"
+"""
+
+
 from typing import Union
 
-# Millimeter
-class Millimeter:
-    def __init__(self, num: float, with_unit: bool) -> None:
+# Base class for length units
+class LengthUnit:
+    def __init__(self, num: float, with_unit: bool = False) -> None:
+        """
+        Initialize a length unit instance.
+        :param num: The numerical value of the length.
+        :param with_unit: Flag to include unit in the formatted result.
+        """
         self.num = num
         self.with_unit = with_unit
 
+    def format_result(self, result: float, unit: str) -> Union[float, str]:
+        """
+        Format the result with or without unit.
+        :param result: The calculated length.
+        :param unit: The unit of the result.
+        :return: Formatted length with or without unit.
+        """
+        units_map = {
+            "millimeter": "mm",
+            "centimeter": "cm",
+            "inch": "in",
+            "foot": "ft",
+            "yard": "yd",
+            "meter": "m",
+            "kilometer": "km",
+            "mile": "mi",
+            "nautical_mile": "NM",
+        }
+        return f"{result} {units_map[unit]}" if self.with_unit else result
+
+# Millimeter 
+class Millimeter(LengthUnit):
     def millimeter_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert millimeters to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted length.
+        """
         if unit == 'centimeter':
             result = self.num / 10
         elif unit == 'inch':
@@ -26,33 +76,16 @@ class Millimeter:
         else:
             raise ValueError("The measurement has an unknown unit")
         
-        if self.with_unit:
-            if unit == 'centimeter':
-                return f"{result} cm"
-            elif unit == 'inch':
-                return f"{result} in"
-            elif unit == 'foot':
-                return f"{result} ft"
-            elif unit == 'yard':
-                return f"{result} yd"
-            elif unit == 'meter':
-                return f"{result} m"
-            elif unit == 'kilometer':
-                return f"{result} km"
-            elif unit == 'mile':
-                return f"{result} mi"
-            elif unit == 'nautical_mile':
-                return f"{result} NM"   
-        else:
-            return result
+        return self.format_result(result, unit)
 
-# Centimeter
-class Centimeter:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+# Centimeter 
+class Centimeter(LengthUnit):
     def centimeter_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert centimeters to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted length.
+        """
         if unit == 'millimeter':
             result = self.num * 10
         elif unit == 'inch':
@@ -72,33 +105,16 @@ class Centimeter:
         else:
             raise ValueError("The measurement has an unknown unit")
 
-        if self.with_unit:
-            if unit == 'millimeter':
-                return f"{result} mm"
-            elif unit == 'inch':
-                return f"{result} in"
-            elif unit == 'foot':
-                return f"{result} ft"
-            elif unit == 'yard':
-                return f"{result} yd"
-            elif unit == 'meter':
-                return f"{result} m"
-            elif unit == 'kilometer':
-                return f"{result} km"
-            elif unit == 'mile':
-                return f"{result} mi"
-            elif unit == 'nautical_mile':
-                return f"{result} NM"
-        else:
-            return result
+        return self.format_result(result, unit)
 
-# Inch
-class Inch:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+# Inch 
+class Inch(LengthUnit):
     def inch_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert inches to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted length.
+        """
         if unit == 'millimeter':
             result = self.num * 25.4
         elif unit == 'centimeter':
@@ -118,33 +134,16 @@ class Inch:
         else:
             raise ValueError("The measurement has an unknown unit")
 
-        if self.with_unit:
-            if unit == 'millimeter':
-                return f"{result} mm"
-            elif unit == 'centimeter':
-                return f"{result} cm"
-            elif unit == 'foot':
-                return f"{result} ft"
-            elif unit == 'yard':
-                return f"{result} yd"
-            elif unit == 'meter':
-                return f"{result} m"
-            elif unit == 'kilometer':
-                return f"{result} km"
-            elif unit == 'mile':
-                return f"{result} mi"
-            elif unit == 'nautical_mile':
-                return f"{result} NM"
-        else:
-            return result
+        return self.format_result(result, unit)
 
-# Foot
-class Foot:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+# Foot 
+class Foot(LengthUnit):
     def foot_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert feet to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted length.
+        """
         if unit == 'millimeter':
             result = self.num * 304.8
         elif unit == 'centimeter':
@@ -163,34 +162,17 @@ class Foot:
             result = self.num / 6076.12
         else:
             raise ValueError("The measurement has an unknown unit")
-
-        if self.with_unit:
-            if unit == 'millimeter':
-                return f"{result} mm"
-            elif unit == 'centimeter':
-                return f"{result} cm"
-            elif unit == 'inch':
-                return f"{result} in"
-            elif unit == 'yard':
-                return f"{result} yd"
-            elif unit == 'meter':
-                return f"{result} m"
-            elif unit == 'kilometer':
-                return f"{result} km"
-            elif unit == 'mile':
-                return f"{result} mi"
-            elif unit == 'nautical_mile':
-                return f"{result} NM"
-        else:
-            return result
         
-# Yard
-class Yard:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
+        return self.format_result(result, unit)
 
+# Yard 
+class Yard(LengthUnit):
     def yard_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert yards to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted length.
+        """
         if unit == 'millimeter':
             result = self.num * 914.4
         elif unit == 'centimeter':
@@ -210,34 +192,16 @@ class Yard:
         else:
             raise ValueError("The measurement has an unknown unit")
 
-        if self.with_unit:
-            if unit == 'millimeter':
-                return f"{result} mm"
-            elif unit == 'centimeter':
-                return f"{result} cm"
-            elif unit == 'inch':
-                return f"{result} in"
-            elif unit == 'foot':
-                return f"{result} ft"
-            elif unit == 'meter':
-                return f"{result} m"
-            elif unit == 'kilometer':
-                return f"{result} km"
-            elif unit == 'mile':
-                return f"{result} mi"
-            elif unit == 'nautical_mile':
-                return f"{result} NM"
-        else:
-            return result
+        return self.format_result(result, unit)
 
-
-# Meter
-class Meter:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+# Meter 
+class Meter(LengthUnit):
     def meter_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert meters to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted length.
+        """
         if unit == 'millimeter':
             result = self.num * 1000
         elif unit == 'centimeter':
@@ -257,33 +221,16 @@ class Meter:
         else:
             raise ValueError("The measurement has an unknown unit")
 
-        if self.with_unit:
-            if unit == 'millimeter':
-                return f"{result} mm"
-            elif unit == 'centimeter':
-                return f"{result} cm"
-            elif unit == 'inch':
-                return f"{result} in"
-            elif unit == 'foot':
-                return f"{result} ft"
-            elif unit == 'yard':
-                return f"{result} yd"
-            elif unit == 'kilometer':
-                return f"{result} km"
-            elif unit == 'mile':
-                return f"{result} mi"
-            elif unit == 'nautical_mile':
-                return f"{result} NM"
-        else:
-            return result
+        return self.format_result(result, unit)
 
-# Kilometer
-class Kilometer:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+# Kilometer 
+class Kilometer(LengthUnit):
     def kilometer_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert kilometers to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted length.
+        """
         if unit == 'millimeter':
             result = self.num * 1_000_000
         elif unit == 'centimeter':
@@ -302,34 +249,17 @@ class Kilometer:
             result = self.num / 1.852
         else:
             raise ValueError("The measurement has an unknown unit")
-
-        if self.with_unit:
-            if unit == 'millimeter':
-                return f"{result} mm"
-            elif unit == 'centimeter':
-                return f"{result} cm"
-            elif unit == 'inch':
-                return f"{result} in"
-            elif unit == 'foot':
-                return f"{result} ft"
-            elif unit == 'yard':
-                return f"{result} yd"
-            elif unit == 'meter':
-                return f"{result} m"
-            elif unit == 'mile':
-                return f"{result} mi"
-            elif unit == "nautical_mile":
-                return f"{result} NM"
-        else:
-            return result
+        
+        return self.format_result(result, unit)
 
 # Mile
-class Mile:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+class Mile(LengthUnit):
     def mile_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert miles to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted length.
+        """
         if unit == 'millimeter':
             result = self.num * 1_609_344
         elif unit == 'centimeter':
@@ -349,33 +279,16 @@ class Mile:
         else:
             raise ValueError("The measurement has an unknown unit")
 
-        if self.with_unit:
-            if unit == 'millimeter':
-                return f"{result} mm"
-            elif unit == 'centimeter':
-                return f"{result} cm"
-            elif unit == 'inch':
-                return f"{result} in"
-            elif unit == 'foot':
-                return f"{result} ft"
-            elif unit == 'yard':
-                return f"{result} yd"
-            elif unit == 'meter':
-                return f"{result} m"
-            elif unit == 'kilometer':
-                return f"{result} km"
-            elif unit == 'nautical_mile':
-                return f"{result} NM"
-        else:
-            return result
+        return self.format_result(result, unit)
 
 # Nautical Mile
-class NauticalMile:
-    def __init__(self, num: float, with_unit: bool) -> None:
-        self.num = num
-        self.with_unit = with_unit
-
+class NauticalMile(LengthUnit):
     def nautical_mile_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert nautical miles to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted length.
+        """
         if unit == 'millimeter':
             result = self.num * 1_852_000
         elif unit == 'centimeter':
@@ -395,22 +308,4 @@ class NauticalMile:
         else:
             raise ValueError("The measurement has an unknown unit")
 
-        if self.with_unit:
-            if unit == 'millimeter':
-                return f"{result} mm"
-            elif unit == 'centimeter':
-                return f"{result} cm"
-            elif unit == 'inch':
-                return f"{result} in"
-            elif unit == 'foot':
-                return f"{result} ft"
-            elif unit == 'yard':
-                return f"{result} yd"
-            elif unit == 'meter':
-                return f"{result} m"
-            elif unit == 'kilometer':
-                return f"{result} km"
-            elif unit == 'mile':
-                return f"{result} mi"
-        else:
-            return result
+        return self.format_result(result, unit)

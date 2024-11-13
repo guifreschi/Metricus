@@ -1,19 +1,54 @@
+"""
+This module provides classes for converting volume between different units.
+
+Classes:
+
+    - Volume: A base class for volume conversions. It handles the volume value and whether or not the unit should be included in the output.
+    - Milliliter: A class for converting volume from milliliters (mL) to other units such as cubic centimeters (cm³), fluid ounces (fl_oz), cups (cup), pints (pt), quarts (qt), liters (L), gallons (gal), barrels (bbl), and cubic meters (m³).
+
+Usage Example:
+
+    # Create a Milliliter object
+    volume_ml = Milliliter(1000, with_unit=True)
+
+    # Convert 1000 milliliters to liters
+    result = volume_ml.mL_to('L')
+    print(result)  # Output: "1.0 L"
+"""
+
+
 from typing import Union
 
-# Classe base para Volume
+# Base class for volume units
 class Volume:
-    def __init__(self, num: float, with_unit: bool) -> None:
+    def __init__(self, num: float, with_unit: bool = False) -> None:
+        """
+        Initialize a volume unit instance.
+        :param num: The numerical value of the volume.
+        :param with_unit: Flag to include unit in the formatted result.
+        """
         self.num = num
         self.with_unit = with_unit
 
     def format_result(self, result: float, unit: str) -> Union[float, str]:
+        """
+        Format the result with or without unit.
+        :param result: The calculated volume.
+        :param unit: The unit of the result.
+        :return: Formatted volume with or without unit.
+        """
         unit = unit.replace('cm3', 'cm³')
         unit = unit.replace('m3', 'm³')
         return f"{result} {unit}" if self.with_unit else result
 
-# Milliliter (mL)
+# Milliliter
 class Milliliter(Volume):
     def mL_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert milliliters to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted volume.
+        """
         if unit == 'cm³' or unit == 'cm3':
             result = self.num
         elif unit == 'fl_oz':
@@ -36,15 +71,25 @@ class Milliliter(Volume):
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
 
-# Cubic Centimeter (cm³)
+# Cubic Centimeter
 class CubicCentimeter(Volume):
     def to(self, unit: str) -> Union[float, str]:
-        # cm³ é equivalente a mL
+        """
+        Convert cubic centimeters to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted volume.
+        """
+        # cm³ is equivalent to mL
         return Milliliter(self.num, self.with_unit).to(unit)
 
-# Fluid Ounce (fl oz)
+# Fluid Ounce
 class FluidOunce(Volume):
     def fl_oz_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert fluid ounces to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted volume.
+        """
         if unit == 'mL':
             result = self.num * 29.5735
         elif unit == 'cm³' or unit == 'cm3':
@@ -67,9 +112,14 @@ class FluidOunce(Volume):
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
 
-# Cup (cup)
+# Cup
 class Cup(Volume):
     def cup_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert cups to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted volume.
+        """
         if unit == 'mL':
             result = self.num * 240
         elif unit == 'cm³' or unit == 'cm3':
@@ -92,9 +142,14 @@ class Cup(Volume):
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
 
-# Pint (pt)
+# Pint
 class Pint(Volume):
     def pt_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert pints to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted volume.
+        """
         if unit == 'mL':
             result = self.num * 473.176
         elif unit == 'cm³' or unit == 'cm3':
@@ -117,9 +172,14 @@ class Pint(Volume):
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
 
-# Quart (qt)
+# Quart
 class Quart(Volume):
     def qt_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert quarts to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted volume.
+        """
         if unit == 'mL':
             result = self.num * 946.353
         elif unit == 'cm³' or unit == 'cm3':
@@ -142,9 +202,14 @@ class Quart(Volume):
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
 
-# Liter (L)
+# Liter
 class Liter(Volume):
     def liter_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert liters to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted volume.
+        """
         if unit == 'mL':
             result = self.num * 1000
         elif unit == 'cm³' or unit == 'cm3':
@@ -167,9 +232,36 @@ class Liter(Volume):
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
 
-# Gallon (gal)
+# Base class for volume units
+class Volume:
+    def __init__(self, num: float, with_unit: bool = False) -> None:
+        """
+        Initialize a volume unit instance.
+        :param num: The numerical value of the volume.
+        :param with_unit: Flag to include unit in the formatted result.
+        """
+        self.num = num
+        self.with_unit = with_unit
+
+    def format_result(self, result: float, unit: str) -> Union[float, str]:
+        """
+        Format the result with or without unit.
+        :param result: The calculated volume.
+        :param unit: The unit of the result.
+        :return: Formatted volume with or without unit.
+        """
+        unit = unit.replace('cm3', 'cm³')
+        unit = unit.replace('m3', 'm³')
+        return f"{result} {unit}" if self.with_unit else result
+
+# Gallon
 class Gallon(Volume):
     def gal_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert gallons to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted volume.
+        """
         if unit == 'mL':
             result = self.num * 3785.41
         elif unit == 'cm³' or unit == 'cm3':
@@ -192,9 +284,14 @@ class Gallon(Volume):
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
 
-# Barrel (bbl)
+# Barrel
 class Barrel(Volume):
     def bbl_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert barrels to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted volume.
+        """
         if unit == 'mL':
             result = self.num * 119240
         elif unit == 'cm³' or unit == 'cm3':
@@ -217,9 +314,14 @@ class Barrel(Volume):
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
 
-# Cubic Meter (m³)
+# Cubic Meter
 class CubicMeter(Volume):
     def m3_to(self, unit: str) -> Union[float, str]:
+        """
+        Convert cubic meters to the specified unit.
+        :param unit: The unit to convert to.
+        :return: Converted volume.
+        """
         if unit == 'mL':
             result = self.num * 1e6
         elif unit == 'cm³' or unit == 'cm3':
@@ -241,4 +343,3 @@ class CubicMeter(Volume):
         else:
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
-
