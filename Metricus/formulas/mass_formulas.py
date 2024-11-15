@@ -1,3 +1,45 @@
+"""
+This module provides classes for converting weight between different units.
+
+Classes:
+    - WeightUnit: A base class for weight conversions. It handles the weight value and whether or not the unit should be included in the output.
+    - Milligram: A class for converting weight from milligrams (mg) to other units such as carat (ct), gram (g), ounce (oz), pound (lb), kilogram (kg), stone (st), slug (sl), and tonne (t).
+    - Carat: A class for converting weight from carats (ct) to other units such as milligrams (mg), gram (g), ounce (oz), pound (lb), kilogram (kg), stone (st), slug (sl), and tonne (t).
+    - Gram: A class for converting weight from grams (g) to other units such as milligrams (mg), carat (ct), ounce (oz), pound (lb), kilogram (kg), stone (st), slug (sl), and tonne (t).
+    - Ounce: A class for converting weight from ounces (oz) to other units such as milligrams (mg), carat (ct), gram (g), pound (lb), kilogram (kg), stone (st), slug (sl), and tonne (t).
+    - Pound: A class for converting weight from pounds (lb) to other units such as milligrams (mg), carat (ct), gram (g), ounce (oz), kilogram (kg), stone (st), slug (sl), and tonne (t).
+    - Kilogram: A class for converting weight from kilograms (kg) to other units such as milligrams (mg), carat (ct), gram (g), ounce (oz), pound (lb), stone (st), slug (sl), and tonne (t).
+    - Stone: A class for converting weight from stones (st) to other units such as milligrams (mg), carat (ct), gram (g), ounce (oz), pound (lb), kilogram (kg), slug (sl), and tonne (t).
+    - Slug: A class for converting weight from slugs (sl) to other units such as milligrams (mg), carat (ct), gram (g), ounce (oz), pound (lb), kilogram (kg), stone (st), and tonne (t).
+    - Tonne: A class for converting weight from tonnes (t) to other units such as milligrams (mg), carat (ct), gram (g), ounce (oz), pound (lb), kilogram (kg), stone (st), slug (sl).
+
+Usage Example:
+    # Create a Milligram object
+    weight_milligram = Milligram(5000, with_unit=True)
+    # Convert 5000 milligrams to grams
+    result = weight_milligram.milligram_to('gram')
+    print(result)  # Output: "5.0 g"
+
+    # Create a Carat object
+    weight_carat = Carat(100, with_unit=False)
+    # Convert 100 carats to grams
+    result = weight_carat.carat_to('gram')
+    print(result)  # Output: 20.0
+
+    # Create a Pound object
+    weight_pound = Pound(150, with_unit=True)
+    # Convert 150 pounds to kilograms
+    result = weight_pound.pound_to('kilogram')
+    print(result)  # Output: "68.1818 kg"
+
+    # Create a Tonne object
+    weight_tonne = Tonne(5, with_unit=True)
+    # Convert 5 tonnes to pounds
+    result = weight_tonne.tonne_to('pound')
+    print(result)  # Output: "11023.1 lb"
+"""
+
+
 from typing import Union
 
 # Base class for weight units

@@ -1,3 +1,44 @@
+"""
+This module provides classes for converting length between different units.
+
+Classes:
+    - LengthUnit: A base class for length conversions. It handles the length value and whether or not the unit should be included in the output.
+    - Millimeter: A class for converting length from millimeters (mm) to other units such as centimeter (cm), inch (in), foot (ft), yard (yd), meter (m), kilometer (km), mile (mi), and nautical mile (NM).
+    - Centimeter: A class for converting length from centimeters (cm) to other units such as millimeter (mm), inch (in), foot (ft), yard (yd), meter (m), kilometer (km), mile (mi), and nautical mile (NM).
+    - Inch: A class for converting length from inches (in) to other units such as millimeter (mm), centimeter (cm), foot (ft), yard (yd), meter (m), kilometer (km), mile (mi), and nautical mile (NM).
+    - Foot: A class for converting length from feet (ft) to other units such as millimeter (mm), centimeter (cm), inch (in), yard (yd), meter (m), kilometer (km), mile (mi), and nautical mile (NM).
+    - Yard: A class for converting length from yards (yd) to other units such as millimeter (mm), centimeter (cm), inch (in), foot (ft), meter (m), kilometer (km), mile (mi), and nautical mile (NM).
+    - Meter: A class for converting length from meters (m) to other units such as millimeter (mm), centimeter (cm), inch (in), foot (ft), yard (yd), kilometer (km), mile (mi), and nautical mile (NM).
+    - Kilometer: A class for converting length from kilometers (km) to other units such as millimeter (mm), centimeter (cm), inch (in), foot (ft), yard (yd), meter (m), mile (mi), and nautical mile (NM).
+    - Mile: A class for converting length from miles (mi) to other units such as millimeter (mm), centimeter (cm), inch (in), foot (ft), yard (yd), meter (m), kilometer (km), and nautical mile (NM).
+    - NauticalMile: A class for converting length from nautical miles (NM) to other units such as millimeter (mm), centimeter (cm), inch (in), foot (ft), yard (yd), meter (m), kilometer (km), mile (mi).
+
+Usage Example:
+    # Create a Millimeter object
+    length_mm = Millimeter(5000, with_unit=True)
+    # Convert 5000 millimeters to centimeters
+    result = length_mm.millimeter_to('centimeter')
+    print(result)  # Output: "500.0 cm"
+
+    # Create a Centimeter object
+    length_cm = Centimeter(100, with_unit=False)
+    # Convert 100 centimeters to inches
+    result = length_cm.centimeter_to('inch')
+    print(result)  # Output: 39.3701
+
+    # Create a Yard object
+    length_yard = Yard(5, with_unit=True)
+    # Convert 5 yards to meters
+    result = length_yard.yard_to('meter')
+    print(result)  # Output: "4.572 m"
+
+    # Create a Mile object
+    length_mile = Mile(2, with_unit=True)
+    # Convert 2 miles to kilometers
+    result = length_mile.mile_to('kilometer')
+    print(result)  # Output: "3.21869 km"
+"""
+
 from typing import Union
 
 # Base class for length units

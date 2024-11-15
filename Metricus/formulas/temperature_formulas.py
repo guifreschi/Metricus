@@ -1,3 +1,40 @@
+"""
+This module provides classes for converting temperature between different units.
+
+Classes:
+    - TemperatureUnit: A base class for temperature conversions. It handles the temperature value and whether or not the unit should be included in the output.
+    - Celsius: A class for converting temperature from Celsius (°C) to other units such as Kelvin (K), Fahrenheit (°F), and Rankine (°R).
+    - Fahrenheit: A class for converting temperature from Fahrenheit (°F) to other units such as Celsius (°C), Kelvin (K), and Rankine (°R).
+    - Kelvin: A class for converting temperature from Kelvin (K) to other units such as Celsius (°C), Fahrenheit (°F), and Rankine (°R).
+    - Rankine: A class for converting temperature from Rankine (°R) to other units such as Celsius (°C), Kelvin (K), and Fahrenheit (°F).
+
+Usage Example:
+    # Create a Celsius object
+    temp_celsius = Celsius(25, with_unit=True)
+    # Convert 25 degrees Celsius to Fahrenheit
+    result = temp_celsius.celsius_to('fahrenheit')
+    print(result)  # Output: "77.0 °F"
+
+    # Create a Fahrenheit object
+    temp_fahrenheit = Fahrenheit(77, with_unit=False)
+    # Convert 77 degrees Fahrenheit to Celsius
+    result = temp_fahrenheit.fahrenheit_to('celsius')
+    print(result)  # Output: 25.0
+
+    # Create a Kelvin object
+    temp_kelvin = Kelvin(273.15, with_unit=True)
+    # Convert 273.15 Kelvin to Celsius
+    result = temp_kelvin.kelvin_to('celsius')
+    print(result)  # Output: "0.0 °C"
+
+    # Create a Rankine object
+    temp_rankine = Rankine(491.67, with_unit=True)
+    # Convert 491.67 Rankine to Celsius
+    result = temp_rankine.rankine_to('celsius')
+    print(result)  # Output: "0.0 °C"
+"""
+
+
 from typing import Union
 
 # Base class for temperature units
