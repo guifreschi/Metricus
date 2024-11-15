@@ -38,7 +38,7 @@ Dependencies:
 from formulas import speed_formulas as sf
 from typing import Union
 
-unit_list = ['meters_per_second', 'kilometers_per_hour', 'miles_per_hour', 'knots']
+unit_list = ['m/s', 'km/h', 'mph', 'kn']
 
 def speed_converter(speed: float, from_unit: str, to_unit: str, with_unit: bool = False) -> Union[float, str]:
     """
