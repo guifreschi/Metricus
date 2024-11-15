@@ -1,6 +1,7 @@
 README.md
 setup.py
 formulas/__init__.py
+formulas/acceleration_formulas.py
 formulas/area_formulas.py
 formulas/electricity_formulas.py
 formulas/energy_formulas.py
@@ -16,6 +17,7 @@ metricus.egg-info/SOURCES.txt
 metricus.egg-info/dependency_links.txt
 metricus.egg-info/top_level.txt
 operations/__init__.py
+operations/acceleration.py
 operations/area.py
 operations/electricity.py
 operations/energy.py
