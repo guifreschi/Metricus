@@ -68,13 +68,13 @@ def speed_converter(speed: float, from_unit: str, to_unit: str, with_unit: bool 
         raise ValueError("The measurement has an unknown unit")
     
     # Conversion logic based on the 'from_unit'
-    if from_unit == 'meters_per_second':
-        return sf.MetersPerSecond(speed, with_unit=with_unit).meters_per_second_to(to_unit)
-    elif from_unit == 'kilometers_per_hour':
-        return sf.KilometersPerHour(speed, with_unit=with_unit).kilometers_per_hour_to(to_unit)
-    elif from_unit == 'miles_per_hour':
-        return sf.MilesPerHour(speed, with_unit=with_unit).miles_per_hour_to(to_unit)
-    elif from_unit == 'knots':
-        return sf.Knots(speed, with_unit=with_unit).knots_to(to_unit)
+    if from_unit == 'm/s':
+        return sf.MetersPerSecond(speed, with_unit=with_unit).mps_to(to_unit)
+    elif from_unit == 'km/h':
+        return sf.KilometersPerHour(speed, with_unit=with_unit).kmph_to(to_unit)
+    elif from_unit == 'mph':
+        return sf.MilesPerHour(speed, with_unit=with_unit).mph_to(to_unit)
+    elif from_unit == 'kn':
+        return sf.Knots(speed, with_unit=with_unit).kn_to(to_unit)
     else:
         raise ValueError("The measurement has an unknown unit")
