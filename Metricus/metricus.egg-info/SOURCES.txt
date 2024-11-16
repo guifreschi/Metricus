@@ -5,6 +5,7 @@ formulas/acceleration_formulas.py
 formulas/area_formulas.py
 formulas/electricity_formulas.py
 formulas/energy_formulas.py
+formulas/force_formulas.py
 formulas/length_formulas.py
 formulas/mass_formulas.py
 formulas/pressure_formulas.py
@@ -21,6 +22,7 @@ operations/acceleration.py
 operations/area.py
 operations/electricity.py
 operations/energy.py
+operations/force.py
 operations/length.py
 operations/mass.py
 operations/pressure.py

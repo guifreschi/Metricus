@@ -9,18 +9,20 @@ from operations.temperature import temperature_converter
 from operations.time import time_converter
 from operations.volume import volume_converter
 from operations.acceleration import acceleration_converter
+from operations.force import force_converter
 
-help(area_converter)
-help(electricity_converter)
-help(energy_converter)
-help(length_converter)
-help(mass_converter)
-help(pressure_converter)
-help(speed_converter)
-help(temperature_converter)
-help(time_converter)
-help(volume_converter)
-help(acceleration_converter)
+# help(area_converter)
+# help(electricity_converter)
+# help(energy_converter)
+# help(length_converter)
+# help(mass_converter)
+# help(pressure_converter)
+# help(speed_converter)
+# help(temperature_converter)
+# help(time_converter)
+# help(volume_converter)
+# help(acceleration_converter)
+# help(force_converter)
 
 print(area_converter(100, 'square_kilometer', 'hectare'))
 print(electricity_converter(5, 'kilowatt', 'watt'))
@@ -33,3 +35,4 @@ print(temperature_converter(25, 'celsius', 'fahrenheit'))
 print(time_converter(1, 'hour', 'minute'))
 print(volume_converter(1, 'm3', 'L'))
 print(acceleration_converter(500, 'gal', 'gravity'))
+print(force_converter(1000, 'newton', 'dyne'))
