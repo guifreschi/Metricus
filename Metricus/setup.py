@@ -15,5 +15,5 @@ setup(
         "Project on GitHub": "https://github.com/guifreschi/Metricus"
     },
     license='MIT',
-    keywords='conversion, units, temperature, weight, length, distance, energy, volume, mass, pressure, speed, time, metric, imperial, unit converter'
+    keywords='conversion, units, temperature, weight, length, distance, energy, volume, mass, pressure, speed, time, metric, imperial, unit converter...'
 )
