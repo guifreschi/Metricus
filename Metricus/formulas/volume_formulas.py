@@ -87,7 +87,7 @@ class Milliliter(Volume):
             result = self.num / 3785.41
         elif unit == 'bbl':
             result = self.num / 119240
-        elif unit == 'm³':
+        elif unit == 'm³' or unit == 'm3':
             result = self.num / 1e6
         else:
             raise ValueError("The measurement has an unknown unit")

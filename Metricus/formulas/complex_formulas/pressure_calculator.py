@@ -8,16 +8,17 @@ Function:
       numeric value or as a string with the unit included.
 
 Units Supported for Conversion:
+    - 'pascal': Pascal (Pa), the standard unit of pressure in the metric system (default).
+    - 'mmHg': Millimeters of mercury (mmHg), a unit of pressure equal to 1/760 of an atmosphere.
+    - 'psi': Pound per square inch (psi), a unit of pressure in the imperial system.
     - 'bar': Bar, a metric unit of pressure.
-    - 'atm': Atmosphere, a unit of pressure based on the average atmospheric pressure at sea level.
-    - 'torr': Torr, a unit of pressure equal to 1/760 of an atmosphere.
-    - 'psi': Pound per square inch, a unit of pressure in the imperial system.
+    - 'atmosphere': Atmosphere (atm), a unit of pressure based on the average atmospheric pressure at sea level.
 
 Parameters:
     - newton (float): The force in newtons (N).
     - square_meter (float): The area in square meters (m²).
     - pressure_unit (str): The desired unit for the resulting pressure. Supported units are:
-      'bar', 'atm', 'torr', 'psi'.
+      'pascal', 'mmHg', 'psi', 'bar', 'atmosphere'.
     - with_unit (bool, optional): If True, returns the result with the unit. Defaults to False, 
       which returns just the numeric value.
 
@@ -79,14 +80,9 @@ def pressure_calculator(newton: float, square_meter: float, pressure_unit: str, 
     if pressure_unit == 'pascal':
         return f"{result} Pa" if with_unit else result
 
-    units = {
-        'bar': result / 100000,
-        'atm': result / 101325,
-        'torr': result / 133.322,
-        'psi': result / 6894.757,
-    }
+    units =['pascal', 'mmHg', 'psi', 'bar', 'atmosphere']
 
     if pressure_unit in units:
-        return f"{units[pressure_unit]} {pressure_unit}" if with_unit else units[pressure_unit]
+        return getattr(pf.Pascal(result, with_unit=with_unit), 'pascal_to')(pressure_unit)
 
     raise ValueError(f"The measurement has an unknown unit: {pressure_unit}")

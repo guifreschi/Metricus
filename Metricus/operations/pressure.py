@@ -71,9 +71,9 @@ def pressure_converter(pressure: float, from_unit: str, to_unit: str, with_unit:
     # Conversion logic based on the 'from_unit'
     if from_unit == 'pascal':
         return pf.Pascal(pressure, with_unit=with_unit).pascal_to(to_unit)
-    elif from_unit == 'millimeter_of_mercury':
+    elif from_unit == 'mmHg':
         return pf.MillimeterOfMercury(pressure, with_unit=with_unit).millimeter_of_mercury_to(to_unit)
-    elif from_unit == 'pound_force_per_square_inch':
+    elif from_unit == 'psi':
         return pf.PoundForcePerSquareInch(pressure, with_unit=with_unit).pound_force_per_square_inch_to(to_unit)
     elif from_unit == 'bar':
         return pf.Bar(pressure, with_unit=with_unit).bar_to(to_unit)

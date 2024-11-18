@@ -52,12 +52,14 @@ Usage Example:
     print(result)  # Output: "5.0 lb/ft³"
 """
 
-
+from formulas.complex_formulas import density_calculator
 from typing import Union
 from operations import mass as m
 from operations import volume as v
 
-def calculate_density(mass: float, volume: float, density_unit: str = 'kg/m³', mass_unit: str = 'kilogram', volume_unit: str = 'cubic_meter', with_unit: bool = False) -> Union[float, str]:
+dec = density_calculator.density_calculator
+
+def calculate_density(mass: float, volume: float, density_unit: str = 'kg/m³', mass_unit: str = 'kilogram', volume_unit: str = 'm3', with_unit: bool = False) -> Union[float, str]:
     """
     Calculate the density based on mass and volume values, converting the units if necessary.
 
@@ -87,19 +89,6 @@ def calculate_density(mass: float, volume: float, density_unit: str = 'kg/m³', 
     kilogram = m.mass_converter(mass, mass_unit, 'kilogram') if mass_unit != 'kilogram' else mass
 
     # Convert volume to cubic meter if necessary
-    cubic_meter = v.volume_converter(volume, volume_unit, 'cubic_meter') if volume_unit != 'cubic_meter' else volume
+    cubic_meter = v.volume_converter(volume, volume_unit, 'm3') if volume_unit != 'm3' or volume_unit != 'm3' else volume
 
-    # Calculate density using the converted values
-    result = kilogram / cubic_meter
-
-    units = {
-        'kg/m³': result,
-        'g/cm³': result / 1000,
-        'lb/ft³': result * 0.062428,
-        'oz/in³': result * 0.0005780367,
-    }
-
-    if density_unit not in units:
-        raise ValueError(f"Unknown unit: {density_unit}")
-
-    return f"{units[density_unit]} {density_unit}" if with_unit else units[density_unit]
+    return dec(kilogram, cubic_meter, density_unit=density_unit, with_unit=with_unit)

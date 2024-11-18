@@ -18,14 +18,14 @@ Units Supported for Conversion:
         - 'pascal': Pascal (Pa), the standard unit of pressure in the metric system.
         - 'bar': Bar, a metric unit of pressure.
         - 'atm': Atmosphere, a unit of pressure based on the average atmospheric pressure at sea level.
-        - 'torr': Torr, a unit of pressure equal to 1/760 of an atmosphere.
+        - 'mmHg': mmHg, a unit of pressure equal to 1/760 of an atmosphere.
         - 'psi': Pound per square inch (psi), a unit of pressure in the imperial system.
 
 Parameters:
     - force (float): The force value to be used in the pressure calculation.
     - area (float): The area value to be used in the pressure calculation.
     - pressure_unit (str, optional): The unit of pressure to return. Defaults to 'pascal'. Supported units include:
-      'pascal', 'bar', 'atm', 'torr', 'psi'.
+      'pascal', 'bar', 'atm', 'mmHg', 'psi'.
     - force_unit (str, optional): The unit of force for the provided force value. Defaults to 'newton'. 
       Other units are converted to newtons.
     - area_unit (str, optional): The unit of area for the provided area value. Defaults to 'square_meter'. 
@@ -53,9 +53,12 @@ Usage Example:
     print(result)  # Output: "7.2523 psi"
 """
 
+from formulas.complex_formulas import pressure_calculator
 from typing import Union
 from operations import force as f
 from operations import area as a
+
+pf = pressure_calculator.pressure_calculator
 
 def calculate_pressure(force: float, area: float, pressure_unit: str = 'pascal', force_unit: str = 'newton', area_unit: str = 'square_meter', with_unit: bool = False) -> Union[float, str]:
     """
@@ -90,17 +93,4 @@ def calculate_pressure(force: float, area: float, pressure_unit: str = 'pascal',
     square_meter = a.area_converter(area, area_unit, 'square_meter') if area_unit != 'square_meter' else area
 
     # Calculate pressure using the converted values
-    result = newton / square_meter
-
-    units = {
-        'pascal': result,
-        'bar': result / 100000,
-        'atm': result / 101325,
-        'torr': result / 133.322,
-        'psi': result / 6894.757,
-    }
-
-    if pressure_unit not in units:
-        raise ValueError(f"Unknown unit: {pressure_unit}")
-
-    return f"{units[pressure_unit]} {pressure_unit}" if with_unit else units[pressure_unit]
+    return pf(newton=newton ,square_meter=square_meter, pressure_unit=pressure_unit, with_unit=with_unit)
