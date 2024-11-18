@@ -10,6 +10,9 @@ from operations.time import time_converter
 from operations.volume import volume_converter
 from operations.acceleration import acceleration_converter
 from operations.force import force_converter
+from operations.complex_operations import calculate_force
+
+calculate_force = calculate_force.calculate_force
 
 # help(area_converter)
 # help(electricity_converter)
@@ -23,6 +26,7 @@ from operations.force import force_converter
 # help(volume_converter)
 # help(acceleration_converter)
 # help(force_converter)
+# help(calculate_force)
 
 print(area_converter(100, 'square_kilometer', 'hectare'))
 print(electricity_converter(5, 'kilowatt', 'watt'))
@@ -36,3 +40,4 @@ print(time_converter(1, 'hour', 'minute'))
 print(volume_converter(1, 'm3', 'L'))
 print(acceleration_converter(500, 'gal', 'gravity'))
 print(force_converter(1000, 'newton', 'dyne'))
+print(calculate_force(500, 10))
