@@ -11,8 +11,14 @@ from operations.volume import volume_converter
 from operations.acceleration import acceleration_converter
 from operations.force import force_converter
 from operations.complex_operations import calculate_force
+from operations.complex_operations import calculate_density
+from operations.complex_operations import calculate_displacement
+from operations.complex_operations import calculate_pressure
 
 calculate_force = calculate_force.calculate_force
+calculate_density = calculate_density.calculate_density
+calculate_displacement = calculate_displacement.calculate_displacement
+calculate_pressure = calculate_pressure.calculate_pressure
 
 # help(area_converter)
 # help(electricity_converter)
@@ -27,6 +33,9 @@ calculate_force = calculate_force.calculate_force
 # help(acceleration_converter)
 # help(force_converter)
 # help(calculate_force)
+# help(calculate_density)
+# help(calculate_displacement)
+# help(calculate_pressure)
 
 print(area_converter(100, 'square_kilometer', 'hectare'))
 print(electricity_converter(5, 'kilowatt', 'watt'))
@@ -41,3 +50,6 @@ print(volume_converter(1, 'm3', 'L'))
 print(acceleration_converter(500, 'gal', 'gravity'))
 print(force_converter(1000, 'newton', 'dyne'))
 print(calculate_force(500, 10))
+print(calculate_density(400, 500, mass_unit='tonne', volume_unit='L', with_unit=True))
+print(calculate_displacement(100, 300, 'minute', with_unit=True))
+print(calculate_pressure(500, 100, 'psi', 'poundal', with_unit=True))
