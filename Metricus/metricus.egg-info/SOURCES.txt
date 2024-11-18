@@ -14,6 +14,7 @@ formulas/temperature_formulas.py
 formulas/time_formulas.py
 formulas/volume_formulas.py
 formulas/complex_formulas/__init__.py
+formulas/complex_formulas/displacement_calculator.py
 formulas/complex_formulas/force_calculator.py
 metricus.egg-info/PKG-INFO
 metricus.egg-info/SOURCES.txt
@@ -33,5 +34,6 @@ operations/temperature.py
 operations/time.py
 operations/volume.py
 operations/complex_operations/__init__.py
+operations/complex_operations/calculate_displacement.py
 operations/complex_operations/calculate_force.py
 tests/test.py
