@@ -14,6 +14,7 @@ from operations.complex_operations import calculate_force
 from operations.complex_operations import calculate_density
 from operations.complex_operations import calculate_displacement
 from operations.complex_operations import calculate_pressure
+from gui import MetricusGUI
 
 calculate_force = calculate_force.calculate_force
 calculate_density = calculate_density.calculate_density
@@ -53,3 +54,4 @@ print(calculate_force(500, 10))
 print(calculate_density(400, 500, mass_unit='tonne', volume_unit='L', with_unit=True))
 print(calculate_displacement(100, 300, 'minute', with_unit=True))
 print(calculate_pressure(500, 100, 'psi', 'poundal', with_unit=True))
+MetricusGUI()

@@ -295,7 +295,7 @@ def create_unit_menus(options, label_text, row, var_name):
     global_vars[var_name].set(options[0])
     tk.OptionMenu(choices_frame, global_vars[var_name], *options).grid(row=row, column=1, padx=10, pady=5)
 
-def gui():
+def MetricusGUI():
     main_bg = 'lightblue'
 
     root = tk.Tk()
@@ -321,5 +321,3 @@ def gui():
     root.grid_columnconfigure(2, weight=1)
 
     root.mainloop()
-
-gui()
