@@ -198,7 +198,10 @@ def create_displacement_inputs():
     time_entry = tk.Entry(choices_frame)
     time_entry.grid(row=3, column=1, padx=10, pady=5)
 
-    create_unit_menus(["kilometer", "meter", "mile", "foot"], "Length Unit:", 4, "length_unit_var")
+    create_unit_menus([
+    'kilometer', 'millimeter', 'centimeter', 'inch', 'foot', 
+    'yard', 'meter', 'mile', 'nautical_mile'
+    ], "Length Unit:", 4, "length_unit_var")
     create_unit_menus(["km/h", "m/s", "mph", "kn"], "Speed Unit:", 5, "speed_unit_var")
 
 def create_density_inputs():
@@ -278,12 +281,12 @@ def create_pressure_inputs():
     pressure_entry = tk.Entry(choices_frame)
     pressure_entry.grid(row=3, column=1, padx=10, pady=5)
 
-    force_unit_var = create_unit_menus(
+    create_unit_menus(
         ['newton', 'dyne', 'kilonewton', 'pound_force', 'ounce_force', 'ton_force', 'kilogram_force', 'gram_force', 'millinewton', 'poundal', 'slug_force'],
         "Force Unit:", 4, "force_unit_var"
     )
 
-    area_unit_var = create_unit_menus(
+    create_unit_menus(
         ['square_meter', 'square_centimeter', 'square_foot', 'square_yard', 'acre', 'hectare', 'square_kilometer'],
         "Area Unit:", 5, "area_unit_var"
     )
@@ -321,3 +324,5 @@ def MetricusGUI():
     root.grid_columnconfigure(2, weight=1)
 
     root.mainloop()
+
+MetricusGUI()
