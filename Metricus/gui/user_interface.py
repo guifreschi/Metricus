@@ -4,6 +4,7 @@ import operations.acceleration
 import operations.complex_operations
 import operations.complex_operations.calculate_density
 import operations.complex_operations.calculate_displacement
+import operations.complex_operations.calculate_force
 
 def send_data(choice):
     try:
@@ -24,6 +25,7 @@ def send_data(choice):
         result_label.config(text=f"Error: {e}", fg="red")
 
 def send_data_complex(choice):
+    global acceleration_unit_var 
     try:
         input_value = float(input_entry.get()) 
 
@@ -40,23 +42,42 @@ def send_data_complex(choice):
 
         
         elif choice == 'Calculate Density':
-          try:
-              density_value = density_entry.get() if density_entry.get() else None
-              volume_value = float(volume_entry.get()) if volume_entry.get() else None
-              input_value = float(input_entry.get()) if input_entry.get() else None
+            try:
+                density_value = density_entry.get() if density_entry.get() else None
+                volume_value = float(volume_entry.get()) if volume_entry.get() else None
+                input_value = float(input_entry.get()) if input_entry.get() else None
 
-              mass_unit = mass_unit_var.get() if 'mass_unit_var' in globals() else None
-              volume_unit = volume_unit_var.get() if 'volume_unit_var' in globals() else None
+                mass_unit = mass_unit_var.get() if 'mass_unit_var' in globals() else None
+                volume_unit = volume_unit_var.get() if 'volume_unit_var' in globals() else None
 
-              if not density_value or not volume_value or not input_value:
-                  raise ValueError("All values (mass, volume, and density) are required.")
+                if not density_value or not volume_value or not input_value:
+                    raise ValueError("All values (mass, volume, and density) are required.")
 
-              result = operations.complex_operations.calculate_density.calculate_density(
-                  input_value, volume_value, density_value, mass_unit, volume_unit, with_unit=True
-              )
+                result = operations.complex_operations.calculate_density.calculate_density(
+                    input_value, volume_value, density_value, mass_unit, volume_unit, with_unit=True
+                )
 
-          except ValueError as ve:
-              result_label.config(text=f"Error: {ve}", fg="red")
+            except ValueError as ve:
+                result_label.config(text=f"Error: {ve}", fg="red")
+
+        elif choice == 'Calculate Force':
+            try:
+                force_value = force_entry.get() if force_entry.get() else None
+                acceleration_value = float(acceleration_entry.get()) if acceleration_entry.get() else None
+                input_value = float(input_entry.get()) if input_entry.get() else None
+
+                mass_unit = mass_unit_var.get() if 'mass_unit_var' in globals() else None
+                acceleration_unit = acceleration_unit_var.get() if 'acceleration_unit_var' in globals() else None
+
+                if not force_value or not acceleration_value or not input_value:
+                    raise ValueError("All values (mass, volume, and force) are required.")
+
+                result = operations.complex_operations.calculate_force.calculate_force(
+                    input_value, acceleration_value, force_value, mass_unit, acceleration_unit, with_unit=True
+                )
+
+            except ValueError as ve:
+                result_label.config(text=f"Error: {ve}", fg="red")
 
         else:
             result = "Complex calculation not implemented for this choice."
@@ -69,7 +90,6 @@ def send_data_complex(choice):
         result_label.config(text=f"Error: Missing input or invalid variable. {e}", fg="red")
     except Exception as e:
         result_label.config(text=f"Error: {e}", fg="red")
-
 
 def show_choices(option):
     for widget in choices_frame.winfo_children():
@@ -112,15 +132,16 @@ def show_sub_choices(choice):
         create_displacement_inputs()
     elif "Density" in choice:
         create_density_inputs()
+    elif "Force" in choice:
+        create_force_inputs()
     else:
         tk.Label(choices_frame, text="Invalid choice.", bg="lightblue", fg="red").grid(row=1, column=0, columnspan=2)
 
     submit_button = tk.Button(choices_frame, text="Submit", command=lambda: send_data_complex(choice) if "Calculate" in choice else send_data(choice))
     submit_button.grid(row=7, column=0, columnspan=2, pady=10)
 
-
 def create_simple_inputs():
-    tk.Label(choices_frame, text="Input (num):", bg="lightblue").grid(row=1, column=0, padx=10, pady=5, sticky="e")
+    tk.Label(choices_frame, text="Value (num):", bg="lightblue").grid(row=1, column=0, padx=10, pady=5, sticky="e")
     global input_entry
     input_entry = tk.Entry(choices_frame)
     input_entry.grid(row=1, column=1, padx=10, pady=5)
@@ -134,7 +155,6 @@ def create_simple_inputs():
     global to_unit_entry
     to_unit_entry = tk.Entry(choices_frame)
     to_unit_entry.grid(row=3, column=1, padx=10, pady=5)
-
 
 def create_displacement_inputs():
     tk.Label(choices_frame, text="Length (num):", bg="lightblue").grid(row=1, column=0, padx=10, pady=5, sticky="e")
@@ -154,7 +174,6 @@ def create_displacement_inputs():
 
     create_unit_menus(["kilometer", "meter", "mile", "foot"], "Length Unit:", 4, "length_unit_var")
     create_unit_menus(["km/h", "m/s", "mph", "kn"], "Speed Unit:", 5, "speed_unit_var")
-
 
 def create_density_inputs():
     tk.Label(choices_frame, text="Mass (num):", bg="lightblue").grid(row=1, column=0, padx=10, pady=5, sticky="e")
@@ -182,6 +201,40 @@ def create_density_inputs():
         "Volume Unit:", 5, "volume_unit_var"
     )
 
+def create_force_inputs():
+    tk.Label(choices_frame, text="Mass (num):", bg="lightblue").grid(row=1, column=0, padx=10, pady=5, sticky="e")
+    global input_entry
+    input_entry = tk.Entry(choices_frame)
+    input_entry.grid(row=1, column=1, padx=10, pady=5)
+
+    tk.Label(choices_frame, text="Acceleration (num):", bg="lightblue").grid(row=2, column=0, padx=10, pady=5, sticky="e")
+    global acceleration_entry
+    acceleration_entry = tk.Entry(choices_frame)
+    acceleration_entry.grid(row=2, column=1, padx=10, pady=5)
+
+    tk.Label(choices_frame, text="Force (str):", bg="lightblue").grid(row=3, column=0, padx=10, pady=5, sticky="e")
+    global force_entry
+    force_entry = tk.Entry(choices_frame)
+    force_entry.grid(row=3, column=1, padx=10, pady=5)
+
+    create_unit_menus(
+        ["kilogram", "milligram", "carat", "gram", "ounce", "pound", "stone", "slug", "tonne"],
+        "Mass Unit:", 4, "mass_unit_var"
+    )
+
+    create_unit_menus(
+        [
+        'meter_per_second_squared',
+        'foot_per_second_squared',
+        'centimeter_per_second_squared',
+        'gal',
+        'inch_per_second_squared',
+        'kilometer_per_hour_squared',
+        'mile_per_hour_squared',
+        'gravity'
+        ],
+        "Acceleration Unit:", 5, "acceleration_unit_var"
+    )
 
 def create_unit_menus(options, label_text, row, var_name):
     tk.Label(choices_frame, text=label_text, bg="lightblue").grid(row=row, column=0, padx=10, pady=5, sticky="e")
@@ -189,7 +242,6 @@ def create_unit_menus(options, label_text, row, var_name):
     global_vars[var_name] = tk.StringVar(choices_frame)
     global_vars[var_name].set(options[0])
     tk.OptionMenu(choices_frame, global_vars[var_name], *options).grid(row=row, column=1, padx=10, pady=5)
-
 
 def gui():
     main_bg = 'lightblue'
