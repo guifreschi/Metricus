@@ -18,6 +18,8 @@ formulas/complex_formulas/density_calculator.py
 formulas/complex_formulas/displacement_calculator.py
 formulas/complex_formulas/force_calculator.py
 formulas/complex_formulas/pressure_calculator.py
+gui/__init__.py
+gui/user_interface.py
 metricus.egg-info/PKG-INFO
 metricus.egg-info/SOURCES.txt
 metricus.egg-info/dependency_links.txt
