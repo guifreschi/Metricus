@@ -5,6 +5,7 @@ import operations.complex_operations
 import operations.complex_operations.calculate_density
 import operations.complex_operations.calculate_displacement
 import operations.complex_operations.calculate_force
+import operations.complex_operations.calculate_pressure
 
 def send_data(choice):
     try:
@@ -26,6 +27,8 @@ def send_data(choice):
 
 def send_data_complex(choice):
     global acceleration_unit_var 
+    global force_unit_var
+    global area_unit_var
     try:
         input_value = float(input_entry.get()) 
 
@@ -40,7 +43,6 @@ def send_data_complex(choice):
                 input_value, speed_value, time_value, length_unit, speed_unit, with_unit=True
             )
 
-        
         elif choice == 'Calculate Density':
             try:
                 density_value = density_entry.get() if density_entry.get() else None
@@ -78,6 +80,28 @@ def send_data_complex(choice):
 
             except ValueError as ve:
                 result_label.config(text=f"Error: {ve}", fg="red")
+
+        
+        elif choice == 'Calculate Pressure':
+          try:
+              pressure_value = pressure_entry.get() if pressure_entry.get() else None
+              area_value = float(area_entry.get()) if area_entry.get() else None
+              input_value = float(input_entry.get()) if input_entry.get() else None
+
+              force_unit = force_unit_var.get() if 'force_unit_var' in globals() else None
+              area_unit = area_unit_var.get() if 'area_unit_var' in globals() else None
+
+              if not input_value or not area_value or not pressure_value:
+                  raise ValueError("All values (force, area, and pressure) are required.")
+
+              result = operations.complex_operations.calculate_pressure.calculate_pressure(
+                  input_value, area_value, pressure_value, force_unit, area_unit, with_unit=True
+              )
+
+          except ValueError as ve:
+              result_label.config(text=f"Error: {ve}", fg="red")
+          except Exception as e:
+              result_label.config(text=f"Error: {e}", fg="red")
 
         else:
             result = "Complex calculation not implemented for this choice."
@@ -134,6 +158,8 @@ def show_sub_choices(choice):
         create_density_inputs()
     elif "Force" in choice:
         create_force_inputs()
+    elif "Pressure" in choice:
+        create_pressure_inputs()
     else:
         tk.Label(choices_frame, text="Invalid choice.", bg="lightblue", fg="red").grid(row=1, column=0, columnspan=2)
 
@@ -234,6 +260,32 @@ def create_force_inputs():
         'gravity'
         ],
         "Acceleration Unit:", 5, "acceleration_unit_var"
+    )
+
+def create_pressure_inputs():
+    tk.Label(choices_frame, text="Force (num):", bg="lightblue").grid(row=1, column=0, padx=10, pady=5, sticky="e")
+    global input_entry
+    input_entry = tk.Entry(choices_frame)
+    input_entry.grid(row=1, column=1, padx=10, pady=5)
+
+    tk.Label(choices_frame, text="Area (num):", bg="lightblue").grid(row=2, column=0, padx=10, pady=5, sticky="e")
+    global area_entry
+    area_entry = tk.Entry(choices_frame)
+    area_entry.grid(row=2, column=1, padx=10, pady=5)
+
+    tk.Label(choices_frame, text="Pressure (str):", bg="lightblue").grid(row=3, column=0, padx=10, pady=5, sticky="e")
+    global pressure_entry
+    pressure_entry = tk.Entry(choices_frame)
+    pressure_entry.grid(row=3, column=1, padx=10, pady=5)
+
+    force_unit_var = create_unit_menus(
+        ['newton', 'dyne', 'kilonewton', 'pound_force', 'ounce_force', 'ton_force', 'kilogram_force', 'gram_force', 'millinewton', 'poundal', 'slug_force'],
+        "Force Unit:", 4, "force_unit_var"
+    )
+
+    area_unit_var = create_unit_menus(
+        ['square_meter', 'square_centimeter', 'square_foot', 'square_yard', 'acre', 'hectare', 'square_kilometer'],
+        "Area Unit:", 5, "area_unit_var"
     )
 
 def create_unit_menus(options, label_text, row, var_name):
