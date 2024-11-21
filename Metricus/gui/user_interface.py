@@ -333,8 +333,3 @@ def MetricusGUI():
     root.grid_columnconfigure(2, weight=1)
 
     root.mainloop()
-
-
-    root.mainloop()
-
-MetricusGUI()
