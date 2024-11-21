@@ -17,7 +17,7 @@ def send_data(choice):
         to_unit = to_unit_row.replace(' ', '_')
 
         if choice == 'Acceleration':
-            result = operations.acceleration.acceleration_converter(input_value, from_unit, to_unit, with_unit=True)
+            result = operations.acceleration_converter(input_value, from_unit, to_unit, with_unit=True)
         else:
             result = "Conversion not implemented for this choice."
 
@@ -39,7 +39,7 @@ def send_data_complex(choice):
             length_unit = length_unit_var.get() if length_unit_var else None
             speed_unit = speed_unit_var.get() if speed_unit_var else None
 
-            result = operations.complex_operations.calculate_displacement.calculate_displacement(
+            result = operations.complex_operations.calculate_displacement(
                 input_value, speed_value, time_value, length_unit, speed_unit, with_unit=True
             )
 
@@ -55,7 +55,7 @@ def send_data_complex(choice):
                 if not density_value or not volume_value or not input_value:
                     raise ValueError("All values (mass, volume, and density) are required.")
 
-                result = operations.complex_operations.calculate_density.calculate_density(
+                result = operations.complex_operations.calculate_density(
                     input_value, volume_value, density_value, mass_unit, volume_unit, with_unit=True
                 )
 
@@ -74,7 +74,7 @@ def send_data_complex(choice):
                 if not force_value or not acceleration_value or not input_value:
                     raise ValueError("All values (mass, volume, and force) are required.")
 
-                result = operations.complex_operations.calculate_force.calculate_force(
+                result = operations.complex_operations.calculate_force(
                     input_value, acceleration_value, force_value, mass_unit, acceleration_unit, with_unit=True
                 )
 
@@ -94,7 +94,7 @@ def send_data_complex(choice):
               if not input_value or not area_value or not pressure_value:
                   raise ValueError("All values (force, area, and pressure) are required.")
 
-              result = operations.complex_operations.calculate_pressure.calculate_pressure(
+              result = operations.complex_operations.calculate_pressure(
                   input_value, area_value, pressure_value, force_unit, area_unit, with_unit=True
               )
 

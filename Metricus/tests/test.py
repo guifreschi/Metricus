@@ -1,25 +1,20 @@
-from operations.area import area_converter
-from operations.electricity import electricity_converter
-from operations.energy import energy_converter
-from operations.length import length_converter
-from operations.mass import mass_converter
-from operations.pressure import pressure_converter
-from operations.speed import speed_converter
-from operations.temperature import temperature_converter
-from operations.time import time_converter
-from operations.volume import volume_converter
-from operations.acceleration import acceleration_converter
-from operations.force import force_converter
+from operations import area_converter
+from operations import electricity_converter
+from operations import energy_converter
+from operations import length_converter
+from operations import mass_converter
+from operations import pressure_converter
+from operations import speed_converter
+from operations import temperature_converter
+from operations import time_converter
+from operations import volume_converter
+from operations import acceleration_converter
+from operations import force_converter
 from operations.complex_operations import calculate_force
 from operations.complex_operations import calculate_density
 from operations.complex_operations import calculate_displacement
 from operations.complex_operations import calculate_pressure
 from gui import MetricusGUI
-
-calculate_force = calculate_force.calculate_force
-calculate_density = calculate_density.calculate_density
-calculate_displacement = calculate_displacement.calculate_displacement
-calculate_pressure = calculate_pressure.calculate_pressure
 
 # help(area_converter)
 # help(electricity_converter)
