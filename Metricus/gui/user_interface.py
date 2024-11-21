@@ -1,5 +1,6 @@
 import tkinter as tk
 import operations
+import operations.area
 import operations.acceleration
 import operations.complex_operations
 import operations.complex_operations.calculate_density
@@ -131,11 +132,14 @@ def show_choices(option):
         tk.Button(choices_frame, text=choice, command=lambda c=choice: show_sub_choices(c), width=20, height=1).grid(row=i + 1, column=1, padx=10, pady=2, sticky="n")
 
 def go_back_to_main():
+    choice_label.config(text="")
+
     for widget in choices_frame.winfo_children():
         widget.destroy()
     
     tk.Button(choices_frame, text="Simple Conversions", command=lambda: show_choices(1), width=20, height=2).grid(row=0, column=1, padx=10, pady=10)
     tk.Button(choices_frame, text="Complex Conversions", command=lambda: show_choices(2), width=20, height=2).grid(row=1, column=1, padx=10, pady=10)
+
 
 def show_sub_choices(choice):
     global input_entry, from_unit_entry, to_unit_entry, result_label, speed_entry, time_entry
@@ -143,6 +147,8 @@ def show_sub_choices(choice):
 
     for widget in choices_frame.winfo_children():
         widget.destroy()
+
+    choice_label.config(text=f"{choice}", fg="gray")
 
     back_button = tk.Button(choices_frame, text="Back", command=go_back_to_main, bg="gray", fg="white")
     back_button.grid(row=0, column=0, padx=5, pady=5, sticky="w")
@@ -312,6 +318,9 @@ def MetricusGUI():
     choices_frame = tk.Frame(root, bg=main_bg)
     choices_frame.grid(row=1, column=1, pady=10, sticky="nsew")
 
+    global choice_label
+    choice_label = tk.Label(root, text="", fg="gray", bg="lightblue", font=("Helvetica", 12))
+    choice_label.grid(row=3, column=1, pady=5)
     go_back_to_main()
 
     close_button = tk.Button(root, text="Close", bg="darkred", fg="white", width=10, height=1, command=root.destroy)
@@ -324,3 +333,8 @@ def MetricusGUI():
     root.grid_columnconfigure(2, weight=1)
 
     root.mainloop()
+
+
+    root.mainloop()
+
+MetricusGUI()
