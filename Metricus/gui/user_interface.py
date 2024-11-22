@@ -23,6 +23,61 @@ def send_data(choice):
             result = Metricus.operations.acceleration_converter(
                 input_value, from_unit, to_unit, with_unit=True
             )
+        elif choice == "Area":
+            result = Metricus.operations.area_converter(
+                input_value, from_unit, to_unit, with_unit=True
+            )
+        elif choice == "Energy":
+            result = Metricus.operations.energy_converter(
+                input_value, from_unit, to_unit, with_unit=True
+            )
+        elif choice == "Force":
+            result = Metricus.operations.force_converter(
+                input_value, from_unit, to_unit, with_unit=True
+            )
+        elif choice == "Length":
+            result = Metricus.operations.length_converter(
+                input_value, from_unit, to_unit, with_unit=True
+            )
+        elif choice == "Mass":
+            result = Metricus.operations.mass_converter(
+                input_value, from_unit, to_unit, with_unit=True
+            )
+        elif choice == "Pressure":
+            result = Metricus.operations.pressure_converter(
+                input_value, from_unit, to_unit, with_unit=True
+            )
+        elif choice == "Speed":
+            result = Metricus.operations.speed_converter(
+                input_value, from_unit, to_unit, with_unit=True
+            )
+        elif choice == "Temperature":
+            result = Metricus.operations.temperature_converter(
+                input_value, from_unit, to_unit, with_unit=True
+            )
+        elif choice == "Time":
+            result = Metricus.operations.time_converter(
+                input_value, from_unit, to_unit, with_unit=True
+            )
+        elif choice == "Volume":
+            result = Metricus.operations.volume_converter(
+                input_value, from_unit, to_unit, with_unit=True
+            )
+        elif choice == "Electricity":
+            resistance = float(resistance_entry.get()) if resistance_entry.get() else None
+            current = float(current_entry.get()) if current_entry.get() else None
+            voltage = float(voltage_entry.get()) if voltage_entry.get() else None
+            time = float(time_entry.get()) if time_entry.get() else None
+            freq = float(freq_entry.get()) if freq_entry.get() else None
+
+            result = Metricus.operations.electricity_converter(
+                input_value, from_unit, to_unit, with_unit=True,
+                resistance=resistance,
+                current=current,
+                voltage=voltage,
+                time=time,
+                freq=freq
+            )
         else:
             result = "Conversion not implemented for this choice."
 
@@ -252,6 +307,9 @@ def show_sub_choices(choice):
 
     if "Calculate" not in choice:
         create_simple_inputs()
+        if "Electricity" in choice:
+            create_electricity_inputs()
+            result_label.grid(row=14, column=0, columnspan=2, pady=10)
     elif "Displacement" in choice:
         create_displacement_inputs()
     elif "Density" in choice:
@@ -273,6 +331,8 @@ def show_sub_choices(choice):
         ),
     )
     submit_button.grid(row=7, column=0, columnspan=2, pady=10)
+    if "Electricity" in choice:
+        submit_button.grid(row=16, column=0, columnspan=2, pady=10)
 
 
 def create_simple_inputs():
@@ -296,6 +356,43 @@ def create_simple_inputs():
     global to_unit_entry
     to_unit_entry = tk.Entry(choices_frame)
     to_unit_entry.grid(row=3, column=1, padx=10, pady=5)
+
+
+def create_electricity_inputs():
+    tk.Label(choices_frame, text="Resistance Value (Ω):", bg="lightblue").grid(
+        row=4, column=0, padx=10, pady=5, sticky="e"
+    )
+    global resistance_entry
+    resistance_entry = tk.Entry(choices_frame)
+    resistance_entry.grid(row=4, column=1, padx=10, pady=5)
+
+    tk.Label(choices_frame, text="Current Value (A):", bg="lightblue").grid(
+        row=5, column=0, padx=10, pady=5, sticky="e"
+    )
+    global current_entry
+    current_entry = tk.Entry(choices_frame)
+    current_entry.grid(row=5, column=1, padx=10, pady=5)
+
+    tk.Label(choices_frame, text="Voltage Value (V):", bg="lightblue").grid(
+        row=6, column=0, padx=10, pady=5, sticky="e"
+    )
+    global voltage_entry
+    voltage_entry = tk.Entry(choices_frame)
+    voltage_entry.grid(row=6, column=1, padx=10, pady=5)
+
+    tk.Label(choices_frame, text="Time Value (s):", bg="lightblue").grid(
+        row=7, column=0, padx=10, pady=5, sticky="e"
+    )
+    global time_entry
+    time_entry = tk.Entry(choices_frame)
+    time_entry.grid(row=7, column=1, padx=10, pady=5)
+
+    tk.Label(choices_frame, text="Frequency Value (Hz):", bg="lightblue").grid(
+        row=8, column=0, padx=10, pady=5, sticky="e"
+    )
+    global freq_entry
+    freq_entry = tk.Entry(choices_frame)
+    freq_entry.grid(row=8, column=1, padx=10, pady=5)
 
 
 def create_displacement_inputs():
@@ -511,6 +608,8 @@ def create_unit_menus(options, label_text, row, var_name):
     )
 
 
+
+
 def MetricusGUI():
     main_bg = "lightblue"
 
@@ -552,3 +651,5 @@ def MetricusGUI():
     root.grid_columnconfigure(2, weight=1)
 
     root.mainloop()
+
+MetricusGUI()

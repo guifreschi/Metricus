@@ -788,6 +788,7 @@ class Henry(ElectricalUnit):
     def henry_to(
         self,
         unit: str,
+        freq: float = None,
         current: float = None,
         voltage: float = None,
         time: float = None,
@@ -885,6 +886,7 @@ class Siemens(ElectricalUnit):
         current: float = None,
         voltage: float = None,
         time: float = None,
+        resistance: float = None,
         charge: float = None,
     ) -> Union[float, str]:
         """

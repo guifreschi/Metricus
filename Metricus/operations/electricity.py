@@ -107,38 +107,47 @@ def electricity_converter(
     if from_unit not in unit_list or to_unit not in unit_list:
         raise ValueError("The measurement has an unknown unit")
 
+
     if from_unit == "ampere":
         return ef.Ampere(elec, with_unit=with_unit).ampere_to(
             to_unit, resistance=resistance, voltage=voltage, time=time, freq=freq
         )
+
     elif from_unit == "volt":
         return ef.Volt(elec, with_unit=with_unit).volt_to(
             to_unit, resistance=resistance, current=current, time=time, freq=freq
         )
+
     elif from_unit == "ohm":
         return ef.Ohm(elec, with_unit=with_unit).ohm_to(
-            to_unit, voltage=voltage, current=current
+            to_unit, voltage=voltage, current=current, time=time, freq=freq
         )
+
     elif from_unit == "coulomb":
         return ef.Coulomb(elec, with_unit=with_unit).coulomb_to(
-            to_unit, current=current, time=time
+            to_unit, current=current, time=time, voltage=voltage
         )
+
     elif from_unit == "watt":
         return ef.Watt(elec, with_unit=with_unit).watt_to(
             to_unit, voltage=voltage, current=current
         )
+
     elif from_unit == "kilowatt":
         return ef.Kilowatt(elec, with_unit=with_unit).kilowatt_to(
-            to_unit, voltage=voltage, current=current
+            to_unit, voltage=voltage, current=current, time=time
         )
+
     elif from_unit == "farad":
         return ef.Farad(elec, with_unit=with_unit).farad_to(
-            to_unit, resistance=resistance, freq=freq
+            to_unit, voltage=voltage, current=current, time=time
         )
+
     elif from_unit == "henry":
         return ef.Henry(elec, with_unit=with_unit).henry_to(
-            to_unit, current=current, freq=freq
+            to_unit, current=current, freq=freq, voltage=voltage
         )
+    
     elif from_unit == "siemens":
         return ef.Siemens(elec, with_unit=with_unit).siemens_to(
             to_unit, resistance=resistance
