@@ -38,7 +38,7 @@ Dependencies:
 
 from typing import Union
 
-from formulas import speed_formulas as sf
+from Metricus.formulas import speed_formulas as sf
 
 unit_list = ["m/s", "km/h", "mph", "kn"]
 

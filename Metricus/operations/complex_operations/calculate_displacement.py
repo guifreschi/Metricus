@@ -72,9 +72,9 @@ Usage Example:
 
 from typing import Union
 
-from formulas.complex_formulas import displacement_calculator
-from operations import length as len
-from operations import speed as sp
+from Metricus.formulas.complex_formulas import displacement_calculator
+from Metricus.operations import length as len
+from Metricus.operations import speed as sp
 
 dc = displacement_calculator.displacement_calculator
 

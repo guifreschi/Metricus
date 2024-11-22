@@ -39,7 +39,7 @@ Dependencies:
 
 from typing import Union
 
-from formulas import pressure_formulas as pf
+from Metricus.formulas import pressure_formulas as pf
 
 unit_list = [
     "pascal",

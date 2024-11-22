@@ -43,7 +43,7 @@ Dependencies:
 
 from typing import Union
 
-from formulas import mass_formulas as mf
+from Metricus.formulas import mass_formulas as mf
 
 unit_list = [
     "milligram",

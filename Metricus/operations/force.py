@@ -44,7 +44,7 @@ Dependencies:
 
 from typing import Union
 
-from formulas import force_formulas as ff
+from Metricus.formulas import force_formulas as ff
 
 unit_list = [
     "newton",

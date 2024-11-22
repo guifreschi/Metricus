@@ -53,7 +53,7 @@ Usage Example:
 
 from typing import Union
 
-from formulas import time_formulas as tf
+from Metricus.formulas import time_formulas as tf
 
 
 def displacement_calculator(

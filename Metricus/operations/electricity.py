@@ -47,7 +47,7 @@ to handle conversions that depend on these quantities. The function leverages th
 
 from typing import Union
 
-from formulas import electricity_formulas as ef
+from Metricus.formulas import electricity_formulas as ef
 
 unit_list = [
     "ampere",

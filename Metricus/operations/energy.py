@@ -40,7 +40,7 @@ Dependencies:
 
 from typing import Union
 
-from formulas import energy_formulas as ef
+from Metricus.formulas import energy_formulas as ef
 
 unit_list = [
     "electronvolt",

@@ -42,7 +42,7 @@ Dependencies:
 
 from typing import Union
 
-from formulas import acceleration_formulas as acf
+from Metricus.formulas import acceleration_formulas as acf
 
 unit_list = [
     "meter_per_second_squared",

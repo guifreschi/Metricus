@@ -1,13 +1,14 @@
-from gui import MetricusGUI
-from operations import (acceleration_converter, area_converter,
-                        electricity_converter, energy_converter,
-                        force_converter, length_converter, mass_converter,
-                        pressure_converter, speed_converter,
-                        temperature_converter, time_converter,
-                        volume_converter)
-from operations.complex_operations import (calculate_density,
-                                           calculate_displacement,
-                                           calculate_force, calculate_pressure)
+from Metricus.gui import MetricusGUI
+from Metricus.operations import (acceleration_converter, area_converter,
+                                 electricity_converter, energy_converter,
+                                 force_converter, length_converter,
+                                 mass_converter, pressure_converter,
+                                 speed_converter, temperature_converter,
+                                 time_converter, volume_converter)
+from Metricus.operations.complex_operations import (calculate_density,
+                                                    calculate_displacement,
+                                                    calculate_force,
+                                                    calculate_pressure)
 
 # help(area_converter)
 # help(electricity_converter)

@@ -38,7 +38,7 @@ Dependencies:
 
 from typing import Union
 
-from formulas import temperature_formulas as tf
+from Metricus.formulas import temperature_formulas as tf
 
 unit_list = ["celsius", "fahrenheit", "kelvin", "rankine"]
 

@@ -1,1 +1,1 @@
-from .user_interface import MetricusGUI
+from Metricus.gui.user_interface import MetricusGUI

@@ -1,13 +1,13 @@
 import tkinter as tk
 
-import operations
-import operations.acceleration
-import operations.area
-import operations.complex_operations
-import operations.complex_operations.calculate_density
-import operations.complex_operations.calculate_displacement
-import operations.complex_operations.calculate_force
-import operations.complex_operations.calculate_pressure
+import Metricus.operations
+import Metricus.operations.acceleration
+import Metricus.operations.area
+import Metricus.operations.complex_operations
+import Metricus.operations.complex_operations.calculate_density
+import Metricus.operations.complex_operations.calculate_displacement
+import Metricus.operations.complex_operations.calculate_force
+import Metricus.operations.complex_operations.calculate_pressure
 
 
 def send_data(choice):
@@ -20,7 +20,7 @@ def send_data(choice):
         to_unit = to_unit_row.replace(" ", "_")
 
         if choice == "Acceleration":
-            result = operations.acceleration_converter(
+            result = Metricus.operations.acceleration_converter(
                 input_value, from_unit, to_unit, with_unit=True
             )
         else:
@@ -45,7 +45,7 @@ def send_data_complex(choice):
             length_unit = length_unit_var.get() if length_unit_var else None
             speed_unit = speed_unit_var.get() if speed_unit_var else None
 
-            result = operations.complex_operations.calculate_displacement(
+            result = Metricus.operations.complex_operations.calculate_displacement(
                 input_value,
                 speed_value,
                 time_value,
@@ -72,7 +72,7 @@ def send_data_complex(choice):
                         "All values (mass, volume, and density) are required."
                     )
 
-                result = operations.complex_operations.calculate_density(
+                result = Metricus.operations.complex_operations.calculate_density(
                     input_value,
                     volume_value,
                     density_value,
@@ -108,7 +108,7 @@ def send_data_complex(choice):
                         "All values (mass, volume, and force) are required."
                     )
 
-                result = operations.complex_operations.calculate_force(
+                result = Metricus.operations.complex_operations.calculate_force(
                     input_value,
                     acceleration_value,
                     force_value,
@@ -138,7 +138,7 @@ def send_data_complex(choice):
                         "All values (force, area, and pressure) are required."
                     )
 
-                result = operations.complex_operations.calculate_pressure(
+                result = Metricus.operations.complex_operations.calculate_pressure(
                     input_value,
                     area_value,
                     pressure_value,

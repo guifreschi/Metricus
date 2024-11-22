@@ -63,7 +63,7 @@ def area_converter(area: float, from_unit: str, to_unit: str, with_unit: bool = 
 
 from typing import Union
 
-from formulas import area_formulas as af
+from Metricus.formulas import area_formulas as af
 
 unit_list = [
     "square_centimeter",
