@@ -43,3 +43,4 @@ metricus.egg-info/PKG-INFO
 metricus.egg-info/SOURCES.txt
 metricus.egg-info/dependency_links.txt
 metricus.egg-info/top_level.txt
+tests/test.py
