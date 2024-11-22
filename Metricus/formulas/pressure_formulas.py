@@ -48,8 +48,8 @@ Usage Example:
     print(result)  # Output: "14.6959 psi"
 """
 
-
 from typing import Union
+
 
 # Base class for Pressure Units
 class PressureUnit:
@@ -70,7 +70,7 @@ class PressureUnit:
     format_result(self, result: float, unit: str) -> Union[float, str]
         Formats the result to include the appropriate unit if `with_unit` is set to `True`.
     """
-    
+
     def __init__(self, num: float, with_unit: bool = False) -> None:
         self.num = num
         self.with_unit = with_unit
@@ -100,6 +100,7 @@ class PressureUnit:
         }
         return f"{result} {units_map[unit]}" if self.with_unit else result
 
+
 # Pascal
 class Pascal(PressureUnit):
     """
@@ -110,7 +111,7 @@ class Pascal(PressureUnit):
     pascal_to(self, unit: str) -> Union[float, str]
         Converts the pressure from pascals to the specified unit.
     """
-    
+
     def pascal_to(self, unit: str) -> Union[float, str]:
         """
         Converts the pressure from pascals to the specified unit.
@@ -130,18 +131,19 @@ class Pascal(PressureUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'mmHg':
+        if unit == "mmHg":
             result = self.num / 133.322
-        elif unit == 'psi':
+        elif unit == "psi":
             result = self.num / 6894.76
-        elif unit == 'bar':
+        elif unit == "bar":
             result = self.num / 100000
-        elif unit == 'atmosphere':
+        elif unit == "atmosphere":
             result = self.num / 101325
         else:
             raise ValueError("Unknown unit")
 
         return self.format_result(result, unit)
+
 
 # Millimeter of Mercury
 class MillimeterOfMercury(PressureUnit):
@@ -153,7 +155,7 @@ class MillimeterOfMercury(PressureUnit):
     mmHg_to(self, unit: str) -> Union[float, str]
         Converts the pressure from millimeters of mercury to the specified unit.
     """
-    
+
     def mmHg_to(self, unit: str) -> Union[float, str]:
         """
         Converts the pressure from millimeters of mercury to the specified unit.
@@ -173,18 +175,19 @@ class MillimeterOfMercury(PressureUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'pascal':
+        if unit == "pascal":
             result = self.num * 133.322
-        elif unit == 'psi':
+        elif unit == "psi":
             result = (self.num * 133.322) / 6894.76
-        elif unit == 'bar':
+        elif unit == "bar":
             result = (self.num * 133.322) / 100000
-        elif unit == 'atmosphere':
+        elif unit == "atmosphere":
             result = self.num / 760
         else:
             raise ValueError("Unknown unit")
 
         return self.format_result(result, unit)
+
 
 # Pound-force per Square Inch
 class PoundForcePerSquareInch(PressureUnit):
@@ -196,7 +199,7 @@ class PoundForcePerSquareInch(PressureUnit):
     psi_to(self, unit: str) -> Union[float, str]
         Converts the pressure from pound-force per square inch to the specified unit.
     """
-    
+
     def psi_to(self, unit: str) -> Union[float, str]:
         """
         Converts the pressure from pound-force per square inch to the specified unit.
@@ -216,18 +219,19 @@ class PoundForcePerSquareInch(PressureUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'pascal':
+        if unit == "pascal":
             result = self.num * 6894.76
-        elif unit == 'mmHg':
+        elif unit == "mmHg":
             result = (self.num * 6894.76) / 133.322
-        elif unit == 'bar':
+        elif unit == "bar":
             result = (self.num * 6894.76) / 100000
-        elif unit == 'atmosphere':
+        elif unit == "atmosphere":
             result = self.num / 14.6959
         else:
             raise ValueError("Unknown unit")
 
         return self.format_result(result, unit)
+
 
 # Bar
 class Bar(PressureUnit):
@@ -239,7 +243,7 @@ class Bar(PressureUnit):
     bar_to(self, unit: str) -> Union[float, str]
         Converts the pressure from bars to the specified unit.
     """
-    
+
     def bar_to(self, unit: str) -> Union[float, str]:
         """
         Converts the pressure from bars to the specified unit.
@@ -259,18 +263,19 @@ class Bar(PressureUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'pascal':
+        if unit == "pascal":
             result = self.num * 100000
-        elif unit == 'mmHg':
+        elif unit == "mmHg":
             result = (self.num * 100000) / 133.322
-        elif unit == 'psi':
+        elif unit == "psi":
             result = (self.num * 100000) / 6894.76
-        elif unit == 'atmosphere':
+        elif unit == "atmosphere":
             result = self.num / 1.01325
         else:
             raise ValueError("Unknown unit")
 
         return self.format_result(result, unit)
+
 
 # Atmosphere
 class Atmosphere(PressureUnit):
@@ -282,7 +287,7 @@ class Atmosphere(PressureUnit):
     atmosphere_to(self, unit: str) -> Union[float, str]
         Converts the pressure from atmospheres to the specified unit.
     """
-    
+
     def atmosphere_to(self, unit: str) -> Union[float, str]:
         """
         Converts the pressure from atmospheres to the specified unit.
@@ -302,13 +307,13 @@ class Atmosphere(PressureUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'pascal':
+        if unit == "pascal":
             result = self.num * 101325
-        elif unit == 'mmHg':
+        elif unit == "mmHg":
             result = self.num * 760
-        elif unit == 'psi':
+        elif unit == "psi":
             result = self.num * 14.6959
-        elif unit == 'bar':
+        elif unit == "bar":
             result = self.num * 1.01325
         else:
             raise ValueError("Unknown unit")

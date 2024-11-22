@@ -44,9 +44,13 @@ Usage Example:
 """
 
 from typing import Union
+
 from formulas import pressure_formulas as pf
 
-def pressure_calculator(newton: float, square_meter: float, pressure_unit: str, with_unit: bool = False) -> Union[float, str]:
+
+def pressure_calculator(
+    newton: float, square_meter: float, pressure_unit: str, with_unit: bool = False
+) -> Union[float, str]:
     """
     Calculate the pressure based on the given force and area, and convert it to the specified unit.
 
@@ -58,7 +62,7 @@ def pressure_calculator(newton: float, square_meter: float, pressure_unit: str, 
     - with_unit (bool, optional): If True, returns the result with the unit. Defaults to False, which returns just the numeric value.
 
     Returns:
-    - Union[float, str]: The calculated pressure in the specified unit. The result is returned as a float if `with_unit` is False, 
+    - Union[float, str]: The calculated pressure in the specified unit. The result is returned as a float if `with_unit` is False,
       or as a string with the unit if `with_unit` is True.
 
     Raises:
@@ -77,12 +81,14 @@ def pressure_calculator(newton: float, square_meter: float, pressure_unit: str, 
     # Result in Pascal (Pa)
     result = newton / square_meter
 
-    if pressure_unit == 'pascal':
+    if pressure_unit == "pascal":
         return f"{result} Pa" if with_unit else result
 
-    units =['pascal', 'mmHg', 'psi', 'bar', 'atmosphere']
+    units = ["pascal", "mmHg", "psi", "bar", "atmosphere"]
 
     if pressure_unit in units:
-        return getattr(pf.Pascal(result, with_unit=with_unit), 'pascal_to')(pressure_unit)
+        return getattr(pf.Pascal(result, with_unit=with_unit), "pascal_to")(
+            pressure_unit
+        )
 
     raise ValueError(f"The measurement has an unknown unit: {pressure_unit}")

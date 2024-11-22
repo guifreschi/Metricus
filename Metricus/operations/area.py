@@ -60,51 +60,69 @@ def area_converter(area: float, from_unit: str, to_unit: str, with_unit: bool = 
     else:
       raise ValueError("The measurement has an unknown unit")
 """
-from formulas import area_formulas as af
+
 from typing import Union
 
-unit_list = ['square_centimeter','square_foot','square_meter','square_yard','acre','hectare','square_kilometer']
+from formulas import area_formulas as af
 
-def area_converter(area: float, from_unit: str, to_unit: str, with_unit: bool = False) -> Union[float, str]:
-  def area_converter(area: float, from_unit: str, to_unit: str, with_unit: bool = False) -> Union[float, str]:
-      """
-    Converts a given area from one unit to another.
+unit_list = [
+    "square_centimeter",
+    "square_foot",
+    "square_meter",
+    "square_yard",
+    "acre",
+    "hectare",
+    "square_kilometer",
+]
 
-    Args:
-        area (float): The area to be converted.
-        from_unit (str): The unit of the area to convert from. Must be one of the supported units in `unit_list`.
-        to_unit (str): The unit to convert the area to. Must be one of the supported units in `unit_list`.
-        with_unit (bool, optional): If True, the result will include the unit of measurement as a string. Defaults to False.
 
-    Returns:
-        Union[float, str]: The converted area. If `with_unit` is True, the result will include the unit as a string; 
-                           otherwise, it will return the numeric value of the converted area.
+def area_converter(
+    area: float, from_unit: str, to_unit: str, with_unit: bool = False
+) -> Union[float, str]:
+    def area_converter(
+        area: float, from_unit: str, to_unit: str, with_unit: bool = False
+    ) -> Union[float, str]:
+        """
+        Converts a given area from one unit to another.
 
-    Raises:
-        ValueError: If either `from_unit` or `to_unit` is not recognized (not in `unit_list`).
+        Args:
+            area (float): The area to be converted.
+            from_unit (str): The unit of the area to convert from. Must be one of the supported units in `unit_list`.
+            to_unit (str): The unit to convert the area to. Must be one of the supported units in `unit_list`.
+            with_unit (bool, optional): If True, the result will include the unit of measurement as a string. Defaults to False.
 
-    Example usage:
-        area_converter(100, "square_meter", "hectare")  # Converts 100 square meters to hectares
-        area_converter(1, "acre", "square_meter", True)  # Converts 1 acre to square meters and includes the unit in the result
-      """
-  if from_unit not in unit_list or to_unit not in unit_list:  
-   raise ValueError("The measurement has an unknown unit")
-  else:
-    if from_unit == 'square_centimeter':
-      return af.SquareCentimeter(area, with_unit=with_unit).square_centimeter_to(to_unit)
-    elif from_unit == 'square_foot':
-      return af.SquareFoot(area, with_unit=with_unit).square_foot_to(to_unit)
-    elif from_unit == 'square_meter':
-      return af.SquareMeter(area, with_unit=with_unit).square_meter_to(to_unit)
-    elif from_unit == 'square_yard':
-      return af.SquareYard(area, with_unit=with_unit).square_yard_to(to_unit)
-    elif from_unit == 'acre':
-      return af.Acre(area, with_unit=with_unit).acre_to(to_unit)
-    elif from_unit == 'hectare':
-      return af.Hectare(area, with_unit=with_unit).hectare_to(to_unit)
-    elif from_unit == 'square_kilometer':
-      return af.SquareKilometer(area, with_unit=with_unit).square_kilometer_to(to_unit)
+        Returns:
+            Union[float, str]: The converted area. If `with_unit` is True, the result will include the unit as a string;
+                               otherwise, it will return the numeric value of the converted area.
+
+        Raises:
+            ValueError: If either `from_unit` or `to_unit` is not recognized (not in `unit_list`).
+
+        Example usage:
+            area_converter(100, "square_meter", "hectare")  # Converts 100 square meters to hectares
+            area_converter(1, "acre", "square_meter", True)  # Converts 1 acre to square meters and includes the unit in the result
+        """
+
+    if from_unit not in unit_list or to_unit not in unit_list:
+        raise ValueError("The measurement has an unknown unit")
     else:
-      raise ValueError("The measurement has an unknown unit")
-
-
+        if from_unit == "square_centimeter":
+            return af.SquareCentimeter(area, with_unit=with_unit).square_centimeter_to(
+                to_unit
+            )
+        elif from_unit == "square_foot":
+            return af.SquareFoot(area, with_unit=with_unit).square_foot_to(to_unit)
+        elif from_unit == "square_meter":
+            return af.SquareMeter(area, with_unit=with_unit).square_meter_to(to_unit)
+        elif from_unit == "square_yard":
+            return af.SquareYard(area, with_unit=with_unit).square_yard_to(to_unit)
+        elif from_unit == "acre":
+            return af.Acre(area, with_unit=with_unit).acre_to(to_unit)
+        elif from_unit == "hectare":
+            return af.Hectare(area, with_unit=with_unit).hectare_to(to_unit)
+        elif from_unit == "square_kilometer":
+            return af.SquareKilometer(area, with_unit=with_unit).square_kilometer_to(
+                to_unit
+            )
+        else:
+            raise ValueError("The measurement has an unknown unit")

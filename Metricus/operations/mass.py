@@ -40,15 +40,27 @@ Dependencies:
 - The script uses the `mass_formulas` module from the `formulas` package to perform the actual conversion operations.
 
 """
-from formulas import mass_formulas as mf
+
 from typing import Union
 
+from formulas import mass_formulas as mf
+
 unit_list = [
-    'milligram', 'carat', 'gram', 'ounce', 
-    'pound', 'kilogram', 'stone', 'slug', 'tonne'
+    "milligram",
+    "carat",
+    "gram",
+    "ounce",
+    "pound",
+    "kilogram",
+    "stone",
+    "slug",
+    "tonne",
 ]
 
-def mass_converter(mass: float, from_unit: str, to_unit: str, with_unit: bool = False) -> Union[float, str]:
+
+def mass_converter(
+    mass: float, from_unit: str, to_unit: str, with_unit: bool = False
+) -> Union[float, str]:
     """
     Converts a given mass from one unit to another.
 
@@ -59,7 +71,7 @@ def mass_converter(mass: float, from_unit: str, to_unit: str, with_unit: bool = 
         with_unit (bool, optional): If True, the result will include the unit of measurement. Defaults to False.
 
     Returns:
-        Union[float, str]: The converted mass. If `with_unit` is True, the result will include the unit as a string, 
+        Union[float, str]: The converted mass. If `with_unit` is True, the result will include the unit as a string,
                            otherwise, it will return the numeric value of the converted mass.
 
     Raises:
@@ -74,25 +86,25 @@ def mass_converter(mass: float, from_unit: str, to_unit: str, with_unit: bool = 
     """
     if from_unit not in unit_list or to_unit not in unit_list:
         raise ValueError("The measurement has an unknown unit")
-    
+
     # Conversion logic based on the 'from_unit'
-    if from_unit == 'milligram':
+    if from_unit == "milligram":
         return mf.Milligram(mass, with_unit=with_unit).milligram_to(to_unit)
-    elif from_unit == 'carat':
+    elif from_unit == "carat":
         return mf.Carat(mass, with_unit=with_unit).carat_to(to_unit)
-    elif from_unit == 'gram':
+    elif from_unit == "gram":
         return mf.Gram(mass, with_unit=with_unit).gram_to(to_unit)
-    elif from_unit == 'ounce':
+    elif from_unit == "ounce":
         return mf.Ounce(mass, with_unit=with_unit).ounce_to(to_unit)
-    elif from_unit == 'pound':
+    elif from_unit == "pound":
         return mf.Pound(mass, with_unit=with_unit).pound_to(to_unit)
-    elif from_unit == 'kilogram':
+    elif from_unit == "kilogram":
         return mf.Kilogram(mass, with_unit=with_unit).kilogram_to(to_unit)
-    elif from_unit == 'stone':
+    elif from_unit == "stone":
         return mf.Stone(mass, with_unit=with_unit).stone_to(to_unit)
-    elif from_unit == 'slug':
+    elif from_unit == "slug":
         return mf.Slug(mass, with_unit=with_unit).slug_to(to_unit)
-    elif from_unit == 'tonne':
+    elif from_unit == "tonne":
         return mf.Tonne(mass, with_unit=with_unit).tonne_to(to_unit)
     else:
         raise ValueError("The measurement has an unknown unit")

@@ -34,26 +34,30 @@ Dependencies:
 - The script uses the `volume_formulas` module from the `formulas` package to perform the actual conversion operations.
 
 """
-from formulas import volume_formulas as vf
+
 from typing import Union
 
+from formulas import volume_formulas as vf
 
 unit_list = [
-    "mL",     # Milliliters
-    "cm3",    # Cubic Centimeters
-    "cm³",    # Cubic Centimeters (alternative notation)
+    "mL",  # Milliliters
+    "cm3",  # Cubic Centimeters
+    "cm³",  # Cubic Centimeters (alternative notation)
     "fl_oz",  # Fluid Ounces
-    "cup",    # Cups
-    "pt",     # Pints
-    "qt",     # Quarts
-    "L",      # Liters
-    "gal",    # Gallons
-    "bbl",    # Barrels
-    "m3",     # Cubic Meters
-    "m³"      # Cubic Meters (alternative notation)
+    "cup",  # Cups
+    "pt",  # Pints
+    "qt",  # Quarts
+    "L",  # Liters
+    "gal",  # Gallons
+    "bbl",  # Barrels
+    "m3",  # Cubic Meters
+    "m³",  # Cubic Meters (alternative notation)
 ]
 
-def volume_converter(volume: float, from_unit: str, to_unit: str, with_unit: bool = False) -> Union[float, str]:
+
+def volume_converter(
+    volume: float, from_unit: str, to_unit: str, with_unit: bool = False
+) -> Union[float, str]:
     """
     Converts a given volume from one unit to another.
 
@@ -64,12 +68,12 @@ def volume_converter(volume: float, from_unit: str, to_unit: str, with_unit: boo
         with_unit (bool, optional): If True, the result will include the unit of measurement. Defaults to False.
 
     Returns:
-        Union[float, str]: The converted volume. If `with_unit` is True, the result will include the unit as a string, 
+        Union[float, str]: The converted volume. If `with_unit` is True, the result will include the unit as a string,
                            otherwise, it will return the numeric value of the converted volume.
 
     Raises:
         ValueError: If either `from_unit` or `to_unit` is not recognized (not in `unit_list`).
-    
+
     The function uses the `volume_formulas` module from the `formulas` package to handle the actual conversions.
     The conversion process is determined based on the `from_unit` and `to_unit` parameters.
 
@@ -81,23 +85,23 @@ def volume_converter(volume: float, from_unit: str, to_unit: str, with_unit: boo
         raise ValueError("The measurement has an unknown unit")
 
     # Conversion logic based on the 'from_unit'
-    if from_unit == 'mL':
+    if from_unit == "mL":
         return vf.Milliliter(volume, with_unit=with_unit).mL_to(to_unit)
-    elif from_unit == 'cm3' or from_unit == 'cm³':
+    elif from_unit == "cm3" or from_unit == "cm³":
         return vf.Milliliter(volume, with_unit=with_unit).mL_to(to_unit)
-    elif from_unit == 'fl_oz':
+    elif from_unit == "fl_oz":
         return vf.FluidOunce(volume, with_unit=with_unit).fl_oz_to(to_unit)
-    elif from_unit == 'cup':
+    elif from_unit == "cup":
         return vf.Cup(volume, with_unit=with_unit).cup_to(to_unit)
-    elif from_unit == 'pt':
+    elif from_unit == "pt":
         return vf.Pint(volume, with_unit=with_unit).pt_to(to_unit)
-    elif from_unit == 'qt':
+    elif from_unit == "qt":
         return vf.Quart(volume, with_unit=with_unit).qt_to(to_unit)
-    elif from_unit == 'L':
+    elif from_unit == "L":
         return vf.Liter(volume, with_unit=with_unit).liter_to(to_unit)
-    elif from_unit == 'gal':
+    elif from_unit == "gal":
         return vf.Gallon(volume, with_unit=with_unit).gal_to(to_unit)
-    elif from_unit == 'bbl':
+    elif from_unit == "bbl":
         return vf.Barrel(volume, with_unit=with_unit).bbl_to(to_unit)
-    elif from_unit == 'm3' or from_unit == 'm³':
+    elif from_unit == "m3" or from_unit == "m³":
         return vf.CubicMeter(volume, with_unit=with_unit).m3_to(to_unit)

@@ -38,8 +38,8 @@ Usage Example:
     print(result)  # Output: "1.0 m/s²"
 """
 
-
 from typing import Union
+
 
 # Base class for acceleration units
 class Acceleration:
@@ -60,7 +60,7 @@ class Acceleration:
     format_result(self, result: float, unit: str) -> Union[float, str]
         Formats the result to include the appropriate unit if `with_unit` is set to `True`.
     """
-    
+
     def __init__(self, num: float, with_unit: bool = False) -> None:
         self.num = num
         self.with_unit = with_unit
@@ -89,9 +89,10 @@ class Acceleration:
             "inch_per_second_squared": "in/s²",
             "kilometer_per_hour_squared": "km/h²",
             "mile_per_hour_squared": "mi/h²",
-            "gravity": "g"
+            "gravity": "g",
         }
         return f"{result} {units_map[unit]}" if self.with_unit else result
+
 
 # Meter Per Second Squared
 class MeterPerSecondSquared(Acceleration):
@@ -103,7 +104,7 @@ class MeterPerSecondSquared(Acceleration):
     mps2_to(self, unit: str) -> Union[float, str]
         Converts acceleration from Meter per Second Squared to the specified unit.
     """
-    
+
     def mps2_to(self, unit: str) -> Union[float, str]:
         """
         Converts acceleration from Meter per Second Squared to the specified unit.
@@ -124,24 +125,25 @@ class MeterPerSecondSquared(Acceleration):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'foot_per_second_squared':
+        if unit == "foot_per_second_squared":
             result = self.num * 3.28084
-        elif unit == 'centimeter_per_second_squared':
+        elif unit == "centimeter_per_second_squared":
             result = self.num * 100
-        elif unit == 'gal':
+        elif unit == "gal":
             result = self.num * 1000
-        elif unit == 'inch_per_second_squared':
+        elif unit == "inch_per_second_squared":
             result = self.num * 39.3701
-        elif unit == 'kilometer_per_hour_squared':
+        elif unit == "kilometer_per_hour_squared":
             result = self.num * 12960
-        elif unit == 'mile_per_hour_squared':
+        elif unit == "mile_per_hour_squared":
             result = self.num * 8047.16
-        elif unit == 'gravity':
+        elif unit == "gravity":
             result = self.num / 9.81
         else:
             raise ValueError("The measurement has an unknown unit")
-        
+
         return self.format_result(result, unit)
+
 
 # Foot Per Second Squared
 class FootPerSecondSquared(Acceleration):
@@ -153,7 +155,7 @@ class FootPerSecondSquared(Acceleration):
     fps2_to(self, unit: str) -> Union[float, str]
         Converts acceleration from Foot per Second Squared to the specified unit.
     """
-    
+
     def fps2_to(self, unit: str) -> Union[float, str]:
         """
         Converts acceleration from Foot per Second Squared to the specified unit.
@@ -174,24 +176,25 @@ class FootPerSecondSquared(Acceleration):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'meter_per_second_squared':
+        if unit == "meter_per_second_squared":
             result = self.num / 3.28084
-        elif unit == 'centimeter_per_second_squared':
+        elif unit == "centimeter_per_second_squared":
             result = self.num * 30.48
-        elif unit == 'gal':
+        elif unit == "gal":
             result = self.num * 304.8
-        elif unit == 'inch_per_second_squared':
+        elif unit == "inch_per_second_squared":
             result = self.num * 12
-        elif unit == 'kilometer_per_hour_squared':
+        elif unit == "kilometer_per_hour_squared":
             result = self.num * 3960
-        elif unit == 'mile_per_hour_squared':
+        elif unit == "mile_per_hour_squared":
             result = self.num * 2414.52
-        elif unit == 'gravity':
+        elif unit == "gravity":
             result = self.num / 32.174
         else:
             raise ValueError("The measurement has an unknown unit")
-        
+
         return self.format_result(result, unit)
+
 
 # Centimeter Per Second Squared
 class CentimeterPerSecondSquared(Acceleration):
@@ -203,7 +206,7 @@ class CentimeterPerSecondSquared(Acceleration):
     cmps2_to(self, unit: str) -> Union[float, str]
         Converts acceleration from Centimeter per Second Squared to the specified unit.
     """
-    
+
     def cmps2_to(self, unit: str) -> Union[float, str]:
         """
         Converts acceleration from Centimeter per Second Squared to the specified unit.
@@ -224,24 +227,25 @@ class CentimeterPerSecondSquared(Acceleration):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'meter_per_second_squared':
+        if unit == "meter_per_second_squared":
             result = self.num / 100
-        elif unit == 'foot_per_second_squared':
+        elif unit == "foot_per_second_squared":
             result = self.num / 30.48
-        elif unit == 'gal':
+        elif unit == "gal":
             result = self.num * 10
-        elif unit == 'inch_per_second_squared':
+        elif unit == "inch_per_second_squared":
             result = self.num / 2.54
-        elif unit == 'kilometer_per_hour_squared':
+        elif unit == "kilometer_per_hour_squared":
             result = self.num * 129.6
-        elif unit == 'mile_per_hour_squared':
+        elif unit == "mile_per_hour_squared":
             result = self.num * 80.471
-        elif unit == 'gravity':
+        elif unit == "gravity":
             result = self.num / 981
         else:
             raise ValueError("The measurement has an unknown unit")
-        
+
         return self.format_result(result, unit)
+
 
 # Gal
 class Gal(Acceleration):
@@ -253,7 +257,7 @@ class Gal(Acceleration):
     gal_to(self, unit: str) -> Union[float, str]
         Converts acceleration from Gal to the specified unit.
     """
-    
+
     def gal_to(self, unit: str) -> Union[float, str]:
         """
         Converts acceleration from Gal (Galileo) to the specified unit.
@@ -262,7 +266,7 @@ class Gal(Acceleration):
         -----------
         unit : str
             The unit to convert to. Supported units are 'meter_per_second_squared', 'foot_per_second_squared',
-            'centimeter_per_second_squared', 'inch_per_second_squared', 'kilometer_per_hour_squared', 
+            'centimeter_per_second_squared', 'inch_per_second_squared', 'kilometer_per_hour_squared',
             'mile_per_hour_squared', and 'gravity'.
 
         Returns:
@@ -275,24 +279,25 @@ class Gal(Acceleration):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'meter_per_second_squared':
+        if unit == "meter_per_second_squared":
             result = self.num / 1000
-        elif unit == 'foot_per_second_squared':
+        elif unit == "foot_per_second_squared":
             result = self.num / 304.8
-        elif unit == 'centimeter_per_second_squared':
+        elif unit == "centimeter_per_second_squared":
             result = self.num * 10
-        elif unit == 'inch_per_second_squared':
+        elif unit == "inch_per_second_squared":
             result = self.num / 25.4
-        elif unit == 'kilometer_per_hour_squared':
+        elif unit == "kilometer_per_hour_squared":
             result = self.num / 8.64
-        elif unit == 'mile_per_hour_squared':
+        elif unit == "mile_per_hour_squared":
             result = self.num / 13.712
-        elif unit == 'gravity':
+        elif unit == "gravity":
             result = self.num / 980.665
         else:
             raise ValueError("The measurement has an unknown unit")
-        
+
         return self.format_result(result, unit)
+
 
 # Inch Per Second Squared
 class InchPerSecondSquared(Acceleration):
@@ -304,7 +309,7 @@ class InchPerSecondSquared(Acceleration):
     ips2_to(self, unit: str) -> Union[float, str]
         Converts acceleration from Inch per Second Squared to the specified unit.
     """
-    
+
     def ips2_to(self, unit: str) -> Union[float, str]:
         """
         Converts acceleration from Inch per Second Squared to the specified unit.
@@ -313,7 +318,7 @@ class InchPerSecondSquared(Acceleration):
         -----------
         unit : str
             The unit to convert to. Supported units are 'meter_per_second_squared', 'foot_per_second_squared',
-            'centimeter_per_second_squared', 'gal', 'kilometer_per_hour_squared', 'mile_per_hour_squared', 
+            'centimeter_per_second_squared', 'gal', 'kilometer_per_hour_squared', 'mile_per_hour_squared',
             and 'gravity'.
 
         Returns:
@@ -326,24 +331,25 @@ class InchPerSecondSquared(Acceleration):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'meter_per_second_squared':
+        if unit == "meter_per_second_squared":
             result = self.num / 39.3701
-        elif unit == 'foot_per_second_squared':
+        elif unit == "foot_per_second_squared":
             result = self.num / 12
-        elif unit == 'centimeter_per_second_squared':
+        elif unit == "centimeter_per_second_squared":
             result = self.num * 2.54
-        elif unit == 'gal':
+        elif unit == "gal":
             result = self.num * 25.4
-        elif unit == 'kilometer_per_hour_squared':
+        elif unit == "kilometer_per_hour_squared":
             result = self.num * 330
-        elif unit == 'mile_per_hour_squared':
+        elif unit == "mile_per_hour_squared":
             result = self.num * 206.868
-        elif unit == 'gravity':
+        elif unit == "gravity":
             result = self.num / 386.102
         else:
             raise ValueError("The measurement has an unknown unit")
-        
+
         return self.format_result(result, unit)
+
 
 # Kilometer Per Hour Squared
 class KilometerPerHourSquared(Acceleration):
@@ -355,7 +361,7 @@ class KilometerPerHourSquared(Acceleration):
     kmh2_to(self, unit: str) -> Union[float, str]
         Converts acceleration from Kilometer per Hour Squared to the specified unit.
     """
-    
+
     def kmh2_to(self, unit: str) -> Union[float, str]:
         """
         Converts acceleration from Kilometer per Hour Squared to the specified unit.
@@ -376,24 +382,25 @@ class KilometerPerHourSquared(Acceleration):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'meter_per_second_squared':
+        if unit == "meter_per_second_squared":
             result = self.num / 12960
-        elif unit == 'foot_per_second_squared':
+        elif unit == "foot_per_second_squared":
             result = self.num / 3960
-        elif unit == 'centimeter_per_second_squared':
+        elif unit == "centimeter_per_second_squared":
             result = self.num / 129.6
-        elif unit == 'gal':
+        elif unit == "gal":
             result = self.num * 8.64
-        elif unit == 'inch_per_second_squared':
+        elif unit == "inch_per_second_squared":
             result = self.num / 330
-        elif unit == 'mile_per_hour_squared':
+        elif unit == "mile_per_hour_squared":
             result = self.num * 0.621371
-        elif unit == 'gravity':
+        elif unit == "gravity":
             result = self.num / 9485.9
         else:
             raise ValueError("The measurement has an unknown unit")
-        
+
         return self.format_result(result, unit)
+
 
 # Mile Per Hour Squared
 class MilePerHourSquared(Acceleration):
@@ -405,7 +412,7 @@ class MilePerHourSquared(Acceleration):
     mph2_to(self, unit: str) -> Union[float, str]
         Converts acceleration from Mile per Hour Squared to the specified unit.
     """
-    
+
     def mph2_to(self, unit: str) -> Union[float, str]:
         """
         Converts acceleration from Mile per Hour Squared to the specified unit.
@@ -414,7 +421,7 @@ class MilePerHourSquared(Acceleration):
         -----------
         unit : str
             The unit to convert to. Supported units are 'meter_per_second_squared', 'foot_per_second_squared',
-            'centimeter_per_second_squared', 'gal', 'inch_per_second_squared', 'kilometer_per_hour_squared', 
+            'centimeter_per_second_squared', 'gal', 'inch_per_second_squared', 'kilometer_per_hour_squared',
             and 'gravity'.
 
         Returns:
@@ -427,24 +434,25 @@ class MilePerHourSquared(Acceleration):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'meter_per_second_squared':
+        if unit == "meter_per_second_squared":
             result = self.num / 8047.16
-        elif unit == 'foot_per_second_squared':
+        elif unit == "foot_per_second_squared":
             result = self.num / 2414.52
-        elif unit == 'centimeter_per_second_squared':
+        elif unit == "centimeter_per_second_squared":
             result = self.num / 80.471
-        elif unit == 'gal':
+        elif unit == "gal":
             result = self.num * 13.712
-        elif unit == 'inch_per_second_squared':
+        elif unit == "inch_per_second_squared":
             result = self.num / 206.868
-        elif unit == 'kilometer_per_hour_squared':
+        elif unit == "kilometer_per_hour_squared":
             result = self.num / 0.621371
-        elif unit == 'gravity':
+        elif unit == "gravity":
             result = self.num / 6246.9
         else:
             raise ValueError("The measurement has an unknown unit")
-        
+
         return self.format_result(result, unit)
+
 
 # Gravity
 class Gravity(Acceleration):
@@ -456,7 +464,7 @@ class Gravity(Acceleration):
     g_to(self, unit: str) -> Union[float, str]
         Converts acceleration from Gravity to the specified unit.
     """
-    
+
     def g_to(self, unit: str) -> Union[float, str]:
         """
         Converts acceleration from Gravity (g) to the specified unit.
@@ -465,7 +473,7 @@ class Gravity(Acceleration):
         -----------
         unit : str
             The unit to convert to. Supported units are 'meter_per_second_squared', 'foot_per_second_squared',
-            'centimeter_per_second_squared', 'gal', 'inch_per_second_squared', 'kilometer_per_hour_squared', 
+            'centimeter_per_second_squared', 'gal', 'inch_per_second_squared', 'kilometer_per_hour_squared',
             and 'mile_per_hour_squared'.
 
         Returns:
@@ -478,21 +486,21 @@ class Gravity(Acceleration):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'meter_per_second_squared':
+        if unit == "meter_per_second_squared":
             result = self.num * 9.81
-        elif unit == 'foot_per_second_squared':
+        elif unit == "foot_per_second_squared":
             result = self.num * 32.174
-        elif unit == 'centimeter_per_second_squared':
+        elif unit == "centimeter_per_second_squared":
             result = self.num * 981
-        elif unit == 'gal':
+        elif unit == "gal":
             result = self.num * 980.665
-        elif unit == 'inch_per_second_squared':
+        elif unit == "inch_per_second_squared":
             result = self.num * 386.102
-        elif unit == 'kilometer_per_hour_squared':
+        elif unit == "kilometer_per_hour_squared":
             result = self.num * 9485.9
-        elif unit == 'mile_per_hour_squared':
+        elif unit == "mile_per_hour_squared":
             result = self.num * 6246.9
         else:
             raise ValueError("The measurement has an unknown unit")
-        
+
         return self.format_result(result, unit)

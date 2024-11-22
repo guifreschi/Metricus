@@ -34,8 +34,8 @@ Usage Example:
     print(result)  # Output: "0.0 °C"
 """
 
-
 from typing import Union
+
 
 # Base class for temperature units
 class TemperatureUnit:
@@ -63,6 +63,7 @@ class TemperatureUnit:
         }
         return f"{result} {units_map[unit]}" if self.with_unit else result
 
+
 # Celsius
 class Celsius(TemperatureUnit):
     def celsius_to(self, unit: str) -> Union[float, str]:
@@ -71,16 +72,17 @@ class Celsius(TemperatureUnit):
         :param unit: The unit to convert to.
         :return: Converted temperature.
         """
-        if unit == 'kelvin':
+        if unit == "kelvin":
             result = self.num + 273.15
-        elif unit == 'fahrenheit':
+        elif unit == "fahrenheit":
             result = (self.num * 9 / 5) + 32
-        elif unit == 'rankine':
+        elif unit == "rankine":
             result = (self.num * 9 / 5) + 491.67
         else:
             raise ValueError("Unknown unit")
 
         return self.format_result(result, unit)
+
 
 # Fahrenheit
 class Fahrenheit(TemperatureUnit):
@@ -90,16 +92,17 @@ class Fahrenheit(TemperatureUnit):
         :param unit: The unit to convert to.
         :return: Converted temperature.
         """
-        if unit == 'celsius':
+        if unit == "celsius":
             result = (self.num - 32) * 5 / 9
-        elif unit == 'kelvin':
+        elif unit == "kelvin":
             result = (self.num - 32) * 5 / 9 + 273.15
-        elif unit == 'rankine':
+        elif unit == "rankine":
             result = self.num + 459.67
         else:
             raise ValueError("Unknown unit")
 
         return self.format_result(result, unit)
+
 
 # Kelvin
 class Kelvin(TemperatureUnit):
@@ -109,16 +112,17 @@ class Kelvin(TemperatureUnit):
         :param unit: The unit to convert to.
         :return: Converted temperature.
         """
-        if unit == 'fahrenheit':
+        if unit == "fahrenheit":
             result = (self.num - 273.15) * 9 / 5 + 32
-        elif unit == 'celsius':
+        elif unit == "celsius":
             result = self.num - 273.15
-        elif unit == 'rankine':
+        elif unit == "rankine":
             result = self.num * 9 / 5
         else:
             raise ValueError("Unknown unit")
 
         return self.format_result(result, unit)
+
 
 # Rankine
 class Rankine(TemperatureUnit):
@@ -128,11 +132,11 @@ class Rankine(TemperatureUnit):
         :param unit: The unit to convert to.
         :return: Converted temperature.
         """
-        if unit == 'celsius':
+        if unit == "celsius":
             result = (self.num - 491.67) * 5 / 9
-        elif unit == 'kelvin':
+        elif unit == "kelvin":
             result = self.num * 5 / 9
-        elif unit == 'fahrenheit':
+        elif unit == "fahrenheit":
             result = self.num - 459.67
         else:
             raise ValueError("Unknown unit")

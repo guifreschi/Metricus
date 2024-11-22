@@ -52,18 +52,27 @@ Usage Example:
     print(result)  # Output: "5.0 lb/ft³"
 """
 
-from formulas.complex_formulas import density_calculator
 from typing import Union
+
+from formulas.complex_formulas import density_calculator
 from operations import mass as m
 from operations import volume as v
 
 dec = density_calculator.density_calculator
 
-def calculate_density(mass: float, volume: float, density_unit: str = 'kg/m³', mass_unit: str = 'kilogram', volume_unit: str = 'm3', with_unit: bool = False) -> Union[float, str]:
+
+def calculate_density(
+    mass: float,
+    volume: float,
+    density_unit: str = "kg/m³",
+    mass_unit: str = "kilogram",
+    volume_unit: str = "m3",
+    with_unit: bool = False,
+) -> Union[float, str]:
     """
     Calculate the density based on mass and volume values, converting the units if necessary.
 
-    This function calculates the density using the formula `Density = Mass / Volume`. It also handles unit conversions 
+    This function calculates the density using the formula `Density = Mass / Volume`. It also handles unit conversions
     for mass, volume, and density.
 
     Parameters:
@@ -75,7 +84,7 @@ def calculate_density(mass: float, volume: float, density_unit: str = 'kg/m³', 
     - with_unit (bool): Whether to include the unit in the result. Default is False, which returns only the numeric value.
 
     Returns:
-    - Union[float, str]: The calculated density, either as a float (if `with_unit` is False) or a string 
+    - Union[float, str]: The calculated density, either as a float (if `with_unit` is False) or a string
       including the unit (if `with_unit` is True).
 
     Example:
@@ -86,9 +95,17 @@ def calculate_density(mass: float, volume: float, density_unit: str = 'kg/m³', 
     """
 
     # Convert mass to kilogram if necessary
-    kilogram = m.mass_converter(mass, mass_unit, 'kilogram') if mass_unit != 'kilogram' else mass
+    kilogram = (
+        m.mass_converter(mass, mass_unit, "kilogram")
+        if mass_unit != "kilogram"
+        else mass
+    )
 
     # Convert volume to cubic meter if necessary
-    cubic_meter = v.volume_converter(volume, volume_unit, 'm3') if volume_unit != 'm3' and volume_unit != 'm³' else volume
+    cubic_meter = (
+        v.volume_converter(volume, volume_unit, "m3")
+        if volume_unit != "m3" and volume_unit != "m³"
+        else volume
+    )
 
     return dec(kilogram, cubic_meter, density_unit=density_unit, with_unit=with_unit)

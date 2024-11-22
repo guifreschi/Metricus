@@ -90,6 +90,7 @@ Usage Example:
 
 from typing import Union
 
+
 # Base class for Time Units
 class TimeUnit:
     """
@@ -140,9 +141,10 @@ class TimeUnit:
             "month": "mo",
             "year": "yr",
             "decade": "dec",
-            "century": "cent"
+            "century": "cent",
         }
         return f"{result} {units_map[unit]}" if self.with_unit else result
+
 
 # Millisecond
 class Millisecond(TimeUnit):
@@ -154,7 +156,7 @@ class Millisecond(TimeUnit):
     millisecond_to(self, unit: str) -> Union[float, str]
         Converts the time from milliseconds to the specified unit.
     """
-    
+
     def millisecond_to(self, unit: str) -> Union[float, str]:
         """
         Converts the time from milliseconds to the specified unit.
@@ -174,28 +176,29 @@ class Millisecond(TimeUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'second':
+        if unit == "second":
             result = self.num / 1000
-        elif unit == 'minute':
+        elif unit == "minute":
             result = self.num / 60000
-        elif unit == 'hour':
+        elif unit == "hour":
             result = self.num / 3.6e6
-        elif unit == 'day':
+        elif unit == "day":
             result = self.num / 8.64e7
-        elif unit == 'week':
+        elif unit == "week":
             result = self.num / 6.048e8
-        elif unit == 'month':
-            result = self.num / 2.628e9  
-        elif unit == 'year':
+        elif unit == "month":
+            result = self.num / 2.628e9
+        elif unit == "year":
             result = self.num / 3.1536e10
-        elif unit == 'decade':
+        elif unit == "decade":
             result = self.num / 3.1536e11
-        elif unit == 'century':
+        elif unit == "century":
             result = self.num / 3.1536e12
         else:
             raise ValueError("The measurement has an unknown unit")
-        
+
         return self.format_result(result, unit)
+
 
 # Second
 class Second(TimeUnit):
@@ -207,7 +210,7 @@ class Second(TimeUnit):
     second_to(self, unit: str) -> Union[float, str]
         Converts the time from seconds to the specified unit.
     """
-    
+
     def second_to(self, unit: str) -> Union[float, str]:
         """
         Converts the time from seconds to the specified unit.
@@ -227,27 +230,27 @@ class Second(TimeUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'millisecond':
+        if unit == "millisecond":
             result = self.num * 1000
-        elif unit == 'minute':
+        elif unit == "minute":
             result = self.num / 60
-        elif unit == 'hour':
+        elif unit == "hour":
             result = self.num / 3600
-        elif unit == 'day':
+        elif unit == "day":
             result = self.num / 86400
-        elif unit == 'week':
+        elif unit == "week":
             result = self.num / 604800
-        elif unit == 'month':
+        elif unit == "month":
             result = self.num / 2.628e6
-        elif unit == 'year':
+        elif unit == "year":
             result = self.num / 3.154e7
-        elif unit == 'decade':
+        elif unit == "decade":
             result = self.num / 3.154e8
-        elif unit == 'century':
+        elif unit == "century":
             result = self.num / 3.154e9
         else:
             raise ValueError("The measurement has an unknown unit")
-        
+
         return self.format_result(result, unit)
 
 
@@ -261,7 +264,7 @@ class Minute(TimeUnit):
     minute_to(self, unit: str) -> Union[float, str]
         Converts the time from minutes to the specified unit.
     """
-    
+
     def minute_to(self, unit: str) -> Union[float, str]:
         """
         Converts the time from minutes to the specified unit.
@@ -281,28 +284,29 @@ class Minute(TimeUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'millisecond':
+        if unit == "millisecond":
             result = self.num * 60000
-        elif unit == 'second':
+        elif unit == "second":
             result = self.num * 60
-        elif unit == 'hour':
+        elif unit == "hour":
             result = self.num / 60
-        elif unit == 'day':
+        elif unit == "day":
             result = self.num / 1440
-        elif unit == 'week':
+        elif unit == "week":
             result = self.num / 10080
-        elif unit == 'month':
+        elif unit == "month":
             result = self.num / 43800
-        elif unit == 'year':
+        elif unit == "year":
             result = self.num / 525600
-        elif unit == 'decade':
+        elif unit == "decade":
             result = self.num / 5.256e6
-        elif unit == 'century':
+        elif unit == "century":
             result = self.num / 5.256e7
         else:
             raise ValueError("The measurement has an unknown unit")
-        
+
         return self.format_result(result, unit)
+
 
 # Hour
 class Hour(TimeUnit):
@@ -314,7 +318,7 @@ class Hour(TimeUnit):
     hour_to(self, unit: str) -> Union[float, str]
         Converts the time from hours to the specified unit.
     """
-    
+
     def hour_to(self, unit: str) -> Union[float, str]:
         """
         Converts the time from hours to the specified unit.
@@ -334,28 +338,29 @@ class Hour(TimeUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'millisecond':
+        if unit == "millisecond":
             result = self.num * 3.6e6
-        elif unit == 'second':
+        elif unit == "second":
             result = self.num * 3600
-        elif unit == 'minute':
+        elif unit == "minute":
             result = self.num * 60
-        elif unit == 'day':
+        elif unit == "day":
             result = self.num / 24
-        elif unit == 'week':
+        elif unit == "week":
             result = self.num / 168
-        elif unit == 'month':
+        elif unit == "month":
             result = self.num / 730
-        elif unit == 'year':
+        elif unit == "year":
             result = self.num / 8760
-        elif unit == 'decade':
+        elif unit == "decade":
             result = self.num / 87600
-        elif unit == 'century':
+        elif unit == "century":
             result = self.num / 876000
         else:
             raise ValueError("The measurement has an unknown unit")
-        
+
         return self.format_result(result, unit)
+
 
 # Day
 class Day(TimeUnit):
@@ -367,7 +372,7 @@ class Day(TimeUnit):
     day_to(self, unit: str) -> Union[float, str]
         Converts the time from days to the specified unit.
     """
-    
+
     def day_to(self, unit: str) -> Union[float, str]:
         """
         Converts the time from days to the specified unit.
@@ -387,28 +392,29 @@ class Day(TimeUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'millisecond':
+        if unit == "millisecond":
             result = self.num * 86400000
-        elif unit == 'second':
+        elif unit == "second":
             result = self.num * 86400
-        elif unit == 'minute':
+        elif unit == "minute":
             result = self.num * 1440
-        elif unit == 'hour':
+        elif unit == "hour":
             result = self.num * 24
-        elif unit == 'week':
+        elif unit == "week":
             result = self.num / 7
-        elif unit == 'month':
-            result = self.num / 30.44  
-        elif unit == 'year':
-            result = self.num / 365.25  
-        elif unit == 'decade':
-            result = self.num / 3652.5  
-        elif unit == 'century':
-            result = self.num / 36525  
+        elif unit == "month":
+            result = self.num / 30.44
+        elif unit == "year":
+            result = self.num / 365.25
+        elif unit == "decade":
+            result = self.num / 3652.5
+        elif unit == "century":
+            result = self.num / 36525
         else:
             raise ValueError("The measurement has an unknown unit")
-        
+
         return self.format_result(result, unit)
+
 
 # Week
 class Week(TimeUnit):
@@ -420,7 +426,7 @@ class Week(TimeUnit):
     week_to(self, unit: str) -> Union[float, str]
         Converts the time from weeks to the specified unit.
     """
-    
+
     def week_to(self, unit: str) -> Union[float, str]:
         """
         Converts the time from weeks to the specified unit.
@@ -440,28 +446,29 @@ class Week(TimeUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'millisecond':
-            result = self.num * 604800000 
-        elif unit == 'second':
+        if unit == "millisecond":
+            result = self.num * 604800000
+        elif unit == "second":
             result = self.num * 604800
-        elif unit == 'minute':
+        elif unit == "minute":
             result = self.num * 10080
-        elif unit == 'hour':
+        elif unit == "hour":
             result = self.num * 168
-        elif unit == 'day':
+        elif unit == "day":
             result = self.num * 7
-        elif unit == 'month':
-            result = self.num / 4.348  
-        elif unit == 'year':
-            result = self.num / 52.1786 
-        elif unit == 'decade':
-            result = self.num / 521.786 
-        elif unit == 'century':
-            result = self.num / 5217.86  
+        elif unit == "month":
+            result = self.num / 4.348
+        elif unit == "year":
+            result = self.num / 52.1786
+        elif unit == "decade":
+            result = self.num / 521.786
+        elif unit == "century":
+            result = self.num / 5217.86
         else:
             raise ValueError("Unknown unit")
-        
+
         return self.format_result(result, unit)
+
 
 # Month
 class Month(TimeUnit):
@@ -473,7 +480,7 @@ class Month(TimeUnit):
     month_to(self, unit: str) -> Union[float, str]
         Converts the time from months to the specified unit.
     """
-    
+
     def month_to(self, unit: str) -> Union[float, str]:
         """
         Converts the time from months to the specified unit.
@@ -493,28 +500,29 @@ class Month(TimeUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'millisecond':
-            result = self.num * 2.628e9  
-        elif unit == 'second':
+        if unit == "millisecond":
+            result = self.num * 2.628e9
+        elif unit == "second":
             result = self.num * 2.628e6
-        elif unit == 'minute':
+        elif unit == "minute":
             result = self.num * 43800
-        elif unit == 'hour':
+        elif unit == "hour":
             result = self.num * 730
-        elif unit == 'day':
+        elif unit == "day":
             result = self.num * 30.44
-        elif unit == 'week':
+        elif unit == "week":
             result = self.num * 4.348
-        elif unit == 'year':
+        elif unit == "year":
             result = self.num / 12
-        elif unit == 'decade':
+        elif unit == "decade":
             result = self.num / 120
-        elif unit == 'century':
+        elif unit == "century":
             result = self.num / 1200
         else:
             raise ValueError("The measurement has an unknown unit")
-        
+
         return self.format_result(result, unit)
+
 
 # Year
 class Year(TimeUnit):
@@ -526,7 +534,7 @@ class Year(TimeUnit):
     year_to(self, unit: str) -> Union[float, str]
         Converts the time from years to the specified unit.
     """
-    
+
     def year_to(self, unit: str) -> Union[float, str]:
         """
         Converts the time from years to the specified unit.
@@ -546,27 +554,27 @@ class Year(TimeUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'millisecond':
-            result = self.num * 3.154e10  
-        elif unit == 'second':
+        if unit == "millisecond":
+            result = self.num * 3.154e10
+        elif unit == "second":
             result = self.num * 3.154e7
-        elif unit == 'minute':
+        elif unit == "minute":
             result = self.num * 525600
-        elif unit == 'hour':
+        elif unit == "hour":
             result = self.num * 8760
-        elif unit == 'day':
+        elif unit == "day":
             result = self.num * 365.25
-        elif unit == 'week':
+        elif unit == "week":
             result = self.num * 52.1786
-        elif unit == 'month':
+        elif unit == "month":
             result = self.num * 12
-        elif unit == 'decade':
+        elif unit == "decade":
             result = self.num / 10
-        elif unit == 'century':
+        elif unit == "century":
             result = self.num / 100
         else:
             raise ValueError("The measurement has an unknown unit")
-        
+
         return self.format_result(result, unit)
 
 
@@ -580,7 +588,7 @@ class Decade(TimeUnit):
     decade_to(self, unit: str) -> Union[float, str]
         Converts the time from decades to the specified unit.
     """
-    
+
     def decade_to(self, unit: str) -> Union[float, str]:
         """
         Converts the time from decades to the specified unit.
@@ -600,28 +608,29 @@ class Decade(TimeUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'millisecond':
-            result = self.num * 3.154e11  
-        elif unit == 'second':
+        if unit == "millisecond":
+            result = self.num * 3.154e11
+        elif unit == "second":
             result = self.num * 3.154e8
-        elif unit == 'minute':
+        elif unit == "minute":
             result = self.num * 5.256e6
-        elif unit == 'hour':
+        elif unit == "hour":
             result = self.num * 87600
-        elif unit == 'day':
+        elif unit == "day":
             result = self.num * 3652.5
-        elif unit == 'week':
+        elif unit == "week":
             result = self.num * 521.786
-        elif unit == 'month':
+        elif unit == "month":
             result = self.num * 120
-        elif unit == 'year':
+        elif unit == "year":
             result = self.num * 10
-        elif unit == 'century':
+        elif unit == "century":
             result = self.num / 10
         else:
             raise ValueError("The measurement has an unknown unit")
-        
+
         return self.format_result(result, unit)
+
 
 # Century
 class Century(TimeUnit):
@@ -633,7 +642,7 @@ class Century(TimeUnit):
     century_to(self, unit: str) -> Union[float, str]
         Converts the time from centuries to the specified unit.
     """
-    
+
     def century_to(self, unit: str) -> Union[float, str]:
         """
         Converts the time from centuries to the specified unit.
@@ -653,25 +662,25 @@ class Century(TimeUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'millisecond':
-            result = self.num * 3.154e12 
-        elif unit == 'second':
+        if unit == "millisecond":
+            result = self.num * 3.154e12
+        elif unit == "second":
             result = self.num * 3.154e9
-        elif unit == 'minute':
+        elif unit == "minute":
             result = self.num * 5.256e7
-        elif unit == 'hour':
+        elif unit == "hour":
             result = self.num * 876000
-        elif unit == 'day':
+        elif unit == "day":
             result = self.num * 36525
-        elif unit == 'week':
+        elif unit == "week":
             result = self.num * 5217.86
-        elif unit == 'month':
+        elif unit == "month":
             result = self.num * 1200
-        elif unit == 'year':
+        elif unit == "year":
             result = self.num * 100
-        elif unit == 'decade':
+        elif unit == "decade":
             result = self.num * 10
         else:
             raise ValueError("The measurement has an unknown unit")
-        
+
         return self.format_result(result, unit)

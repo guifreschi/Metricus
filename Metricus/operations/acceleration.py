@@ -39,21 +39,26 @@ Dependencies:
 - The script uses the `acceleration_formulas` module from the `formulas` package to perform the actual conversion operations.
 
 """
-from formulas import acceleration_formulas as acf
+
 from typing import Union
 
+from formulas import acceleration_formulas as acf
+
 unit_list = [
-  'meter_per_second_squared',
-  'foot_per_second_squared',
-  'centimeter_per_second_squared',
-  'gal',
-  'inch_per_second_squared',
-  'kilometer_per_hour_squared',
-  'mile_per_hour_squared',
-  'gravity'
+    "meter_per_second_squared",
+    "foot_per_second_squared",
+    "centimeter_per_second_squared",
+    "gal",
+    "inch_per_second_squared",
+    "kilometer_per_hour_squared",
+    "mile_per_hour_squared",
+    "gravity",
 ]
 
-def acceleration_converter(acceleration: float, from_unit: str, to_unit: str, with_unit: bool = False) -> Union[float, str]:
+
+def acceleration_converter(
+    acceleration: float, from_unit: str, to_unit: str, with_unit: bool = False
+) -> Union[float, str]:
     """
     Converts a given acceleration from one unit to another.
 
@@ -79,23 +84,35 @@ def acceleration_converter(acceleration: float, from_unit: str, to_unit: str, wi
     """
     if from_unit not in unit_list or to_unit not in unit_list:
         raise ValueError("The measurement has an unknown unit")
-    
+
     # Conversion logic based on the 'from_unit'
-    if from_unit == 'meter_per_second_squared':
-        return acf.MeterPerSecondSquared(acceleration, with_unit=with_unit).mps2_to(to_unit)
-    elif from_unit == 'foot_per_second_squared':
-        return acf.FootPerSecondSquared(acceleration, with_unit=with_unit).fps2_to(to_unit)
-    elif from_unit == 'centimeter_per_second_squared':
-        return acf.CentimeterPerSecondSquared(acceleration, with_unit=with_unit).cmps2_to(to_unit)
-    elif from_unit == 'gal':
+    if from_unit == "meter_per_second_squared":
+        return acf.MeterPerSecondSquared(acceleration, with_unit=with_unit).mps2_to(
+            to_unit
+        )
+    elif from_unit == "foot_per_second_squared":
+        return acf.FootPerSecondSquared(acceleration, with_unit=with_unit).fps2_to(
+            to_unit
+        )
+    elif from_unit == "centimeter_per_second_squared":
+        return acf.CentimeterPerSecondSquared(
+            acceleration, with_unit=with_unit
+        ).cmps2_to(to_unit)
+    elif from_unit == "gal":
         return acf.Gal(acceleration, with_unit=with_unit).gal_to(to_unit)
-    elif from_unit == 'inch_per_second_squared':
-        return acf.InchPerSecondSquared(acceleration, with_unit=with_unit).ips2_to(to_unit)
-    elif from_unit == 'kilometer_per_hour_squared':
-        return acf.KilometerPerHourSquared(acceleration, with_unit=with_unit).kmh2_to(to_unit)
-    elif from_unit == 'mile_per_hour_squared':
-        return acf.MilePerHourSquared(acceleration, with_unit=with_unit).mph2_to(to_unit)
-    elif from_unit == 'gravity':
+    elif from_unit == "inch_per_second_squared":
+        return acf.InchPerSecondSquared(acceleration, with_unit=with_unit).ips2_to(
+            to_unit
+        )
+    elif from_unit == "kilometer_per_hour_squared":
+        return acf.KilometerPerHourSquared(acceleration, with_unit=with_unit).kmh2_to(
+            to_unit
+        )
+    elif from_unit == "mile_per_hour_squared":
+        return acf.MilePerHourSquared(acceleration, with_unit=with_unit).mph2_to(
+            to_unit
+        )
+    elif from_unit == "gravity":
         return acf.Gravity(acceleration, with_unit=with_unit).g_to(to_unit)
     else:
         raise ValueError("The measurement has an unknown unit")

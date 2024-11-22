@@ -60,19 +60,27 @@ Usage Example:
     print(result)  # Output: "22.0462 lbf"
 """
 
+from typing import Union
 
 from formulas.complex_formulas import force_calculator
-from typing import Union
 from operations import acceleration as ac
 from operations import mass as m
 
 fc = force_calculator.force_calculator
 
-def calculate_force(mass: float, acceleration: float, force_unit: str = 'newton', mass_unit: str = 'kilogram', acceleration_unit: str = 'meter_per_second_squared', with_unit: bool = False) -> Union[float, str]:
+
+def calculate_force(
+    mass: float,
+    acceleration: float,
+    force_unit: str = "newton",
+    mass_unit: str = "kilogram",
+    acceleration_unit: str = "meter_per_second_squared",
+    with_unit: bool = False,
+) -> Union[float, str]:
     """
     Calculate the force based on mass and acceleration values, converting the units if necessary.
 
-    This function calculates the force using the formula `Force = Mass * Acceleration`. It also handles unit conversions 
+    This function calculates the force using the formula `Force = Mass * Acceleration`. It also handles unit conversions
     for mass, acceleration, and force.
 
     Parameters:
@@ -84,7 +92,7 @@ def calculate_force(mass: float, acceleration: float, force_unit: str = 'newton'
     - with_unit (bool): Whether to include the unit in the result. Default is False, which returns only the numeric value.
 
     Returns:
-    - Union[float, str]: The calculated force, either as a float (if `with_unit` is False) or a string 
+    - Union[float, str]: The calculated force, either as a float (if `with_unit` is False) or a string
       including the unit (if `with_unit` is True).
 
     Example:
@@ -95,10 +103,22 @@ def calculate_force(mass: float, acceleration: float, force_unit: str = 'newton'
     """
 
     # Convert mass to kilogram if necessary
-    kilogram = m.mass_converter(mass, mass_unit, 'kilogram') if mass_unit != 'kilogram' else mass
+    kilogram = (
+        m.mass_converter(mass, mass_unit, "kilogram")
+        if mass_unit != "kilogram"
+        else mass
+    )
 
     # Convert acceleration to meter_per_second_squared if necessary
-    meter_per_second_squared = ac.acceleration_converter(acceleration, acceleration_unit, 'meter_per_second_squared') if acceleration_unit != 'meter_per_second_squared' else acceleration
+    meter_per_second_squared = (
+        ac.acceleration_converter(
+            acceleration, acceleration_unit, "meter_per_second_squared"
+        )
+        if acceleration_unit != "meter_per_second_squared"
+        else acceleration
+    )
 
     # Calculate force using the converted values
-    return fc(kilogram, meter_per_second_squared, force_unit=force_unit, with_unit=with_unit)
+    return fc(
+        kilogram, meter_per_second_squared, force_unit=force_unit, with_unit=with_unit
+    )

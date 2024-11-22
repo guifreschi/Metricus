@@ -49,11 +49,14 @@ Usage Example:
     # Raises ValueError: The measurement has an unknown unit: unknown_unit
 """
 
-
 from typing import Union
+
 from formulas import force_formulas as ff
 
-def force_calculator(kg: float, meter_per_second_squared: float, force_unit: str, with_unit: bool = False) -> Union[float, str]:
+
+def force_calculator(
+    kg: float, meter_per_second_squared: float, force_unit: str, with_unit: bool = False
+) -> Union[float, str]:
     """
     Calculate the force based on the given mass and acceleration, and convert it to the specified unit.
 
@@ -61,12 +64,12 @@ def force_calculator(kg: float, meter_per_second_squared: float, force_unit: str
     - kg (float): The mass in kilograms (kg).
     - meter_per_second_squared (float): The acceleration in meters per second squared (m/s²).
     - force_unit (str): The desired unit for the resulting force. Supported units are:
-        'dyne', 'kilonewton', 'pound_force', 'ounce_force', 'ton_force', 'kilogram_force', 
+        'dyne', 'kilonewton', 'pound_force', 'ounce_force', 'ton_force', 'kilogram_force',
         'gram_force', 'millinewton', 'poundal', 'slug_force'.
     - with_unit (bool, optional): If True, returns the result with the unit. Defaults to False, which returns just the numeric value.
 
     Returns:
-    - Union[float, str]: The calculated force in the specified unit. The result is returned as a float if `with_unit` is False, 
+    - Union[float, str]: The calculated force in the specified unit. The result is returned as a float if `with_unit` is False,
       or as a string with the unit if `with_unit` is True.
 
     Raises:
@@ -85,15 +88,23 @@ def force_calculator(kg: float, meter_per_second_squared: float, force_unit: str
     # Result in Newton
     result = kg * meter_per_second_squared
 
-    if force_unit == 'newton':
+    if force_unit == "newton":
         return f"{result} N" if with_unit else result
 
     units = [
-      'dyne', 'kilonewton', 'pound_force', 'ounce_force', 'ton_force',
-      'kilogram_force', 'gram_force', 'millinewton', 'poundal', 'slug_force'
+        "dyne",
+        "kilonewton",
+        "pound_force",
+        "ounce_force",
+        "ton_force",
+        "kilogram_force",
+        "gram_force",
+        "millinewton",
+        "poundal",
+        "slug_force",
     ]
-    
+
     if force_unit in units:
-      return getattr(ff.Newton(result, with_unit=with_unit), 'newton_to')(force_unit)
-    
+        return getattr(ff.Newton(result, with_unit=with_unit), "newton_to")(force_unit)
+
     raise ValueError(f"The measurement has an unknown unit: {force_unit}")

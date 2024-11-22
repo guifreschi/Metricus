@@ -35,12 +35,17 @@ Dependencies:
 - The script uses the `speed_formulas` module from the `formulas` package to perform the actual conversion operations.
 
 """
-from formulas import speed_formulas as sf
+
 from typing import Union
 
-unit_list = ['m/s', 'km/h', 'mph', 'kn']
+from formulas import speed_formulas as sf
 
-def speed_converter(speed: float, from_unit: str, to_unit: str, with_unit: bool = False) -> Union[float, str]:
+unit_list = ["m/s", "km/h", "mph", "kn"]
+
+
+def speed_converter(
+    speed: float, from_unit: str, to_unit: str, with_unit: bool = False
+) -> Union[float, str]:
     """
     Converts a given speed from one unit to another.
 
@@ -51,7 +56,7 @@ def speed_converter(speed: float, from_unit: str, to_unit: str, with_unit: bool 
         with_unit (bool, optional): If True, the result will include the unit of measurement. Defaults to False.
 
     Returns:
-        Union[float, str]: The converted speed. If `with_unit` is True, the result will include the unit as a string, 
+        Union[float, str]: The converted speed. If `with_unit` is True, the result will include the unit as a string,
                            otherwise, it will return the numeric value of the converted speed.
 
     Raises:
@@ -66,15 +71,15 @@ def speed_converter(speed: float, from_unit: str, to_unit: str, with_unit: bool 
     """
     if from_unit not in unit_list or to_unit not in unit_list:
         raise ValueError("The measurement has an unknown unit")
-    
+
     # Conversion logic based on the 'from_unit'
-    if from_unit == 'm/s':
+    if from_unit == "m/s":
         return sf.MetersPerSecond(speed, with_unit=with_unit).mps_to(to_unit)
-    elif from_unit == 'km/h':
+    elif from_unit == "km/h":
         return sf.KilometersPerHour(speed, with_unit=with_unit).kmph_to(to_unit)
-    elif from_unit == 'mph':
+    elif from_unit == "mph":
         return sf.MilesPerHour(speed, with_unit=with_unit).mph_to(to_unit)
-    elif from_unit == 'kn':
+    elif from_unit == "kn":
         return sf.Knots(speed, with_unit=with_unit).kn_to(to_unit)
     else:
         raise ValueError("The measurement has an unknown unit")

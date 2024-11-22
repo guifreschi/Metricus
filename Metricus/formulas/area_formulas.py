@@ -66,6 +66,7 @@ Usage Example:
 
 from typing import Union
 
+
 # Base class for Area
 class Area:
     """
@@ -85,7 +86,7 @@ class Area:
     format_result(self, result: float, unit: str) -> Union[float, str]
         Formats the result to include the appropriate unit if `with_unit` is set to `True`.
     """
-    
+
     def __init__(self, num: float, with_unit: bool = False) -> None:
         self.num = num
         self.with_unit = with_unit
@@ -117,7 +118,8 @@ class Area:
         }
         return f"{result} {units_map[unit]}" if self.with_unit else result
 
-# Square Centimeter 
+
+# Square Centimeter
 class SquareCentimeter(Area):
     """
     A class for converting areas from square centimeters to other units.
@@ -127,7 +129,7 @@ class SquareCentimeter(Area):
     square_centimeter_to(self, unit: str) -> Union[float, str]
         Converts the area from square centimeters to the specified unit.
     """
-    
+
     def square_centimeter_to(self, unit: str) -> Union[float, str]:
         """
         Converts the area from square centimeters to the specified unit.
@@ -147,23 +149,24 @@ class SquareCentimeter(Area):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'square_foot':
+        if unit == "square_foot":
             result = self.num / 929.0304
-        elif unit == 'square_meter':
+        elif unit == "square_meter":
             result = self.num / 10000
-        elif unit == 'square_yard':
+        elif unit == "square_yard":
             result = self.num / 8361.2736
-        elif unit == 'acre':
+        elif unit == "acre":
             result = self.num / 4.04686e7
-        elif unit == 'hectare':
+        elif unit == "hectare":
             result = self.num / 1e8
-        elif unit == 'square_kilometer':
+        elif unit == "square_kilometer":
             result = self.num / 1e10
         else:
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
 
-# Square Foot 
+
+# Square Foot
 class SquareFoot(Area):
     """
     A class for converting areas from square feet to other units.
@@ -173,7 +176,7 @@ class SquareFoot(Area):
     square_foot_to(self, unit: str) -> Union[float, str]
         Converts the area from square feet to the specified unit.
     """
-    
+
     def square_foot_to(self, unit: str) -> Union[float, str]:
         """
         Converts the area from square feet to the specified unit.
@@ -193,22 +196,23 @@ class SquareFoot(Area):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'square_centimeter':
+        if unit == "square_centimeter":
             result = self.num * 929.0304
-        elif unit == 'square_meter':
+        elif unit == "square_meter":
             result = self.num / 10.7639
-        elif unit == 'square_yard':
+        elif unit == "square_yard":
             result = self.num / 9
-        elif unit == 'acre':
+        elif unit == "acre":
             result = self.num / 43560
-        elif unit == 'hectare':
+        elif unit == "hectare":
             result = self.num / 107639
-        elif unit == 'square_kilometer':
+        elif unit == "square_kilometer":
             result = self.num / 1.076e7
         else:
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
-    
+
+
 # Square Yard
 class SquareYard(Area):
     """
@@ -219,7 +223,7 @@ class SquareYard(Area):
     square_yard_to(self, unit: str) -> Union[float, str]
         Converts the area from square yards to the specified unit.
     """
-    
+
     def square_yard_to(self, unit: str) -> Union[float, str]:
         """
         Converts the area from square yards to the specified unit.
@@ -239,21 +243,22 @@ class SquareYard(Area):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'square_centimeter':
+        if unit == "square_centimeter":
             result = self.num * 8361.2736
-        elif unit == 'square_foot':
+        elif unit == "square_foot":
             result = self.num * 9
-        elif unit == 'square_meter':
+        elif unit == "square_meter":
             result = self.num / 1.19599
-        elif unit == 'acre':
+        elif unit == "acre":
             result = self.num / 4840
-        elif unit == 'hectare':
+        elif unit == "hectare":
             result = self.num / 11959.9
-        elif unit == 'square_kilometer':
+        elif unit == "square_kilometer":
             result = self.num / 1.196e6
         else:
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
+
 
 # Square Meter
 class SquareMeter(Area):
@@ -265,7 +270,7 @@ class SquareMeter(Area):
     square_meter_to(self, unit: str) -> Union[float, str]
         Converts the area from square meters to the specified unit.
     """
-    
+
     def square_meter_to(self, unit: str) -> Union[float, str]:
         """
         Converts the area from square meters to the specified unit.
@@ -285,21 +290,22 @@ class SquareMeter(Area):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'square_centimeter':
+        if unit == "square_centimeter":
             result = self.num * 10000
-        elif unit == 'square_foot':
+        elif unit == "square_foot":
             result = self.num * 10.7639
-        elif unit == 'square_yard':
+        elif unit == "square_yard":
             result = self.num * 1.19599
-        elif unit == 'acre':
+        elif unit == "acre":
             result = self.num / 4046.86
-        elif unit == 'hectare':
+        elif unit == "hectare":
             result = self.num / 10000
-        elif unit == 'square_kilometer':
+        elif unit == "square_kilometer":
             result = self.num / 1e6
         else:
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
+
 
 # Acre
 class Acre(Area):
@@ -311,7 +317,7 @@ class Acre(Area):
     acre_to(self, unit: str) -> Union[float, str]
         Converts the area from acres to the specified unit.
     """
-    
+
     def acre_to(self, unit: str) -> Union[float, str]:
         """
         Converts the area from acres to the specified unit.
@@ -331,21 +337,22 @@ class Acre(Area):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'square_centimeter':
+        if unit == "square_centimeter":
             result = self.num * 4.04686e7
-        elif unit == 'square_foot':
+        elif unit == "square_foot":
             result = self.num * 43560
-        elif unit == 'square_yard':
+        elif unit == "square_yard":
             result = self.num * 4840
-        elif unit == 'square_meter':
+        elif unit == "square_meter":
             result = self.num * 4046.86
-        elif unit == 'hectare':
+        elif unit == "hectare":
             result = self.num / 2.47105
-        elif unit == 'square_kilometer':
+        elif unit == "square_kilometer":
             result = self.num / 247.105
         else:
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
+
 
 # Hectare
 class Hectare(Area):
@@ -357,7 +364,7 @@ class Hectare(Area):
     hectare_to(self, unit: str) -> Union[float, str]
         Converts the area from hectares to the specified unit.
     """
-    
+
     def hectare_to(self, unit: str) -> Union[float, str]:
         """
         Converts the area from hectares to the specified unit.
@@ -377,21 +384,22 @@ class Hectare(Area):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'square_centimeter':
+        if unit == "square_centimeter":
             result = self.num * 1e8
-        elif unit == 'square_foot':
+        elif unit == "square_foot":
             result = self.num * 107639
-        elif unit == 'square_yard':
+        elif unit == "square_yard":
             result = self.num * 11959.9
-        elif unit == 'square_meter':
+        elif unit == "square_meter":
             result = self.num * 10000
-        elif unit == 'acre':
+        elif unit == "acre":
             result = self.num * 2.47105
-        elif unit == 'square_kilometer':
+        elif unit == "square_kilometer":
             result = self.num / 100
         else:
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
+
 
 # Square Kilometer
 class SquareKilometer(Area):
@@ -403,7 +411,7 @@ class SquareKilometer(Area):
     square_kilometer_to(self, unit: str) -> Union[float, str]
         Converts the area from square kilometers to the specified unit.
     """
-    
+
     def square_kilometer_to(self, unit: str) -> Union[float, str]:
         """
         Converts the area from square kilometers to the specified unit.
@@ -423,17 +431,17 @@ class SquareKilometer(Area):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'square_centimeter':
+        if unit == "square_centimeter":
             result = self.num * 1e10
-        elif unit == 'square_foot':
+        elif unit == "square_foot":
             result = self.num * 1.076e7
-        elif unit == 'square_yard':
+        elif unit == "square_yard":
             result = self.num * 1.196e6
-        elif unit == 'square_meter':
+        elif unit == "square_meter":
             result = self.num * 1e6
-        elif unit == 'acre':
+        elif unit == "acre":
             result = self.num * 247.105
-        elif unit == 'hectare':
+        elif unit == "hectare":
             result = self.num * 100
         else:
             raise ValueError("The measurement has an unknown unit")

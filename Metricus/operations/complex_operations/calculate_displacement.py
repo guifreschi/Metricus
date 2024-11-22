@@ -70,19 +70,28 @@ Usage Example:
     # Raises ValueError: The measurement has an unknown unit: unknown_unit
 """
 
-from formulas.complex_formulas import displacement_calculator
 from typing import Union
+
+from formulas.complex_formulas import displacement_calculator
 from operations import length as len
 from operations import speed as sp
 
 dc = displacement_calculator.displacement_calculator
 
-def calculate_displacement(length: float, speed: float, time_unit: str = 'hour', length_unit: str = 'kilometer', speed_unit: str = 'km/h', with_unit: bool = False) -> Union[float, str]:
+
+def calculate_displacement(
+    length: float,
+    speed: float,
+    time_unit: str = "hour",
+    length_unit: str = "kilometer",
+    speed_unit: str = "km/h",
+    with_unit: bool = False,
+) -> Union[float, str]:
     """
     Calculates the displacement based on the provided length, speed, and time.
 
     This function converts the provided length and speed to their respective units
-    (kilometer and km/h), if necessary, and calculates the displacement using the 
+    (kilometer and km/h), if necessary, and calculates the displacement using the
     `displacement_calculator` from the `formulas.complex_formulas` module. The result
     can optionally include the units of measurement.
 
@@ -95,26 +104,32 @@ def calculate_displacement(length: float, speed: float, time_unit: str = 'hour',
         with_unit (bool, optional): If True, the result will include the unit. Default is False.
 
     Returns:
-        Union[float, str]: The calculated displacement as a float if `with_unit` is False, or a string 
+        Union[float, str]: The calculated displacement as a float if `with_unit` is False, or a string
                             with the result and unit if `with_unit` is True.
-        
+
     Raises:
         ValueError: If an invalid unit is provided for length or speed.
 
     Example:
         >>> calculate_displacement(5, 60, time_unit='minute', length_unit='mile', speed_unit='mph', with_unit=True)
         '300.0 km'
-        
+
     Notes:
-        - The function first converts the length to kilometers and the speed to kilometers per hour, 
+        - The function first converts the length to kilometers and the speed to kilometers per hour,
           if necessary.
-        - The `displacement_calculator` function is used to calculate the displacement based on 
+        - The `displacement_calculator` function is used to calculate the displacement based on
           the converted values.
-        - The function supports custom units for time, length, and speed, with default units being 
+        - The function supports custom units for time, length, and speed, with default units being
           'hour', 'kilometer', and 'km/h', respectively.
     """
-    kilometer = len.length_converter(length, length_unit, 'kilometer') if length_unit != 'kilometer' else length
+    kilometer = (
+        len.length_converter(length, length_unit, "kilometer")
+        if length_unit != "kilometer"
+        else length
+    )
 
-    kmh = sp.speed_converter(speed, speed_unit, 'km/h') if speed_unit != 'km/h' else speed
+    kmh = (
+        sp.speed_converter(speed, speed_unit, "km/h") if speed_unit != "km/h" else speed
+    )
 
     return dc(kilometer, kmh, time_unit=time_unit, with_unit=with_unit)

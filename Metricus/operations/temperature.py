@@ -35,12 +35,17 @@ Dependencies:
 - The script uses the `temperature_formulas` module from the `formulas` package to perform the actual conversion operations.
 
 """
-from formulas import temperature_formulas as tf
+
 from typing import Union
 
-unit_list = ['celsius', 'fahrenheit', 'kelvin', 'rankine']
+from formulas import temperature_formulas as tf
 
-def temperature_converter(temp: float, from_unit: str, to_unit: str, with_unit: bool = False) -> Union[float, str]:
+unit_list = ["celsius", "fahrenheit", "kelvin", "rankine"]
+
+
+def temperature_converter(
+    temp: float, from_unit: str, to_unit: str, with_unit: bool = False
+) -> Union[float, str]:
     """
     Converts a given temperature from one unit to another.
 
@@ -51,7 +56,7 @@ def temperature_converter(temp: float, from_unit: str, to_unit: str, with_unit: 
         with_unit (bool, optional): If True, the result will include the unit of measurement. Defaults to False.
 
     Returns:
-        Union[float, str]: The converted temperature. If `with_unit` is True, the result will include the unit as a string, 
+        Union[float, str]: The converted temperature. If `with_unit` is True, the result will include the unit as a string,
                            otherwise, it will return the numeric value of the converted temperature.
 
     Raises:
@@ -66,15 +71,15 @@ def temperature_converter(temp: float, from_unit: str, to_unit: str, with_unit: 
     """
     if from_unit not in unit_list or to_unit not in unit_list:
         raise ValueError("The measurement has an unknown unit")
-    
+
     # Conversion logic based on the 'from_unit'
-    if from_unit == 'celsius':
+    if from_unit == "celsius":
         return tf.Celsius(temp, with_unit=with_unit).celsius_to(to_unit)
-    elif from_unit == 'fahrenheit':
+    elif from_unit == "fahrenheit":
         return tf.Fahrenheit(temp, with_unit=with_unit).fahrenheit_to(to_unit)
-    elif from_unit == 'kelvin':
+    elif from_unit == "kelvin":
         return tf.Kelvin(temp, with_unit=with_unit).kelvin_to(to_unit)
-    elif from_unit == 'rankine':
+    elif from_unit == "rankine":
         return tf.Rankine(temp, with_unit=with_unit).rankine_to(to_unit)
     else:
         raise ValueError("The measurement has an unknown unit")

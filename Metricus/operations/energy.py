@@ -37,12 +37,24 @@ Dependencies:
 - The script uses the `energy_formulas` module from the `formulas` package to perform the actual conversion operations.
 
 """
-from formulas import energy_formulas as ef
+
 from typing import Union
 
-unit_list = ['electronvolt', 'calorie', 'joule', 'british_thermal_unit', 'kilocalorie', 'kilowatt_hour']
+from formulas import energy_formulas as ef
 
-def energy_converter(energy: float, from_unit: str, to_unit: str, with_unit: bool = False) -> Union[float, str]:
+unit_list = [
+    "electronvolt",
+    "calorie",
+    "joule",
+    "british_thermal_unit",
+    "kilocalorie",
+    "kilowatt_hour",
+]
+
+
+def energy_converter(
+    energy: float, from_unit: str, to_unit: str, with_unit: bool = False
+) -> Union[float, str]:
     """
     Converts a given energy value from one unit to another.
 
@@ -53,7 +65,7 @@ def energy_converter(energy: float, from_unit: str, to_unit: str, with_unit: boo
         with_unit (bool, optional): If True, the result will include the unit of measurement. Defaults to False.
 
     Returns:
-        Union[float, str]: The converted energy value. If `with_unit` is True, the result will include the unit as a string, 
+        Union[float, str]: The converted energy value. If `with_unit` is True, the result will include the unit as a string,
                            otherwise, it will return the numeric value of the converted energy.
 
     Raises:
@@ -68,19 +80,21 @@ def energy_converter(energy: float, from_unit: str, to_unit: str, with_unit: boo
     """
     if from_unit not in unit_list or to_unit not in unit_list:
         raise ValueError("Unknown unit of measurement")
-    
+
     # Conversion logic based on the 'from_unit'
-    if from_unit == 'electronvolt':
+    if from_unit == "electronvolt":
         return ef.Electronvolt(energy, with_unit=with_unit).electronvolt_to(to_unit)
-    elif from_unit == 'calorie':
+    elif from_unit == "calorie":
         return ef.Calorie(energy, with_unit=with_unit).calorie_to(to_unit)
-    elif from_unit == 'joule':
+    elif from_unit == "joule":
         return ef.Joule(energy, with_unit=with_unit).joule_to(to_unit)
-    elif from_unit == 'british_thermal_unit':
-        return ef.BritishThermalUnit(energy, with_unit=with_unit).british_thermal_unit_to(to_unit)
-    elif from_unit == 'kilocalorie':
+    elif from_unit == "british_thermal_unit":
+        return ef.BritishThermalUnit(
+            energy, with_unit=with_unit
+        ).british_thermal_unit_to(to_unit)
+    elif from_unit == "kilocalorie":
         return ef.Kilocalorie(energy, with_unit=with_unit).kilocalorie_to(to_unit)
-    elif from_unit == 'kilowatt_hour':
+    elif from_unit == "kilowatt_hour":
         return ef.KilowattHour(energy, with_unit=with_unit).kilowatt_hour_to(to_unit)
     else:
         raise ValueError("Unknown unit of measurement")

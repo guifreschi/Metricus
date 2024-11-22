@@ -52,14 +52,18 @@ Usage Example:
 """
 
 from typing import Union
+
 from formulas import time_formulas as tf
 
-def displacement_calculator(kilometer: float, kmh: float, time_unit: str, with_unit: bool = False) -> Union[float, str]:
+
+def displacement_calculator(
+    kilometer: float, kmh: float, time_unit: str, with_unit: bool = False
+) -> Union[float, str]:
     """
     Calculate the time required to travel a given distance at a constant speed.
 
     This function calculates the time required to travel a certain distance, given the distance in kilometers
-    and speed in kilometers per hour. It allows the user to convert the result into different units of time 
+    and speed in kilometers per hour. It allows the user to convert the result into different units of time
     such as hours, minutes, seconds, etc., using a provided time unit.
 
     Parameters:
@@ -70,7 +74,7 @@ def displacement_calculator(kilometer: float, kmh: float, time_unit: str, with_u
     - with_unit (bool, optional): If True, the result is returned with the time unit. Defaults to False.
 
     Returns:
-    - Union[float, str]: The time required to travel the given distance, in the specified time unit. 
+    - Union[float, str]: The time required to travel the given distance, in the specified time unit.
       The result can either be a numeric value (float) or a string (with the time unit attached if `with_unit=True`).
 
     Raises:
@@ -79,10 +83,10 @@ def displacement_calculator(kilometer: float, kmh: float, time_unit: str, with_u
     Example:
     >>> displacement_calculator(100, 50, 'hour')
     2.0
-    
+
     >>> displacement_calculator(100, 50, 'minute', with_unit=True)
     '120.0 min'
-    
+
     >>> displacement_calculator(100, 50, 'day')
     0.08333333333333333
 
@@ -91,15 +95,25 @@ def displacement_calculator(kilometer: float, kmh: float, time_unit: str, with_u
     result = kilometer / kmh
 
     # If the time unit is hours, return the result directly or with the unit
-    if time_unit == 'hour':
+    if time_unit == "hour":
         return f"{result} h" if with_unit else result
-    
+
     # Define the supported time units
-    units = ['millisecond', 'minute', 'second', 'day', 'week', 'month', 'year', 'decade', 'century']
+    units = [
+        "millisecond",
+        "minute",
+        "second",
+        "day",
+        "week",
+        "month",
+        "year",
+        "decade",
+        "century",
+    ]
 
     # If the time unit is valid, convert the result to the appropriate time unit
     if time_unit in units:
-        return getattr(tf.Hour(result, with_unit=with_unit), 'hour_to')(time_unit)
-    
+        return getattr(tf.Hour(result, with_unit=with_unit), "hour_to")(time_unit)
+
     # Raise an error if the time unit is not recognized
     raise ValueError(f"The measurement has an unknown unit: {time_unit}")

@@ -53,8 +53,8 @@ Usage Example:
     print(result)  # Output: "1605.287 N"
 """
 
-
 from typing import Union
+
 
 # Base class for force units
 class Force:
@@ -75,7 +75,7 @@ class Force:
     format_result(self, result: float, unit: str) -> Union[float, str]
         Formats the result to include the appropriate unit if `with_unit` is set to `True`.
     """
-    
+
     def __init__(self, num: float, with_unit: bool = False) -> None:
         self.num = num
         self.with_unit = with_unit
@@ -107,9 +107,10 @@ class Force:
             "gram_force": "gf",
             "millinewton": "mN",
             "poundal": "pdl",
-            "slug_force": "slf"
+            "slug_force": "slf",
         }
         return f"{result} {units_map[unit]}" if self.with_unit else result
+
 
 # Newton
 class Newton(Force):
@@ -121,7 +122,7 @@ class Newton(Force):
     newton_to(self, unit: str) -> Union[float, str]
         Converts force from Newton to the specified unit.
     """
-    
+
     def newton_to(self, unit: str) -> Union[float, str]:
         """
         Converts force from Newton to the specified unit.
@@ -142,30 +143,31 @@ class Newton(Force):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'dyne':
+        if unit == "dyne":
             result = self.num * 10**5
-        elif unit == 'kilonewton':
+        elif unit == "kilonewton":
             result = self.num / 1000
-        elif unit == 'pound_force':
+        elif unit == "pound_force":
             result = self.num * 0.224809
-        elif unit == 'ounce_force':
+        elif unit == "ounce_force":
             result = self.num * 35.27396
-        elif unit == 'ton_force':
+        elif unit == "ton_force":
             result = self.num * 9.8196e-5
-        elif unit == 'kilogram_force':
+        elif unit == "kilogram_force":
             result = self.num * 0.1019716
-        elif unit == 'gram_force':
+        elif unit == "gram_force":
             result = self.num * 101.9716
-        elif unit == 'millinewton':
+        elif unit == "millinewton":
             result = self.num * 1000
-        elif unit == 'poundal':
+        elif unit == "poundal":
             result = self.num * 0.007375
-        elif unit == 'slug_force':
+        elif unit == "slug_force":
             result = self.num * 0.031081
         else:
             raise ValueError("Unknown unit")
 
         return self.format_result(result, unit)
+
 
 # Dyne
 class Dyne(Force):
@@ -177,7 +179,7 @@ class Dyne(Force):
     dyne_to(self, unit: str) -> Union[float, str]
         Converts force from Dyne to the specified unit.
     """
-    
+
     def dyne_to(self, unit: str) -> Union[float, str]:
         """
         Converts force from Dyne to the specified unit.
@@ -198,30 +200,31 @@ class Dyne(Force):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'newton':
+        if unit == "newton":
             result = self.num / 10**5
-        elif unit == 'kilonewton':
+        elif unit == "kilonewton":
             result = self.num / 10**8
-        elif unit == 'pound_force':
+        elif unit == "pound_force":
             result = self.num * 2.248e-6
-        elif unit == 'ounce_force':
+        elif unit == "ounce_force":
             result = self.num * 3.527396e-5
-        elif unit == 'ton_force':
+        elif unit == "ton_force":
             result = self.num * 9.8196e-10
-        elif unit == 'kilogram_force':
+        elif unit == "kilogram_force":
             result = self.num * 1.019716e-7
-        elif unit == 'gram_force':
+        elif unit == "gram_force":
             result = self.num * 1.019716e-4
-        elif unit == 'millinewton':
+        elif unit == "millinewton":
             result = self.num * 0.01
-        elif unit == 'poundal':
+        elif unit == "poundal":
             result = self.num * 7.375e-8
-        elif unit == 'slug_force':
+        elif unit == "slug_force":
             result = self.num * 3.1081e-7
         else:
             raise ValueError("Unknown unit")
 
         return self.format_result(result, unit)
+
 
 # Kilonewton
 class Kilonewton(Force):
@@ -233,7 +236,7 @@ class Kilonewton(Force):
     kilonewton_to(self, unit: str) -> Union[float, str]
         Converts force from Kilonewton to the specified unit.
     """
-    
+
     def kilonewton_to(self, unit: str) -> Union[float, str]:
         """
         Converts force from Kilonewton to the specified unit.
@@ -254,30 +257,31 @@ class Kilonewton(Force):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'newton':
+        if unit == "newton":
             result = self.num * 1000
-        elif unit == 'dyne':
+        elif unit == "dyne":
             result = self.num * 10**8
-        elif unit == 'pound_force':
+        elif unit == "pound_force":
             result = self.num * 224.809
-        elif unit == 'ounce_force':
+        elif unit == "ounce_force":
             result = self.num * 35273.96
-        elif unit == 'ton_force':
+        elif unit == "ton_force":
             result = self.num * 0.098196
-        elif unit == 'kilogram_force':
+        elif unit == "kilogram_force":
             result = self.num * 101.9716
-        elif unit == 'gram_force':
+        elif unit == "gram_force":
             result = self.num * 101971.6
-        elif unit == 'millinewton':
+        elif unit == "millinewton":
             result = self.num * 1e6
-        elif unit == 'poundal':
+        elif unit == "poundal":
             result = self.num * 7.375
-        elif unit == 'slug_force':
+        elif unit == "slug_force":
             result = self.num * 31.081
         else:
             raise ValueError("Unknown unit")
 
         return self.format_result(result, unit)
+
 
 # Pound Force
 class PoundForce(Force):
@@ -289,7 +293,7 @@ class PoundForce(Force):
     pound_force_to(self, unit: str) -> Union[float, str]
         Converts force from Pound Force to the specified unit.
     """
-    
+
     def pound_force_to(self, unit: str) -> Union[float, str]:
         """
         Converts force from Pound Force to the specified unit.
@@ -310,30 +314,31 @@ class PoundForce(Force):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'newton':
+        if unit == "newton":
             result = self.num / 0.224809
-        elif unit == 'dyne':
+        elif unit == "dyne":
             result = self.num * 4.4482e4
-        elif unit == 'kilonewton':
+        elif unit == "kilonewton":
             result = self.num / 224.809
-        elif unit == 'ounce_force':
+        elif unit == "ounce_force":
             result = self.num * 16
-        elif unit == 'ton_force':
+        elif unit == "ton_force":
             result = self.num * 4.4482e-4
-        elif unit == 'kilogram_force':
+        elif unit == "kilogram_force":
             result = self.num * 0.453592
-        elif unit == 'gram_force':
+        elif unit == "gram_force":
             result = self.num * 453.592
-        elif unit == 'millinewton':
+        elif unit == "millinewton":
             result = self.num * 4448.22
-        elif unit == 'poundal':
+        elif unit == "poundal":
             result = self.num * 32.174
-        elif unit == 'slug_force':
+        elif unit == "slug_force":
             result = self.num * 1.35582
         else:
             raise ValueError("Unknown unit")
 
         return self.format_result(result, unit)
+
 
 # Ounce Force
 class OunceForce(Force):
@@ -345,7 +350,7 @@ class OunceForce(Force):
     ounce_force_to(self, unit: str) -> Union[float, str]
         Converts force from Ounce Force to the specified unit.
     """
-    
+
     def ounce_force_to(self, unit: str) -> Union[float, str]:
         """
         Converts force from Ounce Force to the specified unit.
@@ -366,30 +371,31 @@ class OunceForce(Force):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'newton':
+        if unit == "newton":
             result = self.num / 35.27396
-        elif unit == 'dyne':
+        elif unit == "dyne":
             result = self.num * 280.2265
-        elif unit == 'kilonewton':
+        elif unit == "kilonewton":
             result = self.num / 35273.96
-        elif unit == 'pound_force':
+        elif unit == "pound_force":
             result = self.num / 16
-        elif unit == 'ton_force':
+        elif unit == "ton_force":
             result = self.num * 2.836e-5
-        elif unit == 'kilogram_force':
+        elif unit == "kilogram_force":
             result = self.num * 0.0283495
-        elif unit == 'gram_force':
+        elif unit == "gram_force":
             result = self.num * 28.3495
-        elif unit == 'millinewton':
+        elif unit == "millinewton":
             result = self.num * 28349.5
-        elif unit == 'poundal':
+        elif unit == "poundal":
             result = self.num * 2.0109
-        elif unit == 'slug_force':
+        elif unit == "slug_force":
             result = self.num * 0.084732
         else:
             raise ValueError("Unknown unit")
 
         return self.format_result(result, unit)
+
 
 # Ton Force
 class TonForce(Force):
@@ -401,7 +407,7 @@ class TonForce(Force):
     ton_force_to(self, unit: str) -> Union[float, str]
         Converts force from Ton Force to the specified unit.
     """
-    
+
     def ton_force_to(self, unit: str) -> Union[float, str]:
         """
         Converts force from Ton Force to the specified unit.
@@ -422,30 +428,31 @@ class TonForce(Force):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'newton':
+        if unit == "newton":
             result = self.num / 9.8196e-5
-        elif unit == 'dyne':
+        elif unit == "dyne":
             result = self.num * 1.019716e7
-        elif unit == 'kilonewton':
+        elif unit == "kilonewton":
             result = self.num / 9.8196
-        elif unit == 'pound_force':
+        elif unit == "pound_force":
             result = self.num * 2248.09
-        elif unit == 'ounce_force':
+        elif unit == "ounce_force":
             result = self.num * 3.527396e4
-        elif unit == 'kilogram_force':
+        elif unit == "kilogram_force":
             result = self.num * 1019.716
-        elif unit == 'gram_force':
+        elif unit == "gram_force":
             result = self.num * 1.019716e6
-        elif unit == 'millinewton':
+        elif unit == "millinewton":
             result = self.num * 9.8196e7
-        elif unit == 'poundal':
+        elif unit == "poundal":
             result = self.num * 7375.08
-        elif unit == 'slug_force':
+        elif unit == "slug_force":
             result = self.num * 3108.1
         else:
             raise ValueError("Unknown unit")
 
         return self.format_result(result, unit)
+
 
 # Kilogram Force
 class KilogramForce(Force):
@@ -457,7 +464,7 @@ class KilogramForce(Force):
     kilogram_force_to(self, unit: str) -> Union[float, str]
         Converts force from Kilogram Force to the specified unit.
     """
-    
+
     def kilogram_force_to(self, unit: str) -> Union[float, str]:
         """
         Converts force from Kilogram Force to the specified unit.
@@ -478,25 +485,25 @@ class KilogramForce(Force):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'newton':
+        if unit == "newton":
             result = self.num * 9.81
-        elif unit == 'dyne':
+        elif unit == "dyne":
             result = self.num * 9.81e5
-        elif unit == 'kilonewton':
+        elif unit == "kilonewton":
             result = self.num / 1000
-        elif unit == 'pound_force':
+        elif unit == "pound_force":
             result = self.num * 2.204623
-        elif unit == 'ounce_force':
+        elif unit == "ounce_force":
             result = self.num * 35.27396
-        elif unit == 'ton_force':
+        elif unit == "ton_force":
             result = self.num / 1019.716
-        elif unit == 'gram_force':
+        elif unit == "gram_force":
             result = self.num * 1000
-        elif unit == 'millinewton':
+        elif unit == "millinewton":
             result = self.num * 9806.65
-        elif unit == 'poundal':
+        elif unit == "poundal":
             result = self.num * 7.375
-        elif unit == 'slug_force':
+        elif unit == "slug_force":
             result = self.num * 0.031081
         else:
             raise ValueError("Unknown unit")
@@ -514,7 +521,7 @@ class GramForce(Force):
     gram_force_to(self, unit: str) -> Union[float, str]
         Converts Gram Force to the specified unit.
     """
-    
+
     def gram_force_to(self, unit: str) -> Union[float, str]:
         """
         Converts Gram Force (gf) to the specified unit.
@@ -535,25 +542,25 @@ class GramForce(Force):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'newton':
+        if unit == "newton":
             result = self.num * 9.81e-3
-        elif unit == 'dyne':
+        elif unit == "dyne":
             result = self.num * 981
-        elif unit == 'kilonewton':
+        elif unit == "kilonewton":
             result = self.num / 1e6
-        elif unit == 'pound_force':
+        elif unit == "pound_force":
             result = self.num * 2.2046e-3
-        elif unit == 'ounce_force':
+        elif unit == "ounce_force":
             result = self.num * 3.527396e-2
-        elif unit == 'ton_force':
+        elif unit == "ton_force":
             result = self.num / 1.019716e6
-        elif unit == 'kilogram_force':
+        elif unit == "kilogram_force":
             result = self.num / 1000
-        elif unit == 'millinewton':
+        elif unit == "millinewton":
             result = self.num * 9.81
-        elif unit == 'poundal':
+        elif unit == "poundal":
             result = self.num * 7.375e-3
-        elif unit == 'slug_force':
+        elif unit == "slug_force":
             result = self.num * 3.1081e-5
         else:
             raise ValueError("Unknown unit")
@@ -571,7 +578,7 @@ class Millinewton(Force):
     millinewton_to(self, unit: str) -> Union[float, str]
         Converts Millinewton to the specified unit.
     """
-    
+
     def millinewton_to(self, unit: str) -> Union[float, str]:
         """
         Converts Millinewton (mN) to the specified unit.
@@ -592,25 +599,25 @@ class Millinewton(Force):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'newton':
+        if unit == "newton":
             result = self.num / 1000
-        elif unit == 'dyne':
+        elif unit == "dyne":
             result = self.num * 10
-        elif unit == 'kilonewton':
+        elif unit == "kilonewton":
             result = self.num / 1e6
-        elif unit == 'pound_force':
+        elif unit == "pound_force":
             result = self.num * 2.248e-6
-        elif unit == 'ounce_force':
+        elif unit == "ounce_force":
             result = self.num * 3.527396e-5
-        elif unit == 'ton_force':
+        elif unit == "ton_force":
             result = self.num / 9.8196e7
-        elif unit == 'kilogram_force':
+        elif unit == "kilogram_force":
             result = self.num / 9806.65
-        elif unit == 'gram_force':
+        elif unit == "gram_force":
             result = self.num / 9.81
-        elif unit == 'poundal':
+        elif unit == "poundal":
             result = self.num * 7.375e-6
-        elif unit == 'slug_force':
+        elif unit == "slug_force":
             result = self.num * 3.1081e-5
         else:
             raise ValueError("Unknown unit")
@@ -628,7 +635,7 @@ class Poundal(Force):
     poundal_to(self, unit: str) -> Union[float, str]
         Converts Poundal to the specified unit.
     """
-    
+
     def poundal_to(self, unit: str) -> Union[float, str]:
         """
         Converts Poundal (pdl) to the specified unit.
@@ -649,30 +656,31 @@ class Poundal(Force):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'newton':
+        if unit == "newton":
             result = self.num / 0.224809
-        elif unit == 'dyne':
+        elif unit == "dyne":
             result = self.num * 144.864
-        elif unit == 'kilonewton':
+        elif unit == "kilonewton":
             result = self.num / 224.809
-        elif unit == 'pound_force':
+        elif unit == "pound_force":
             result = self.num / 32.174
-        elif unit == 'ounce_force':
+        elif unit == "ounce_force":
             result = self.num / 2.0109
-        elif unit == 'ton_force':
+        elif unit == "ton_force":
             result = self.num / 7375.08
-        elif unit == 'kilogram_force':
+        elif unit == "kilogram_force":
             result = self.num / 7.375
-        elif unit == 'gram_force':
+        elif unit == "gram_force":
             result = self.num * 0.07375
-        elif unit == 'millinewton':
+        elif unit == "millinewton":
             result = self.num * 137.374
-        elif unit == 'slug_force':
+        elif unit == "slug_force":
             result = self.num * 0.045
         else:
             raise ValueError("Unknown unit")
 
         return self.format_result(result, unit)
+
 
 # SlugForce
 class SlugForce(Force):
@@ -684,7 +692,7 @@ class SlugForce(Force):
     slug_force_to(self, unit: str) -> Union[float, str]
         Converts Slug Force to the specified unit.
     """
-    
+
     def slug_force_to(self, unit: str) -> Union[float, str]:
         """
         Converts Slug Force (slf) to the specified unit.
@@ -705,25 +713,25 @@ class SlugForce(Force):
         ValueError
             If the provided unit is unknown.
         """
-        if unit == 'newton':
+        if unit == "newton":
             result = self.num / 0.031081
-        elif unit == 'dyne':
+        elif unit == "dyne":
             result = self.num * 3225.7
-        elif unit == 'kilonewton':
+        elif unit == "kilonewton":
             result = self.num / 31.081
-        elif unit == 'pound_force':
+        elif unit == "pound_force":
             result = self.num / 1.35582
-        elif unit == 'ounce_force':
+        elif unit == "ounce_force":
             result = self.num / 0.084732
-        elif unit == 'ton_force':
+        elif unit == "ton_force":
             result = self.num / 3108.1
-        elif unit == 'kilogram_force':
+        elif unit == "kilogram_force":
             result = self.num / 31.081
-        elif unit == 'gram_force':
+        elif unit == "gram_force":
             result = self.num * 31.081
-        elif unit == 'millinewton':
+        elif unit == "millinewton":
             result = self.num * 3.1081e3
-        elif unit == 'poundal':
+        elif unit == "poundal":
             result = self.num / 0.045
         else:
             raise ValueError("Unknown unit")

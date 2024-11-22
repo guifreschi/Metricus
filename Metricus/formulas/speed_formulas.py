@@ -43,6 +43,7 @@ Usage Example:
 # Speed
 from typing import Union
 
+
 class Speed:
     """
     A class used to represent a speed value and format it with or without the unit abbreviation.
@@ -100,7 +101,7 @@ class MetersPerSecond(Speed):
 
     Inherits from the Speed base class.
     """
-    
+
     def mps_to(self, unit: str) -> Union[float, str]:
         """
         Converts speed from meters per second (m/s) to the specified unit.
@@ -111,11 +112,11 @@ class MetersPerSecond(Speed):
         :rtype: Union[float, str]
         :raises ValueError: If the specified unit is unrecognized.
         """
-        if unit == 'km/h':
+        if unit == "km/h":
             result = self.num * 3.6
-        elif unit == 'mph':
+        elif unit == "mph":
             result = self.num * 2.23694
-        elif unit == 'kn':
+        elif unit == "kn":
             result = self.num * 1.94384
         else:
             raise ValueError("The measurement has an unknown unit")
@@ -129,7 +130,7 @@ class KilometersPerHour(Speed):
 
     Inherits from the Speed base class.
     """
-    
+
     def kmph_to(self, unit: str) -> Union[float, str]:
         """
         Converts speed from kilometers per hour (km/h) to the specified unit.
@@ -140,11 +141,11 @@ class KilometersPerHour(Speed):
         :rtype: Union[float, str]
         :raises ValueError: If the specified unit is unrecognized.
         """
-        if unit == 'm/s':
+        if unit == "m/s":
             result = self.num / 3.6
-        elif unit == 'mph':
+        elif unit == "mph":
             result = self.num / 1.60934
-        elif unit == 'kn':
+        elif unit == "kn":
             result = self.num / 1.852
         else:
             raise ValueError("The measurement has an unknown unit")
@@ -158,7 +159,7 @@ class MilesPerHour(Speed):
 
     Inherits from the Speed base class.
     """
-    
+
     def mph_to(self, unit: str) -> Union[float, str]:
         """
         Converts speed from miles per hour (mph) to the specified unit.
@@ -169,11 +170,11 @@ class MilesPerHour(Speed):
         :rtype: Union[float, str]
         :raises ValueError: If the specified unit is unrecognized.
         """
-        if unit == 'm/s':
+        if unit == "m/s":
             result = self.num / 2.23694
-        elif unit == 'km/h':
+        elif unit == "km/h":
             result = self.num * 1.60934
-        elif unit == 'kn':
+        elif unit == "kn":
             result = self.num / 1.15078
         else:
             raise ValueError("The measurement has an unknown unit")
@@ -187,7 +188,7 @@ class Knots(Speed):
 
     Inherits from the Speed base class.
     """
-    
+
     def kn_to(self, unit: str) -> Union[float, str]:
         """
         Converts speed from knots (kn) to the specified unit.
@@ -198,11 +199,11 @@ class Knots(Speed):
         :rtype: Union[float, str]
         :raises ValueError: If the specified unit is unrecognized.
         """
-        if unit == 'm/s':
+        if unit == "m/s":
             result = self.num / 1.94384
-        elif unit == 'km/h':
+        elif unit == "km/h":
             result = self.num * 1.852
-        elif unit == 'mph':
+        elif unit == "mph":
             result = self.num * 1.15078
         else:
             raise ValueError("The measurement has an unknown unit")

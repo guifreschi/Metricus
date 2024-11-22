@@ -53,18 +53,27 @@ Usage Example:
     print(result)  # Output: "7.2523 psi"
 """
 
-from formulas.complex_formulas import pressure_calculator
 from typing import Union
-from operations import force as f
+
+from formulas.complex_formulas import pressure_calculator
 from operations import area as a
+from operations import force as f
 
 pf = pressure_calculator.pressure_calculator
 
-def calculate_pressure(force: float, area: float, pressure_unit: str = 'pascal', force_unit: str = 'newton', area_unit: str = 'square_meter', with_unit: bool = False) -> Union[float, str]:
+
+def calculate_pressure(
+    force: float,
+    area: float,
+    pressure_unit: str = "pascal",
+    force_unit: str = "newton",
+    area_unit: str = "square_meter",
+    with_unit: bool = False,
+) -> Union[float, str]:
     """
     Calculate the pressure based on force and area values, converting the units if necessary.
 
-    This function calculates the pressure using the formula `Pressure = Force / Area`. It also handles unit conversions 
+    This function calculates the pressure using the formula `Pressure = Force / Area`. It also handles unit conversions
     for force, area, and pressure.
 
     Parameters:
@@ -76,7 +85,7 @@ def calculate_pressure(force: float, area: float, pressure_unit: str = 'pascal',
     - with_unit (bool): Whether to include the unit in the result. Default is False, which returns only the numeric value.
 
     Returns:
-    - Union[float, str]: The calculated pressure, either as a float (if `with_unit` is False) or a string 
+    - Union[float, str]: The calculated pressure, either as a float (if `with_unit` is False) or a string
       including the unit (if `with_unit` is True).
 
     Example:
@@ -87,10 +96,23 @@ def calculate_pressure(force: float, area: float, pressure_unit: str = 'pascal',
     """
 
     # Convert force to newton if necessary
-    newton = f.force_converter(force, force_unit, 'newton') if force_unit != 'newton' else force
+    newton = (
+        f.force_converter(force, force_unit, "newton")
+        if force_unit != "newton"
+        else force
+    )
 
     # Convert area to square meter if necessary
-    square_meter = a.area_converter(area, area_unit, 'square_meter') if area_unit != 'square_meter' else area
+    square_meter = (
+        a.area_converter(area, area_unit, "square_meter")
+        if area_unit != "square_meter"
+        else area
+    )
 
     # Calculate pressure using the converted values
-    return pf(newton=newton ,square_meter=square_meter, pressure_unit=pressure_unit, with_unit=with_unit)
+    return pf(
+        newton=newton,
+        square_meter=square_meter,
+        pressure_unit=pressure_unit,
+        with_unit=with_unit,
+    )

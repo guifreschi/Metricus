@@ -58,6 +58,7 @@ Usage Example:
 
 from typing import Union
 
+
 # Base class for Energy Units
 class EnergyUnit:
     """
@@ -108,6 +109,7 @@ class EnergyUnit:
         }
         return f"{result} {units_map[unit]}" if self.with_unit else result
 
+
 # Electronvolt
 class Electronvolt(EnergyUnit):
     """
@@ -118,7 +120,7 @@ class Electronvolt(EnergyUnit):
     electronvolt_to(self, unit: str) -> Union[float, str]
         Converts the energy from electronvolts to the specified unit.
     """
-    
+
     def electronvolt_to(self, unit: str) -> Union[float, str]:
         """
         Converts the energy from electronvolts to the specified unit.
@@ -138,19 +140,20 @@ class Electronvolt(EnergyUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'calorie':
+        if unit == "calorie":
             result = self.num * 1.60218e-19 / 4.184
-        elif unit == 'joule':
+        elif unit == "joule":
             result = self.num * 1.60218e-19
-        elif unit == 'btu':
+        elif unit == "btu":
             result = self.num * 1.60218e-19 / 1055.06
-        elif unit == 'kilocalorie':
+        elif unit == "kilocalorie":
             result = self.num * 1.60218e-19 / (4.184 * 1000)
-        elif unit == 'kilowatt_hour':
+        elif unit == "kilowatt_hour":
             result = self.num * 1.60218e-19 / 3.6e6
         else:
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
+
 
 # Calorie
 class Calorie(EnergyUnit):
@@ -162,7 +165,7 @@ class Calorie(EnergyUnit):
     calorie_to(self, unit: str) -> Union[float, str]
         Converts the energy from calories to the specified unit.
     """
-    
+
     def calorie_to(self, unit: str) -> Union[float, str]:
         """
         Converts the energy from calories to the specified unit.
@@ -182,19 +185,20 @@ class Calorie(EnergyUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'electronvolt':
+        if unit == "electronvolt":
             result = self.num * 4.184 / 1.60218e-19
-        elif unit == 'joule':
+        elif unit == "joule":
             result = self.num * 4.184
-        elif unit == 'btu':
+        elif unit == "btu":
             result = self.num * 4.184 / 1055.06
-        elif unit == 'kilocalorie':
+        elif unit == "kilocalorie":
             result = self.num / 1000
-        elif unit == 'kilowatt_hour':
+        elif unit == "kilowatt_hour":
             result = self.num * 4.184 / 3.6e6
         else:
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
+
 
 # Joule
 class Joule(EnergyUnit):
@@ -206,7 +210,7 @@ class Joule(EnergyUnit):
     joule_to(self, unit: str) -> Union[float, str]
         Converts the energy from joules to the specified unit.
     """
-    
+
     def joule_to(self, unit: str) -> Union[float, str]:
         """
         Converts the energy from joules to the specified unit.
@@ -226,19 +230,20 @@ class Joule(EnergyUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'electronvolt':
+        if unit == "electronvolt":
             result = self.num / 1.60218e-19
-        elif unit == 'calorie':
+        elif unit == "calorie":
             result = self.num / 4.184
-        elif unit == 'btu':
+        elif unit == "btu":
             result = self.num / 1055.06
-        elif unit == 'kilocalorie':
+        elif unit == "kilocalorie":
             result = self.num / (4.184 * 1000)
-        elif unit == 'kilowatt_hour':
+        elif unit == "kilowatt_hour":
             result = self.num / 3.6e6
         else:
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
+
 
 # British Thermal Unit
 class BritishThermalUnit(EnergyUnit):
@@ -250,7 +255,7 @@ class BritishThermalUnit(EnergyUnit):
     btu_to(self, unit: str) -> Union[float, str]
         Converts the energy from British Thermal Units to the specified unit.
     """
-    
+
     def btu_to(self, unit: str) -> Union[float, str]:
         """
         Converts the energy from British Thermal Units to the specified unit.
@@ -270,19 +275,20 @@ class BritishThermalUnit(EnergyUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'electronvolt':
+        if unit == "electronvolt":
             result = (self.num * 1055.06) / 1.60218e-19
-        elif unit == 'calorie':
+        elif unit == "calorie":
             result = (self.num * 1055.06) / 4.184
-        elif unit == 'joule':
+        elif unit == "joule":
             result = self.num * 1055.06
-        elif unit == 'kilocalorie':
+        elif unit == "kilocalorie":
             result = (self.num * 1055.06) / (4.184 * 1000)
-        elif unit == 'kilowatt_hour':
+        elif unit == "kilowatt_hour":
             result = (self.num * 1055.06) / 3.6e6
         else:
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
+
 
 # Kilocalorie
 class Kilocalorie(EnergyUnit):
@@ -294,7 +300,7 @@ class Kilocalorie(EnergyUnit):
     kilocalorie_to(self, unit: str) -> Union[float, str]
         Converts the energy from kilocalories to the specified unit.
     """
-    
+
     def kilocalorie_to(self, unit: str) -> Union[float, str]:
         """
         Converts the energy from kilocalories to the specified unit.
@@ -314,19 +320,20 @@ class Kilocalorie(EnergyUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'electronvolt':
+        if unit == "electronvolt":
             result = (self.num * 4184) / 1.60218e-19
-        elif unit == 'calorie':
+        elif unit == "calorie":
             result = self.num * 1000
-        elif unit == 'joule':
+        elif unit == "joule":
             result = self.num * 4184
-        elif unit == 'btu':
+        elif unit == "btu":
             result = (self.num * 4184) / 1055.06
-        elif unit == 'kilowatt_hour':
+        elif unit == "kilowatt_hour":
             result = (self.num * 4184) / 3.6e6
         else:
             raise ValueError("The measurement has an unknown unit")
         return self.format_result(result, unit)
+
 
 # Kilowatt-hour
 class KilowattHour(EnergyUnit):
@@ -338,7 +345,7 @@ class KilowattHour(EnergyUnit):
     kilowatt_hour_to(self, unit: str) -> Union[float, str]
         Converts the energy from kilowatt-hours to the specified unit.
     """
-    
+
     def kilowatt_hour_to(self, unit: str) -> Union[float, str]:
         """
         Converts the energy from kilowatt-hours to the specified unit.
@@ -358,15 +365,15 @@ class KilowattHour(EnergyUnit):
         ValueError
             If an invalid unit is provided.
         """
-        if unit == 'electronvolt':
+        if unit == "electronvolt":
             result = (self.num * 3.6e6) / 1.60218e-19
-        elif unit == 'calorie':
+        elif unit == "calorie":
             result = (self.num * 3.6e6) / 4.184
-        elif unit == 'joule':
+        elif unit == "joule":
             result = self.num * 3.6e6
-        elif unit == 'btu':
+        elif unit == "btu":
             result = (self.num * 3.6e6) / 1055.06
-        elif unit == 'kilocalorie':
+        elif unit == "kilocalorie":
             result = (self.num * 3.6e6) / (4.184 * 1000)
         else:
             raise ValueError("The measurement has an unknown unit")

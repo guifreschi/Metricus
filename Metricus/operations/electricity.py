@@ -45,23 +45,34 @@ to handle conversions that depend on these quantities. The function leverages th
 - The script uses the `electricity_formulas` module from the `formulas` package to perform the actual conversion operations.
 """
 
-from formulas import electricity_formulas as ef
 from typing import Union
 
-unit_list = ['ampere', 'volt', 'ohm', 'coulomb', 'watt', 'kilowatt', 'farad', 'henry', 'siemens']
+from formulas import electricity_formulas as ef
+
+unit_list = [
+    "ampere",
+    "volt",
+    "ohm",
+    "coulomb",
+    "watt",
+    "kilowatt",
+    "farad",
+    "henry",
+    "siemens",
+]
 
 
 def electricity_converter(
-    elec: float, 
-    from_unit: str, 
-    to_unit: str, 
-    resistance: float = None, 
-    current: float = None, 
-    voltage: float = None, 
-    time: float = None, 
-    freq: float = None, 
-    with_unit: bool = False
-    ) -> Union[float, str]:
+    elec: float,
+    from_unit: str,
+    to_unit: str,
+    resistance: float = None,
+    current: float = None,
+    voltage: float = None,
+    time: float = None,
+    freq: float = None,
+    with_unit: bool = False,
+) -> Union[float, str]:
     """
     Converts an electrical measurement from one unit to another.
 
@@ -77,58 +88,58 @@ def electricity_converter(
         with_unit (bool, optional): If True, the result will include the unit of measurement as a string. Defaults to False.
 
     Returns:
-        Union[float, str]: The converted electrical quantity. If `with_unit` is True, the result will include the unit as a string; 
+        Union[float, str]: The converted electrical quantity. If `with_unit` is True, the result will include the unit as a string;
                            otherwise, it will return the numeric value of the converted quantity.
 
     Raises:
         ValueError: If either `from_unit` or `to_unit` is not recognized (not in `unit_list`).
 
     Example usage:
-        electricity_converter(10, "ampere", "watt", voltage=220)  
+        electricity_converter(10, "ampere", "watt", voltage=220)
         # Converts 10 amperes to watts with a voltage of 220 volts.
 
-        electricity_converter(500, "watt", "kilowatt", with_unit=True)  
+        electricity_converter(500, "watt", "kilowatt", with_unit=True)
         # Converts 500 watts to kilowatts and includes the unit in the result.
 
-        electricity_converter(100, "volt", "ampere", resistance=50)  
+        electricity_converter(100, "volt", "ampere", resistance=50)
         # Converts 100 volts to amperes with a resistance of 50 ohms.
-    """ 
+    """
     if from_unit not in unit_list or to_unit not in unit_list:
         raise ValueError("The measurement has an unknown unit")
 
-    if from_unit == 'ampere':
+    if from_unit == "ampere":
         return ef.Ampere(elec, with_unit=with_unit).ampere_to(
             to_unit, resistance=resistance, voltage=voltage, time=time, freq=freq
         )
-    elif from_unit == 'volt':
+    elif from_unit == "volt":
         return ef.Volt(elec, with_unit=with_unit).volt_to(
             to_unit, resistance=resistance, current=current, time=time, freq=freq
         )
-    elif from_unit == 'ohm':
+    elif from_unit == "ohm":
         return ef.Ohm(elec, with_unit=with_unit).ohm_to(
             to_unit, voltage=voltage, current=current
         )
-    elif from_unit == 'coulomb':
+    elif from_unit == "coulomb":
         return ef.Coulomb(elec, with_unit=with_unit).coulomb_to(
             to_unit, current=current, time=time
         )
-    elif from_unit == 'watt':
+    elif from_unit == "watt":
         return ef.Watt(elec, with_unit=with_unit).watt_to(
             to_unit, voltage=voltage, current=current
         )
-    elif from_unit == 'kilowatt':
+    elif from_unit == "kilowatt":
         return ef.Kilowatt(elec, with_unit=with_unit).kilowatt_to(
             to_unit, voltage=voltage, current=current
         )
-    elif from_unit == 'farad':
+    elif from_unit == "farad":
         return ef.Farad(elec, with_unit=with_unit).farad_to(
             to_unit, resistance=resistance, freq=freq
         )
-    elif from_unit == 'henry':
+    elif from_unit == "henry":
         return ef.Henry(elec, with_unit=with_unit).henry_to(
             to_unit, current=current, freq=freq
         )
-    elif from_unit == 'siemens':
+    elif from_unit == "siemens":
         return ef.Siemens(elec, with_unit=with_unit).siemens_to(
             to_unit, resistance=resistance
         )
