@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-with open("README.md", "r") as arq:
+with open("README.md", "r", encoding='utf-8') as arq:
     readme = arq.read()
 
 setup(
