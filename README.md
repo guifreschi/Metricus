@@ -42,11 +42,11 @@ MetricusGUI()
 Below is a preview of the Metricus graphical user interface (GUI):
 <p align="center">Simple Conversions:</p>
 <p align="center">
-  <img src="assets/metricus.gif" alt="Metricus GUI" width="50%">
+  <img src="assets/metricus.gif" alt="Metricus GUI" width="60%">
 </p>
 <p align="center">Complex Conversions:</p>
 <p align="center">
-  <img src="assets/metricus_complex.gif" alt="Metricus GUI" width="50%">
+  <img src="assets/metricus_complex.gif" alt="Metricus GUI" width="60%">
 </p>
 
 The GUI is built with Tkinter and provides an intuitive way to perform unit conversions quickly and accurately.
