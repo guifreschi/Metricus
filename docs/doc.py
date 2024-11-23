@@ -41,9 +41,6 @@ Project Structure:
 - **operations/**: Modules responsible for calculations and conversions.
     - `basic_converters.py`: Implementation of simple converters.
     - `complex_calculators.py`: Implementation of complex calculation functions.
-- **utils/**: Utility modules to support the project.
-    - `exceptions.py`: Definitions of custom exceptions.
-    - `formatters.py`: Functions to format results and messages.
 - **tests/**: Automated tests to ensure the functionality and accuracy of the project.
 
 Requirements:
