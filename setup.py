@@ -10,7 +10,7 @@ setup(
     install_requires=[],
     long_description=readme,
     long_description_content_type="text/markdown",
-    description="Python unit converter with a Tkinter interface for easy and precise conversions across various measurements like force, length, and mass",
+    description="Python unit converter with a Tkinter interface for easy and precise conversions across various measurements such as force, length, and mass",
     author="Guilherme Freschi, Yaron Buchler",
     author_email="guilhermefreschix@gmail.com, buchleryaron@gmail.com",
     url="https://github.com/guifreschi/Metricus",
