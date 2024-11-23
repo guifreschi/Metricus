@@ -1,11 +1,16 @@
 from setuptools import find_packages, setup
 
+with open("README.md", "r") as arq:
+    readme = arq.read()
+
 setup(
     name="metricus",
     version="0.1",
     packages=find_packages(),
     install_requires=[],
-    description="This Python-based unit converter is a simple and efficient tool for converting measurements between units like meters, kilometers, centimeters, and millimeters. It returns precise results formatted with or without the unit abbreviation for easy readability.",
+    long_description=readme,
+    long_description_content_type="text/markdown",
+    description="Python unit converter with a Tkinter interface for easy and precise conversions across various measurements like force, length, and mass",
     author="Guilherme Freschi, Yaron Buchler",
     author_email="guilhermefreschix@gmail.com, buchleryaron@gmail.com",
     url="https://github.com/guifreschi/Metricus",
