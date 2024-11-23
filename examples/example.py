@@ -4,6 +4,7 @@
 from Metricus.gui import MetricusGUI
 from Metricus.operations import temperature_converter, time_converter
 
+
 # Main function that demonstrates the converters and the graphical interface
 def main():
     # Converting temperatures
