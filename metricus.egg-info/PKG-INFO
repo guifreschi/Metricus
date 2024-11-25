@@ -1,7 +1,7 @@
 Metadata-Version: 2.1
 Name: metricus
-Version: 0.1
-Summary: Python unit converter with a Tkinter interface for easy and precise conversions across various measurements like force, length, and mass
+Version: 0.11
+Summary: Python unit converter with a Tkinter interface for easy and precise conversions across various measurements such as force, length, and mass
 Home-page: https://github.com/guifreschi/Metricus
 Author: Guilherme Freschi, Yaron Buchler
 Author-email: guilhermefreschix@gmail.com, buchleryaron@gmail.com
@@ -9,7 +9,14 @@ License: MIT
 Project-URL: Yaron Buchler's GitHub, https://github.com/YaronBuchler
 Project-URL: Guilherme Freschi's GitHub, https://github.com/guifreschi
 Project-URL: Project on GitHub, https://github.com/guifreschi/Metricus
-Keywords: conversion,units,temperature,weight,length,distance,energy,volume,mass,pressure,speed,time,metric,imperial,unit converter...
+Keywords: conversion,units,temperature,weight,length,distance,energy,volume,mass,pressure,speed,time,metric,imperial,unit converter
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Development Status :: 3 - Alpha
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Mathematics
 Description-Content-Type: text/markdown
 License-File: LICENSE
 
