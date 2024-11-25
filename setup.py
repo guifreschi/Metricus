@@ -5,7 +5,7 @@ with open("README.md", "r", encoding='utf-8') as arq:
 
 setup(
     name="metricus",
-    version="0.1",
+    version="0.11",
     packages=find_packages(),
     install_requires=[],
     long_description=readme,
@@ -20,5 +20,14 @@ setup(
         "Project on GitHub": "https://github.com/guifreschi/Metricus",
     },
     license="MIT",
-    keywords="conversion, units, temperature, weight, length, distance, energy, volume, mass, pressure, speed, time, metric, imperial, unit converter...",
+    keywords="conversion, units, temperature, weight, length, distance, energy, volume, mass, pressure, speed, time, metric, imperial, unit converter",
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Intended Audience :: Developers",
+        "Development Status :: 3 - Alpha",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+        "Topic :: Scientific/Engineering :: Mathematics",
+    ]
 )
