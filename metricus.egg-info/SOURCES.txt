@@ -41,6 +41,7 @@ Metricus/operations/complex_operations/calculate_displacement.py
 Metricus/operations/complex_operations/calculate_force.py
 Metricus/operations/complex_operations/calculate_pressure.py
 Metricus/utilities/__init__.py
+Metricus/utilities/decomputarize_input.py
 Metricus/utilities/humanize_input.py
 Metricus/utilities/round_number.py
 metricus.egg-info/PKG-INFO

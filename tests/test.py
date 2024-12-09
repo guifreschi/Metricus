@@ -11,6 +11,7 @@ from Metricus.operations.complex_operations import (calculate_density,
                                                     calculate_pressure)
 from Metricus.utilities.round_number import round_number
 from Metricus.utilities.humanize_input import humanize_input
+from Metricus.utilities.decomputarize_input import decomputarize_input
 
 # help(area_converter)
 # help(electricity_converter)
@@ -56,7 +57,13 @@ print(round_number(result=result))
 from_acceleration = 'Meter Per Second Squared'
 to_acceleration = 'Foot per second squared'
 result_humanize = acceleration_converter(100, humanize_input(from_acceleration), humanize_input(to_acceleration), with_unit=True)
-
 print(result_humanize)
+
+# Testing decomputarize input
+from_acceleration_computadorized = 'meter_per_second_squared'
+to_acceleration_computadorized = 'foot_per_second_squared'
+from_acceleration_decomputarize = decomputarize_input(from_acceleration_computadorized)
+to_acceleration_decomputarize = decomputarize_input(to_acceleration_computadorized)
+print(f"From acceleration: {from_acceleration_decomputarize}. To acceleration: {to_acceleration_decomputarize}.")
 
 MetricusGUI()

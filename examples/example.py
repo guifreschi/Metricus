@@ -4,7 +4,7 @@
 from Metricus.gui import MetricusGUI
 from Metricus import temperature_converter, time_converter, acceleration_converter
 from Metricus import calculate_displacement
-from Metricus.utilities import round_number, humanize_input
+from Metricus.utilities import round_number, humanize_input, decomputarize_input
 
 
 # Main function that demonstrates the converters and the graphical interface
@@ -43,6 +43,11 @@ def main():
     acceleration_result = acceleration_converter(100, humanize_input(from_acceleration), humanize_input(to_acceleration))
     print(f"The conversion result from {from_acceleration} to {to_acceleration} is {acceleration_result}")
 
+    # Decomputadorize input
+    decomputarized_from = decomputarize_input(humanize_input(from_acceleration))
+    decomputarized_to = decomputarize_input(humanize_input(to_acceleration))
+    print(f"The decomputarized input from '{humanize_input(from_acceleration)}' is '{decomputarized_from}'")
+    print(f"The decomputarized input to '{humanize_input(to_acceleration)}' is '{decomputarized_to}'")
 
     # Initializing and running the graphical interface
     MetricusGUI()
