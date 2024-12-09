@@ -8,16 +8,17 @@ import Metricus.operations.complex_operations.calculate_density
 import Metricus.operations.complex_operations.calculate_displacement
 import Metricus.operations.complex_operations.calculate_force
 import Metricus.operations.complex_operations.calculate_pressure
+from Metricus.utilities import *
 
 
 def send_data(choice):
     try:
-        from_unit_row = from_unit_entry.get().lower()
-        to_unit_row = to_unit_entry.get().lower()
+        from_unit_row = from_unit_entry.get()
+        to_unit_row = to_unit_entry.get()
 
         input_value = float(input_entry.get())
-        from_unit = from_unit_row.replace(" ", "_")
-        to_unit = to_unit_row.replace(" ", "_")
+        from_unit = humanize_input(from_unit_row)
+        to_unit = humanize_input(to_unit_row)
 
         if choice == "Acceleration":
             result = Metricus.operations.acceleration_converter(
