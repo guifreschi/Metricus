@@ -9,6 +9,7 @@ from Metricus.operations.complex_operations import (calculate_density,
                                                     calculate_displacement,
                                                     calculate_force,
                                                     calculate_pressure)
+from Metricus.utilities.round_number import round_number
 
 # help(area_converter)
 # help(electricity_converter)
@@ -27,6 +28,7 @@ from Metricus.operations.complex_operations import (calculate_density,
 # help(calculate_displacement)
 # help(calculate_pressure)
 
+# Testing operations
 print(area_converter(100, "square_kilometer", "hectare"))
 print(electricity_converter(5, "kilowatt", "watt"))
 print(energy_converter(10, "calorie", "joule"))
@@ -43,4 +45,10 @@ print(calculate_force(500, 10))
 print(calculate_density(400, 500, mass_unit="tonne", volume_unit="L", with_unit=True))
 print(calculate_displacement(100, 300, "minute", with_unit=True))
 print(calculate_pressure(500, 100, "psi", "poundal", with_unit=True))
-MetricusGUI()
+
+# Testing round number
+result = time_converter(365, "day", "year", with_unit=True)
+print(result)
+print(round_number(result=result))
+
+# MetricusGUI()

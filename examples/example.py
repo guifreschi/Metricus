@@ -1,9 +1,10 @@
 # Example of using the Metricus package
 
 # Necessary imports
-from Metricus import MetricusGUI
+from Metricus.gui import MetricusGUI
 from Metricus import temperature_converter, time_converter
 from Metricus import calculate_displacement
+from Metricus.utilities import round_number
 
 
 # Main function that demonstrates the converters and the graphical interface
@@ -24,6 +25,17 @@ def main():
     time_unit = 'minute'
     result = calculate_displacement(length=length_kilometers, speed=speed_kmh, time_unit=time_unit)
     print(f"Covering {length_kilometers} km at a speed of {speed_kmh} km/h takes {result} minutes.")
+
+    # Rounding a result
+    time_days = 365
+    time_result = time_converter(time_days, 'day', 'year')
+    rounded_number = round_number(time_result)
+    print(f"The number {time_result} rounded is {rounded_number}")
+
+    # Rounding a str result 
+    time_result = time_converter(time_days, 'day', 'year', with_unit=True)
+    rounded_number = round_number(time_result)
+    print(f"The number {time_result} rounded is {rounded_number}")
 
     # Initializing and running the graphical interface
     MetricusGUI()

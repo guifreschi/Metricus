@@ -40,6 +40,8 @@ Metricus/operations/complex_operations/calculate_density.py
 Metricus/operations/complex_operations/calculate_displacement.py
 Metricus/operations/complex_operations/calculate_force.py
 Metricus/operations/complex_operations/calculate_pressure.py
+Metricus/utilities/__init__.py
+Metricus/utilities/round_number.py
 metricus.egg-info/PKG-INFO
 metricus.egg-info/SOURCES.txt
 metricus.egg-info/dependency_links.txt
