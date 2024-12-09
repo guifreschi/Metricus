@@ -10,6 +10,7 @@ from Metricus.operations.complex_operations import (calculate_density,
                                                     calculate_force,
                                                     calculate_pressure)
 from Metricus.utilities.round_number import round_number
+from Metricus.utilities.humanize_input import humanize_input
 
 # help(area_converter)
 # help(electricity_converter)
@@ -51,4 +52,11 @@ result = time_converter(365, "day", "year", with_unit=True)
 print(result)
 print(round_number(result=result))
 
-# MetricusGUI()
+# Testing humanize input
+from_acceleration = 'Meter Per Second Squared'
+to_acceleration = 'Foot per second squared'
+result_humanize = acceleration_converter(100, humanize_input(from_acceleration), humanize_input(to_acceleration), with_unit=True)
+
+print(result_humanize)
+
+MetricusGUI()

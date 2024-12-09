@@ -2,9 +2,9 @@
 
 # Necessary imports
 from Metricus.gui import MetricusGUI
-from Metricus import temperature_converter, time_converter
+from Metricus import temperature_converter, time_converter, acceleration_converter
 from Metricus import calculate_displacement
-from Metricus.utilities import round_number
+from Metricus.utilities import round_number, humanize_input
 
 
 # Main function that demonstrates the converters and the graphical interface
@@ -36,6 +36,13 @@ def main():
     time_result = time_converter(time_days, 'day', 'year', with_unit=True)
     rounded_number = round_number(time_result)
     print(f"The number {time_result} rounded is {rounded_number}")
+
+    # Humanizing input
+    from_acceleration = 'Meter per second squared'
+    to_acceleration = 'Foot per second squared'
+    acceleration_result = acceleration_converter(100, humanize_input(from_acceleration), humanize_input(to_acceleration))
+    print(f"The conversion result from {from_acceleration} to {to_acceleration} is {acceleration_result}")
+
 
     # Initializing and running the graphical interface
     MetricusGUI()

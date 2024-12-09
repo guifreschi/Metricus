@@ -47,13 +47,25 @@ pip install metricus
 
 ### Usage Example
 ```python
-from Metricus import MetricusGUI
+from Metricus.gui import MetricusGUI
 from Metricus import temperature_converter
+from Metricus.utilities import round_number
 
 # Converting temperatures
 temp_celsius = 25
 temp_rankine = temperature_converter(temp_celsius, 'celsius', 'rankine')
 print(f"{temp_celsius} degrees Celsius equals {temp_rankine} Rankine")
+
+# Rounding a result
+time_days = 365
+time_result = time_converter(time_days, 'day', 'year')
+rounded_number = round_number(time_result)
+print(f"The number {time_result} rounded is {rounded_number}")
+
+# Rounding a str result 
+time_result = time_converter(time_days, 'day', 'year', with_unit=True)
+rounded_number = round_number(time_result)
+print(f"The number {time_result} rounded is {rounded_number}")
 
 # Initializing and running the graphical interface
 MetricusGUI()
