@@ -16,33 +16,51 @@ The conversion is performed by leveraging the `acceleration_formulas` module, wh
 - "gravity" (g)
 
 ### Main Function:
-- `acceleration_converter(acceleration: float, from_unit: str, to_unit: str, with_unit: bool = False) -> Union[float, str]`
+- `acceleration_converter(acceleration: float, from_unit: str, to_unit: str, rounded_result: bool = False, humanized_input: bool = False, with_unit: bool = False) -> Union[float, str]`
 
   Converts the input acceleration (`acceleration`) from a given unit (`from_unit`) to a target unit (`to_unit`). The function uses specific
-  conversion logic to handle each unit type and ensure accurate conversions. The `with_unit` parameter allows for an optional
-  string output that includes the unit in the result.
+  conversion logic to handle each unit type and ensure accurate conversions. The parameters include options for rounding the result,
+  handling human-readable unit inputs, and including the unit in the result.
+
+### Parameters:
+- `acceleration` (float): The numeric value of acceleration to be converted.
+- `from_unit` (str): The unit of acceleration to convert from. Must be one of the supported units.
+- `to_unit` (str): The unit of acceleration to convert to. Must be one of the supported units.
+- `rounded_result` (bool, optional): If True, rounds the output to a standard number of decimal places. Defaults to False.
+- `humanized_input` (bool, optional): If True, normalizes unit strings to handle various input styles, such as replacing spaces with underscores. Defaults to False.
+- `with_unit` (bool, optional): If True, appends the unit to the output as part of the result. Defaults to False.
+
+### Returns:
+- Union[float, str]: The converted acceleration value. If `with_unit` is True, the result includes the unit as a string; otherwise, it is a float.
 
 ### Example Usage:
-- Converting 9.8 meters per second squared (m/s²) to feet per second squared (ft/s²):
+1. Converting 9.8 m/s² to ft/s²:
     ```python
     acceleration_converter(9.8, "meter_per_second_squared", "foot_per_second_squared")
     ```
-- Converting 9.8 meters per second squared (m/s²) to feet per second squared (ft/s²) with the unit in the result:
+2. Converting 9.8 m/s² to ft/s² with the unit included:
     ```python
-    acceleration_converter(9.8, "meter_per_second_squared", "foot_per_second_squared", True)
+    acceleration_converter(9.8, "meter_per_second_squared", "foot_per_second_squared", with_unit=True)
+    ```
+3. Handling humanized input and rounding the result:
+    ```python
+    acceleration_converter(9.8, "Meter per Second Squared", "ft/s²", rounded_result=True, humanized_input=True)
     ```
 
 ### Error Handling:
-- If either `from_unit` or `to_unit` is not recognized (i.e., not in the supported `unit_list`), the function raises a `ValueError`.
+- If either `from_unit` or `to_unit` is not recognized (i.e., not in the supported `unit_list`), the function raises a `ValueError` with an appropriate message.
 
 Dependencies:
-- The script uses the `acceleration_formulas` module from the `formulas` package to perform the actual conversion operations.
+- The script uses the `acceleration_formulas` module from the `Metricus.formulas` package for specific unit conversion logic.
+- Helper utilities like `round_number` and `humanize_input` are also utilized.
 
+Notes:
+- The `humanize_input` parameter allows the user to provide units in a more readable format, such as "meter per second squared" instead of "meter_per_second_squared".
 """
 
 from typing import Union
-
 from Metricus.formulas import acceleration_formulas as acf
+from Metricus.utilities import *
 
 unit_list = [
     "meter_per_second_squared",
@@ -57,7 +75,12 @@ unit_list = [
 
 
 def acceleration_converter(
-    acceleration: float, from_unit: str, to_unit: str, with_unit: bool = False
+    acceleration: float,
+    from_unit: str,
+    to_unit: str,
+    rounded_result: bool = False,
+    humanized_input: bool = False,
+    with_unit: bool = False
 ) -> Union[float, str]:
     """
     Converts a given acceleration from one unit to another.
@@ -66,53 +89,59 @@ def acceleration_converter(
         acceleration (float): The acceleration value to be converted.
         from_unit (str): The unit of acceleration to convert from.
         to_unit (str): The unit to convert the acceleration to.
-        with_unit (bool, optional): If True, the result will include the unit of measurement. Defaults to False.
+        rounded_result (bool, optional): If True, rounds the result. Defaults to False.
+        humanized_input (bool, optional): If True, normalizes input unit names. Defaults to False.
+        with_unit (bool, optional): If True, appends the unit to the result. Defaults to False.
 
     Returns:
-        Union[float, str]: The converted acceleration. If `with_unit` is True, the result will include the unit as a string,
-                           otherwise, it will return the numeric value of the converted acceleration.
+        Union[float, str]: The converted acceleration value. If `with_unit` is True, the result includes the unit; otherwise, it is a float.
 
     Raises:
-        ValueError: If either `from_unit` or `to_unit` is not recognized (not in `unit_list`).
-
-    The function uses the `acceleration_formulas` module from the `formulas` package to handle the actual conversions.
-    The conversion process is determined based on the `from_unit` and `to_unit` parameters.
+        ValueError: If either `from_unit` or `to_unit` is not recognized.
 
     Example usage:
-        acceleration_converter(9.8, "meter_per_second_squared", "foot_per_second_squared")  # Converts 9.8 m/s² to ft/s²
-        acceleration_converter(9.8, "meter_per_second_squared", "foot_per_second_squared", True)  # Converts 9.8 m/s² to ft/s² and includes the unit in the result
+        acceleration_converter(9.8, "meter_per_second_squared", "foot_per_second_squared")
+        acceleration_converter(9.8, "meter_per_second_squared", "foot_per_second_squared", with_unit=True)
     """
+    if humanized_input:
+        from_unit = humanize_input(from_unit)
+        to_unit = humanize_input(to_unit)
+    
     if from_unit not in unit_list or to_unit not in unit_list:
         raise ValueError("The measurement has an unknown unit")
 
     # Conversion logic based on the 'from_unit'
-    if from_unit == "meter_per_second_squared":
-        return acf.MeterPerSecondSquared(acceleration, with_unit=with_unit).mps2_to(
+    if from_unit == to_unit:
+        return round_number(acceleration) if rounded_result else acceleration
+    elif from_unit == "meter_per_second_squared":
+        result = acf.MeterPerSecondSquared(acceleration, with_unit=with_unit).mps2_to(
             to_unit
         )
     elif from_unit == "foot_per_second_squared":
-        return acf.FootPerSecondSquared(acceleration, with_unit=with_unit).fps2_to(
+        result = acf.FootPerSecondSquared(acceleration, with_unit=with_unit).fps2_to(
             to_unit
         )
     elif from_unit == "centimeter_per_second_squared":
-        return acf.CentimeterPerSecondSquared(
+        result = acf.CentimeterPerSecondSquared(
             acceleration, with_unit=with_unit
         ).cmps2_to(to_unit)
     elif from_unit == "gal":
-        return acf.Gal(acceleration, with_unit=with_unit).gal_to(to_unit)
+        result = acf.Gal(acceleration, with_unit=with_unit).gal_to(to_unit)
     elif from_unit == "inch_per_second_squared":
-        return acf.InchPerSecondSquared(acceleration, with_unit=with_unit).ips2_to(
+        result = acf.InchPerSecondSquared(acceleration, with_unit=with_unit).ips2_to(
             to_unit
         )
     elif from_unit == "kilometer_per_hour_squared":
-        return acf.KilometerPerHourSquared(acceleration, with_unit=with_unit).kmh2_to(
+        result = acf.KilometerPerHourSquared(acceleration, with_unit=with_unit).kmh2_to(
             to_unit
         )
     elif from_unit == "mile_per_hour_squared":
-        return acf.MilePerHourSquared(acceleration, with_unit=with_unit).mph2_to(
+        result = acf.MilePerHourSquared(acceleration, with_unit=with_unit).mph2_to(
             to_unit
         )
     elif from_unit == "gravity":
-        return acf.Gravity(acceleration, with_unit=with_unit).g_to(to_unit)
+        result = acf.Gravity(acceleration, with_unit=with_unit).g_to(to_unit)
     else:
         raise ValueError("The measurement has an unknown unit")
+    
+    return round_number(result) if rounded_result else result
