@@ -60,7 +60,7 @@ Notes:
 
 from typing import Union
 from Metricus.formulas import acceleration_formulas as acf
-from Metricus.utilities import *
+from Metricus.utilities import humanize_input, round_number
 
 unit_list = [
     "meter_per_second_squared",

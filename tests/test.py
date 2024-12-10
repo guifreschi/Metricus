@@ -32,7 +32,7 @@ from Metricus.utilities.plot_temperatures import plot_temperature_variation
 # help(calculate_pressure)
 
 # Testing operations
-print(area_converter(100, "square_kilometer", "hectare"))
+print(area_converter(100, "square kilometer", "hectare", rounded_result=True, humanized_input=True))
 print(electricity_converter(5, "kilowatt", "watt"))
 print(energy_converter(10, "calorie", "joule"))
 print(length_converter(5, "kilometer", "mile"))

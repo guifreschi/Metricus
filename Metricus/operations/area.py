@@ -60,7 +60,7 @@ module, which includes specific methods for handling each type of unit.
 
 from typing import Union
 from Metricus.formulas import area_formulas as af
-from Metricus.utilities import *
+from Metricus.utilities import humanize_input, round_number
 
 unit_list = [
     "square_centimeter",

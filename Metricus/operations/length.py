@@ -50,7 +50,7 @@ Dependencies:
 from typing import Union
 
 from Metricus.formulas import length_formulas as lf
-from Metricus.utilities import *
+from Metricus.utilities import humanize_input, round_number
 
 unit_list = [
     "millimeter",

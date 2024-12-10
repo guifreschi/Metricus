@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from Metricus.operations import temperature_converter
 
 def plot_temperature_variation(temperatures, temperature_unit, convert_to=None, save_path=None, with_info=True):
     """
@@ -12,6 +11,8 @@ def plot_temperature_variation(temperatures, temperature_unit, convert_to=None, 
     :param save_path: File path to save the graph (optional).
     :param with_info: Whether to display statistical information on the graph (default: True).
     """
+    from Metricus.operations import temperature_converter 
+    
     # Days of the month
     days = list(range(1, len(temperatures) + 1))
 
