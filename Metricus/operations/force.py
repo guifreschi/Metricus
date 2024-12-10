@@ -19,11 +19,12 @@ The conversion is performed by leveraging the `force_formulas` module, which con
 - "slug_force" (slf)
 
 ### Main Function:
-- `force_converter(force: float, from_unit: str, to_unit: str, with_unit: bool = False) -> Union[float, str]`
+- `force_converter(force: float, from_unit: str, to_unit: str, rounded_result: bool = False, humanized_input: bool = False, with_unit: bool = False) -> Union[float, str]`
 
   Converts the input force (`force`) from a given unit (`from_unit`) to a target unit (`to_unit`). The function uses specific
   conversion logic to handle each unit type and ensure accurate conversions. The `with_unit` parameter allows for an optional
-  string output that includes the unit in the result.
+  string output that includes the unit in the result. If `humanized_input` is set to True, the input units can be written in a more 
+  user-friendly format (e.g., "pound force" instead of "pound_force").
 
 ### Example Usage:
 - Converting 10 newtons (N) to pound-force (lbf):
@@ -33,6 +34,11 @@ The conversion is performed by leveraging the `force_formulas` module, which con
 - Converting 10 newtons (N) to pound-force (lbf) with the unit in the result:
     ```python
     force_converter(10, "newton", "pound_force", True)
+    ```
+
+- Converting with humanized input:
+    ```python
+    force_converter(10, "pound force", "kilonewton", humanized_input=True)
     ```
 
 ### Error Handling:
@@ -45,6 +51,7 @@ Dependencies:
 from typing import Union
 
 from Metricus.formulas import force_formulas as ff
+from Metricus.utilities import *
 
 unit_list = [
     "newton",
@@ -62,7 +69,7 @@ unit_list = [
 
 
 def force_converter(
-    force: float, from_unit: str, to_unit: str, with_unit: bool = False
+    force: float, from_unit: str, to_unit: str, rounded_result: bool = False, humanized_input: bool = False, with_unit: bool = False
 ) -> Union[float, str]:
     """
     Converts the input force from a given unit to another.
@@ -71,6 +78,8 @@ def force_converter(
         force (float): The force value to be converted.
         from_unit (str): The unit of force to convert from.
         to_unit (str): The unit to convert the force to.
+        rounded_result (bool, optional): If True, the result will be rounded to the nearest integer. Defaults to False.
+        humanized_input (bool, optional): If True, the input units are processed with a human-friendly format (e.g., "pound force"). Defaults to False.
         with_unit (bool, optional): If True, the result will include the unit of measurement. Defaults to False.
 
     Returns:
@@ -84,31 +93,40 @@ def force_converter(
         force_converter(10, "newton", "pound_force")  # Converts 10 N to lbf
         force_converter(10, "newton", "pound_force", True)  # Converts 10 N to lbf and includes the unit in the result
     """
+
+    if humanized_input:
+        from_unit = humanize_input(from_unit)
+        to_unit = humanize_input(to_unit)
+
     if from_unit not in unit_list or to_unit not in unit_list:
         raise ValueError("The measurement has an unknown unit")
 
     # Conversion logic based on the 'from_unit'
-    if from_unit == "newton":
-        return ff.Newton(force, with_unit=with_unit).newton_to(to_unit)
+    if from_unit == to_unit:
+        return round_number(force) if rounded_result else force
+    elif from_unit == "newton":
+        result = ff.Newton(force, with_unit=with_unit).newton_to(to_unit)
     elif from_unit == "dyne":
-        return ff.Dyne(force, with_unit=with_unit).dyne_to(to_unit)
+        result = ff.Dyne(force, with_unit=with_unit).dyne_to(to_unit)
     elif from_unit == "kilonewton":
-        return ff.Kilonewton(force, with_unit=with_unit).kilonewton_to(to_unit)
+        result = ff.Kilonewton(force, with_unit=with_unit).kilonewton_to(to_unit)
     elif from_unit == "pound_force":
-        return ff.PoundForce(force, with_unit=with_unit).pound_force_to(to_unit)
+        result = ff.PoundForce(force, with_unit=with_unit).pound_force_to(to_unit)
     elif from_unit == "ounce_force":
-        return ff.OunceForce(force, with_unit=with_unit).ounce_force_to(to_unit)
+        result = ff.OunceForce(force, with_unit=with_unit).ounce_force_to(to_unit)
     elif from_unit == "ton_force":
-        return ff.TonForce(force, with_unit=with_unit).ton_force_to(to_unit)
+        result = ff.TonForce(force, with_unit=with_unit).ton_force_to(to_unit)
     elif from_unit == "kilogram_force":
-        return ff.KilogramForce(force, with_unit=with_unit).kilogram_force_to(to_unit)
+        result = ff.KilogramForce(force, with_unit=with_unit).kilogram_force_to(to_unit)
     elif from_unit == "gram_force":
-        return ff.GramForce(force, with_unit=with_unit).gram_force_to(to_unit)
+        result = ff.GramForce(force, with_unit=with_unit).gram_force_to(to_unit)
     elif from_unit == "millinewton":
-        return ff.Millinewton(force, with_unit=with_unit).millinewton_to(to_unit)
+        result = ff.Millinewton(force, with_unit=with_unit).millinewton_to(to_unit)
     elif from_unit == "poundal":
-        return ff.Poundal(force, with_unit=with_unit).poundal_to(to_unit)
+        result = ff.Poundal(force, with_unit=with_unit).poundal_to(to_unit)
     elif from_unit == "slug_force":
-        return ff.SlugForce(force, with_unit=with_unit).slug_force_to(to_unit)
+        result = ff.SlugForce(force, with_unit=with_unit).slug_force_to(to_unit)
     else:
         raise ValueError("The measurement has an unknown unit")
+    
+    return round_number(result) if rounded_result else result
