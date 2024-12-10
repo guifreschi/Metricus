@@ -43,9 +43,11 @@ Metricus/operations/complex_operations/calculate_pressure.py
 Metricus/utilities/__init__.py
 Metricus/utilities/decomputarize_input.py
 Metricus/utilities/humanize_input.py
+Metricus/utilities/plot_temperatures.py
 Metricus/utilities/round_number.py
 metricus.egg-info/PKG-INFO
 metricus.egg-info/SOURCES.txt
 metricus.egg-info/dependency_links.txt
+metricus.egg-info/requires.txt
 metricus.egg-info/top_level.txt
 tests/test.py

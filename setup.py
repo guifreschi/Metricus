@@ -7,7 +7,7 @@ setup(
     name="metricus",
     version="0.11",
     packages=find_packages(),
-    install_requires=[],
+    install_requires=["matplotlib"],
     long_description=readme,
     long_description_content_type="text/markdown",
     description="Python unit converter with a Tkinter interface for easy and precise conversions across various measurements such as force, length, and mass",

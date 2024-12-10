@@ -12,6 +12,7 @@ from Metricus.operations.complex_operations import (calculate_density,
 from Metricus.utilities.round_number import round_number
 from Metricus.utilities.humanize_input import humanize_input
 from Metricus.utilities.decomputarize_input import decomputarize_input
+from Metricus.utilities.plot_temperatures import plot_temperature_variation
 
 # help(area_converter)
 # help(electricity_converter)
@@ -66,4 +67,9 @@ from_acceleration_decomputarize = decomputarize_input(from_acceleration_computad
 to_acceleration_decomputarize = decomputarize_input(to_acceleration_computadorized)
 print(f"From acceleration: {from_acceleration_decomputarize}. To acceleration: {to_acceleration_decomputarize}.")
 
+# Testing temperature plot
+temperatures = [20.3, 12, 10, 15.4, 8, 17.5, 15.3]
+plot_temperature_variation(temperatures, 'celsius', 'rankine')
+
+# Testing GUI
 MetricusGUI()
