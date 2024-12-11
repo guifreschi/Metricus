@@ -37,11 +37,23 @@ temp_rankine = temperature_converter(temp_celsius, 'celsius', 'rankine')
 print(f"{temp_celsius} degrees Celsius equals {temp_rankine} Rankine")
 
 # ----------------------------
-# Time Conversion Example
+# Time Conversion Examples
 # ----------------------------
+
+# Example 1: Basic usage
 time_seconds = 3600
 time_hours = time_converter(time_seconds, 'second', 'hour')
 print(f"{time_seconds} seconds equals {time_hours} hours")
+
+# Example 2: Using rounded_result
+time_days = 365
+time_year = time_converter(time_days, 'day', 'year', rounded_result=True)
+print(f"{time_days} days equals {time_year} year")
+
+# Example 3: Using humanized_input
+time_years = 100
+time_century = time_converter(time_years, 'year', 'century', humanized_input=True)
+print(f"{time_years} years equals {time_century} century")
 
 # ----------------------------
 # Displacement Calculation Example
