@@ -11,11 +11,19 @@ the `volume_formulas` module, which contains specific methods for handling each 
 - Alternative representations: "cm³", "m³"
 
 ### Main Function:
-- `volume_converter(volume: float, from_unit: str, to_unit: str, with_unit: bool = False) -> Union[float, str]`
+- `volume_converter(volume: float, from_unit: str, to_unit: str, rounded_result: bool = False, humanized_input: bool = False, with_unit: bool = False) -> Union[float, str]`
   
   Converts the input volume (`volume`) from a given unit (`from_unit`) to a target unit (`to_unit`). The function uses specific
-  conversion logic to handle each unit type and ensure accurate conversions. The `with_unit` parameter allows for an optional
-  string output that includes the unit in the result.
+  conversion logic to handle each unit type and ensure accurate conversions. Additional options allow for rounding the result,
+  enabling human-readable input formats, and including the unit in the output.
+
+### Parameters:
+- `volume` (float): The volume value to be converted.
+- `from_unit` (str): The source unit of the volume to convert from.
+- `to_unit` (str): The target unit to convert the volume to.
+- `rounded_result` (bool, optional): If True, rounds the result. Defaults to False.
+- `humanized_input` (bool, optional): If True, allows human-readable unit input. Defaults to False.
+- `with_unit` (bool, optional): If True, includes the unit of measurement in the result. Defaults to False.
 
 ### Example Usage:
 - Converting 10 milliliters (mL) to liters (L):
@@ -24,39 +32,55 @@ the `volume_formulas` module, which contains specific methods for handling each 
     ```
 - Converting 10 milliliters (mL) to liters (L) with the unit in the result:
     ```python
-    volume_converter(10, "mL", "L", True)
+    volume_converter(10, "mL", "L", with_unit=True)
+    ```
+- Converting 10 fluid ounces to liters with human-readable input:
+    ```python
+    volume_converter(10, "Fluid Ounce", "Liter", humanized_input=True)
     ```
 
 ### Error Handling:
-- If either `from_unit` or `to_unit` is not recognized (i.e., not in the supported `unit_list`), the function raises a `ValueError`.
+- If either `from_unit` or `to_unit` is not recognized (i.e., not in the supported `valid_units`), the function raises a `ValueError`.
 
-Dependencies:
-- The script uses the `volume_formulas` module from the `formulas` package to perform the actual conversion operations.
+### Dependencies:
+- The script uses the `volume_formulas` module from the `Metricus._formulas` package to perform the actual conversion operations.
+- The `round_number` function is used for rounding results, and `humanize_input` allows for human-readable unit inputs.
 
 """
 
 from typing import Union
 
 from Metricus._formulas import volume_formulas as vf
+from Metricus.utilities import round_number, humanize_input
 
-unit_list = [
-    "mL",  # Milliliters
-    "cm3",  # Cubic Centimeters
-    "cm³",  # Cubic Centimeters (alternative notation)
-    "fl_oz",  # Fluid Ounces
-    "cup",  # Cups
-    "pt",  # Pints
-    "qt",  # Quarts
-    "L",  # Liters
-    "gal",  # Gallons
-    "bbl",  # Barrels
-    "m3",  # Cubic Meters
-    "m³",  # Cubic Meters (alternative notation)
-]
+unit_map = {
+    "milliliter": "mL",
+    "ml": "mL",
+    "cubic_centimeter": "cm3",
+    "cubic_centimetre": "cm³",
+    "fluid_ounce": "fl_oz",
+    "cup": "cup",
+    "pint": "pt",
+    "quart": "qt",
+    "liter": "L",
+    "litre": "L",
+    "gallon": "gal",
+    "barrel": "bbl",
+    "cubic_meter": "m3",
+    "cubic_metre": "m³",
+    "l": "L",
+}
+
+valid_units = set(unit_map.values())
+valid_units.update(unit_map.keys())
+
+def normalize_unit(unit: str) -> str:
+    unit = unit.lower()
+    return unit_map.get(unit, unit)
 
 
 def volume_converter(
-    volume: float, from_unit: str, to_unit: str, with_unit: bool = False
+    volume: float, from_unit: str, to_unit: str, rounded_result: bool = False, humanized_input: bool = False, with_unit: bool = False
 ) -> Union[float, str]:
     """
     Converts a given volume from one unit to another.
@@ -65,43 +89,59 @@ def volume_converter(
         volume (float): The volume to be converted.
         from_unit (str): The unit of the volume to convert from.
         to_unit (str): The unit to convert the volume to.
-        with_unit (bool, optional): If True, the result will include the unit of measurement. Defaults to False.
+        rounded_result (bool, optional): If True, rounds the result. Defaults to False.
+        humanized_input (bool, optional): If True, allows human-readable unit input. Defaults to False.
+        with_unit (bool, optional): If True, includes the unit of measurement in the result. Defaults to False.
 
     Returns:
         Union[float, str]: The converted volume. If `with_unit` is True, the result will include the unit as a string,
                            otherwise, it will return the numeric value of the converted volume.
 
     Raises:
-        ValueError: If either `from_unit` or `to_unit` is not recognized (not in `unit_list`).
+        ValueError: If either `from_unit` or `to_unit` is not recognized (not in `valid_units`).
 
-    The function uses the `volume_formulas` module from the `formulas` package to handle the actual conversions.
+    The function uses the `volume_formulas` module from the `Metricus._formulas` package to handle the actual conversions.
     The conversion process is determined based on the `from_unit` and `to_unit` parameters.
 
     Example usage:
         volume_converter(10, "mL", "L")  # Converts 10 milliliters to liters
-        volume_converter(10, "mL", "L", True)  # Converts 10 milliliters to liters and includes the unit in the result
+        volume_converter(10, "mL", "L", with_unit=True)  # Converts 10 milliliters to liters and includes the unit in the result
     """
-    if from_unit not in unit_list or to_unit not in unit_list:
+
+    if humanized_input:
+        from_unit = humanize_input(from_unit)
+        to_unit = humanize_input(to_unit)
+
+    from_unit = normalize_unit(from_unit)
+    to_unit = normalize_unit(to_unit)
+
+    if from_unit not in valid_units or to_unit not in valid_units:
         raise ValueError("The measurement has an unknown unit")
 
     # Conversion logic based on the 'from_unit'
-    if from_unit == "mL":
-        return vf.Milliliter(volume, with_unit=with_unit).mL_to(to_unit)
-    elif from_unit == "cm3" or from_unit == "cm³":
-        return vf.Milliliter(volume, with_unit=with_unit).mL_to(to_unit)
+    if from_unit == to_unit:
+        result = round_number(volume) if rounded_result else volume
+    elif from_unit == "mL":
+        result = vf.Milliliter(volume, with_unit=with_unit).mL_to(to_unit)
+    elif from_unit in {"cm3", "cm³"}:
+        result = vf.Milliliter(volume, with_unit=with_unit).mL_to(to_unit)
     elif from_unit == "fl_oz":
-        return vf.FluidOunce(volume, with_unit=with_unit).fl_oz_to(to_unit)
+        result = vf.FluidOunce(volume, with_unit=with_unit).fl_oz_to(to_unit)
     elif from_unit == "cup":
-        return vf.Cup(volume, with_unit=with_unit).cup_to(to_unit)
+        result = vf.Cup(volume, with_unit=with_unit).cup_to(to_unit)
     elif from_unit == "pt":
-        return vf.Pint(volume, with_unit=with_unit).pt_to(to_unit)
+        result = vf.Pint(volume, with_unit=with_unit).pt_to(to_unit)
     elif from_unit == "qt":
-        return vf.Quart(volume, with_unit=with_unit).qt_to(to_unit)
+        result = vf.Quart(volume, with_unit=with_unit).qt_to(to_unit)
     elif from_unit == "L":
-        return vf.Liter(volume, with_unit=with_unit).liter_to(to_unit)
+        result = vf.Liter(volume, with_unit=with_unit).liter_to(to_unit)
     elif from_unit == "gal":
-        return vf.Gallon(volume, with_unit=with_unit).gal_to(to_unit)
+        result = vf.Gallon(volume, with_unit=with_unit).gal_to(to_unit)
     elif from_unit == "bbl":
-        return vf.Barrel(volume, with_unit=with_unit).bbl_to(to_unit)
-    elif from_unit == "m3" or from_unit == "m³":
-        return vf.CubicMeter(volume, with_unit=with_unit).m3_to(to_unit)
+        result = vf.Barrel(volume, with_unit=with_unit).bbl_to(to_unit)
+    elif from_unit in {"m3", "m³"}:
+        result = vf.CubicMeter(volume, with_unit=with_unit).m3_to(to_unit)
+    else:
+        raise ValueError("The measurement has an unknown unit")
+
+    return round_number(result) if rounded_result else result
