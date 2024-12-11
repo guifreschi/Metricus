@@ -98,7 +98,7 @@ def energy_converter(
 
     # Conversion logic based on the 'from_unit'
     if from_unit == to_unit:
-        return round_number(energy) if rounded_result else energy
+        result = round_number(energy) if rounded_result else energy
     elif from_unit == "electronvolt":
         result = ef.Electronvolt(energy, with_unit=with_unit).electronvolt_to(to_unit)
     elif from_unit == "calorie":

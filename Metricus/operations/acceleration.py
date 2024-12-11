@@ -112,7 +112,7 @@ def acceleration_converter(
 
     # Conversion logic based on the 'from_unit'
     if from_unit == to_unit:
-        return round_number(acceleration) if rounded_result else acceleration
+        result = round_number(acceleration) if rounded_result else acceleration
     elif from_unit == "meter_per_second_squared":
         result = acf.MeterPerSecondSquared(acceleration, with_unit=with_unit).mps2_to(
             to_unit

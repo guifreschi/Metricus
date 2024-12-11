@@ -103,7 +103,7 @@ def force_converter(
 
     # Conversion logic based on the 'from_unit'
     if from_unit == to_unit:
-        return round_number(force) if rounded_result else force
+        result = round_number(force) if rounded_result else force
     elif from_unit == "newton":
         result = ff.Newton(force, with_unit=with_unit).newton_to(to_unit)
     elif from_unit == "dyne":
