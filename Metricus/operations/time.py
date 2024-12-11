@@ -44,7 +44,7 @@ Dependencies:
 
 from typing import Union
 
-from Metricus.formulas import time_formulas as timef
+from Metricus._formulas import time_formulas as timef
 
 unit_list = [
     "millisecond",  # Milliseconds

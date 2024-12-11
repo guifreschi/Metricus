@@ -51,7 +51,7 @@ The conversion is performed by leveraging the `acceleration_formulas` module, wh
 - If either `from_unit` or `to_unit` is not recognized (i.e., not in the supported `unit_list`), the function raises a `ValueError` with an appropriate message.
 
 Dependencies:
-- The script uses the `acceleration_formulas` module from the `Metricus.formulas` package for specific unit conversion logic.
+- The script uses the `acceleration_formulas` module from the `Metricus._formulas` package for specific unit conversion logic.
 - Helper utilities like `round_number` and `humanize_input` are also utilized.
 
 Notes:
@@ -59,7 +59,7 @@ Notes:
 """
 
 from typing import Union
-from Metricus.formulas import acceleration_formulas as acf
+from Metricus._formulas import acceleration_formulas as acf
 from Metricus.utilities import humanize_input, round_number
 
 unit_list = [

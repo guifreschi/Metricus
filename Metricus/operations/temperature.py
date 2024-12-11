@@ -41,7 +41,7 @@ Dependencies:
 
 from typing import Union
 
-from Metricus.formulas import temperature_formulas as tf
+from Metricus._formulas import temperature_formulas as tf
 from Metricus.utilities import round_number, humanize_input
 
 unit_list = ["celsius", "fahrenheit", "kelvin", "rankine"]

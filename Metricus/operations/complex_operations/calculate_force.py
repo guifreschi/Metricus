@@ -62,7 +62,7 @@ Usage Example:
 
 from typing import Union
 
-from Metricus.formulas.complex_formulas import force_calculator
+from Metricus._formulas.complex_formulas import force_calculator
 from Metricus.operations import acceleration as ac
 from Metricus.operations import mass as m
 

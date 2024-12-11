@@ -45,7 +45,7 @@ Usage Example:
 
 from typing import Union
 
-from Metricus.formulas import pressure_formulas as pf
+from Metricus._formulas import pressure_formulas as pf
 
 
 def pressure_calculator(

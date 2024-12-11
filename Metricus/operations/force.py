@@ -50,7 +50,7 @@ Dependencies:
 
 from typing import Union
 
-from Metricus.formulas import force_formulas as ff
+from Metricus._formulas import force_formulas as ff
 from Metricus.utilities import humanize_input, round_number
 
 unit_list = [

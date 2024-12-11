@@ -54,7 +54,7 @@ Usage Example:
 
 from typing import Union
 
-from Metricus.formulas.complex_formulas import density_calculator
+from Metricus._formulas.complex_formulas import density_calculator
 from Metricus.operations import mass as m
 from Metricus.operations import volume as v
 

@@ -51,7 +51,7 @@ to handle conversions that depend on these quantities. The function leverages th
 
 from typing import Union
 
-from Metricus.formulas import electricity_formulas as ef
+from Metricus._formulas import electricity_formulas as ef
 from Metricus.utilities import humanize_input, round_number
 
 unit_list = [

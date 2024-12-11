@@ -47,7 +47,7 @@ Dependencies:
 
 from typing import Union
 
-from Metricus.formulas import energy_formulas as ef
+from Metricus._formulas import energy_formulas as ef
 from Metricus.utilities import humanize_input, round_number
 
 unit_list = [

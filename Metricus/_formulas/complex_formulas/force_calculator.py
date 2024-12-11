@@ -51,7 +51,7 @@ Usage Example:
 
 from typing import Union
 
-from Metricus.formulas import force_formulas as ff
+from Metricus._formulas import force_formulas as ff
 
 
 def force_calculator(

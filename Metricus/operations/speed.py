@@ -40,7 +40,7 @@ Dependencies:
 """
 
 from typing import Union
-from Metricus.formulas import speed_formulas as sf
+from Metricus._formulas import speed_formulas as sf
 from Metricus.utilities import round_number, humanize_input
 
 unit_list = {

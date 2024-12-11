@@ -55,7 +55,7 @@ Usage Example:
 
 from typing import Union
 
-from Metricus.formulas.complex_formulas import pressure_calculator
+from Metricus._formulas.complex_formulas import pressure_calculator
 from Metricus.operations import area as a
 from Metricus.operations import force as f
 

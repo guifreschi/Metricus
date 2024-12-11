@@ -72,7 +72,7 @@ Usage Example:
 
 from typing import Union
 
-from Metricus.formulas.complex_formulas import displacement_calculator
+from Metricus._formulas.complex_formulas import displacement_calculator
 from Metricus.operations import length as len
 from Metricus.operations import speed as sp
 

@@ -45,7 +45,7 @@ Dependencies:
 
 from typing import Union
 
-from Metricus.formulas import pressure_formulas as pf
+from Metricus._formulas import pressure_formulas as pf
 from Metricus.utilities import humanize_input, round_number
 
 unit_list = [
