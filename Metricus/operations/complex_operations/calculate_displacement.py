@@ -47,6 +47,7 @@ Parameters:
       'km/h', 'm/s', 'mile/h', and 'foot/s'. Defaults to 'km/h'.
     - with_unit (bool, optional): If True, returns the result with the unit. Defaults to False, 
       which returns just the numeric value.
+    - rounded_result (bool, optional): If True, the result will be rounded. Defaults to False.
 
 Returns:
     - Union[float, str]: The calculated time required to travel the given distance, in the specified 
@@ -104,6 +105,7 @@ def calculate_displacement(
         length_unit (str, optional): The unit of length for the input value. Default is 'kilometer'.
         speed_unit (str, optional): The unit of speed for the input value. Default is 'km/h'.
         with_unit (bool, optional): If True, the result will include the unit. Default is False.
+        rounded_result (bool, optional): If True, the result will be rounded. Default is False.
 
     Returns:
         Union[float, str]: The calculated displacement as a float if `with_unit` is False, or a string

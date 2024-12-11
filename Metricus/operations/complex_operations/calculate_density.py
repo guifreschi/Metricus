@@ -29,6 +29,7 @@ Parameters:
       Other units are converted to kilograms.
     - volume_unit (str, optional): The unit of volume for the provided volume value. Defaults to 'cubic_meter'. 
       Other units are converted to cubic meters.
+    - rounded_result (bool, optional): If True, the result is rounded. Defaults to False.
     - with_unit (bool, optional): If True, returns the result with the unit. Defaults to False, which returns just the numeric value.
 
 Returns:
@@ -75,7 +76,7 @@ def calculate_density(
     Calculate the density based on mass and volume values, converting the units if necessary.
 
     This function calculates the density using the formula `Density = Mass / Volume`. It also handles unit conversions
-    for mass, volume, and density.
+    for mass, volume, and density. The result can be rounded based on the `rounded_result` parameter.
 
     Parameters:
     - mass (float): The mass value to be used in the density calculation.
@@ -83,6 +84,7 @@ def calculate_density(
     - density_unit (str): The unit in which the density should be returned. Default is 'kg/m³'.
     - mass_unit (str): The unit of the provided mass. Default is 'kilogram'.
     - volume_unit (str): The unit of the provided volume. Default is 'cubic_meter'.
+    - rounded_result (bool): If True, the result will be rounded. Default is False.
     - with_unit (bool): Whether to include the unit in the result. Default is False, which returns only the numeric value.
 
     Returns:
