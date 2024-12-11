@@ -25,11 +25,11 @@ the `speed_formulas` module, which contains specific methods for handling each s
     ```
 - Converting 20 meters per second (m/s) to kilometers per hour (km/h) with the unit in the result:
     ```python
-    speed_converter(20, "meters_per_second", "kilometers_per_hour", True)
+    speed_converter(20, "meters_per_second", "kilometers_per_hour", with_unit=True)
     ```
 - Converting 20 meters per second (m/s) to kilometers per hour (km/h) with rounding enabled:
     ```python
-    speed_converter(20, "meters_per_second", "kilometers_per_hour", False, True)
+    speed_converter(20, "meters_per_second", "kilometers_per_hour", rounded_result=True)
     ```
 
 ### Error Handling:
@@ -77,8 +77,8 @@ def speed_converter(
 
     Example usage:
         speed_converter(20, "meters_per_second", "kilometers_per_hour")  # Converts 20 m/s to km/h
-        speed_converter(20, "meters_per_second", "kilometers_per_hour", True)  # Converts 20 m/s to km/h and includes the unit in the result
-        speed_converter(20, "meters_per_second", "kilometers_per_hour", False, True)  # Converts 20 m/s to km/h with rounding enabled
+        speed_converter(20, "meters_per_second", "kilometers_per_hour", with_unit=True)  # Converts 20 m/s to km/h and includes the unit in the result
+        speed_converter(20, "meters_per_second", "kilometers_per_hour", rounded_result=True)  # Converts 20 m/s to km/h with rounding enabled
     """
 
     if humanized_input:

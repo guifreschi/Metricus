@@ -73,8 +73,8 @@ def temperature_converter(
 
     Example usage:
         temperature_converter(25, "celsius", "fahrenheit")  # Converts 25 Celsius to Fahrenheit
-        temperature_converter(25, "celsius", "fahrenheit", True)  # Converts 25 Celsius to Fahrenheit and includes the unit in the result
-        temperature_converter(25, "celsius", "fahrenheit", False, True)  # Converts 25 Celsius to Fahrenheit with rounding enabled
+        temperature_converter(25, "celsius", "fahrenheit", with_unit=True)  # Converts 25 Celsius to Fahrenheit and includes the unit in the result
+        temperature_converter(25, "celsius", "fahrenheit", rounded_result=True)  # Converts 25 Celsius to Fahrenheit with rounding enabled
     """
 
     if humanized_input:

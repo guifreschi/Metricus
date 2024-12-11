@@ -91,7 +91,7 @@ def force_converter(
 
     Example usage:
         force_converter(10, "newton", "pound_force")  # Converts 10 N to lbf
-        force_converter(10, "newton", "pound_force", True)  # Converts 10 N to lbf and includes the unit in the result
+        force_converter(10, "newton", "pound_force", with_unit=True)  # Converts 10 N to lbf and includes the unit in the result
     """
 
     if humanized_input:

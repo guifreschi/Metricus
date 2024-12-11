@@ -44,7 +44,7 @@ The conversion is performed by leveraging the `acceleration_formulas` module, wh
     ```
 3. Handling humanized input and rounding the result:
     ```python
-    acceleration_converter(9.8, "Meter per Second Squared", "ft/s²", rounded_result=True, humanized_input=True)
+    acceleration_converter(9.8, "Meter per Second Squared", "foot per second squared", rounded_result=True, humanized_input=True)
     ```
 
 ### Error Handling:

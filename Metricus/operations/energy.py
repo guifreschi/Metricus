@@ -30,7 +30,7 @@ python
 - Converting 10 electronvolts (eV) to joules (J) with the unit in the result:
     
 python
-    energy_converter(10, "electronvolt", "joule", True)
+    energy_converter(10, "electronvolt", "joule", with_unit=True)
 
 - Converting with humanized input:
     
@@ -86,7 +86,7 @@ def energy_converter(
 
     Example usage:
         energy_converter(10, "electronvolt", "joule")  # Converts 10 electronvolts to joules
-        energy_converter(10, "electronvolt", "joule", True)  # Converts 10 electronvolts to joules and includes the unit in the result
+        energy_converter(10, "electronvolt", "joule", with_unit=True)  # Converts 10 electronvolts to joules and includes the unit in the result
     """
 
     if humanized_input:

@@ -100,7 +100,7 @@ def area_converter(
 
     Example usage:
         area_converter(100, "square_meter", "hectare")  # Converts 100 square meters to hectares
-        area_converter(1, "acre", "square_meter", True)  # Converts 1 acre to square meters with unit in the result
+        area_converter(1, "acre", "square_meter", with_unit=True)  # Converts 1 acre to square meters with unit in the result
     """
     if humanized_input:
         from_unit = humanize_input(from_unit)

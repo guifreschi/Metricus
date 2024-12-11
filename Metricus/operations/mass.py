@@ -33,12 +33,12 @@ python
 - Converting 1000 milligrams (mg) to grams (g) with the unit in the result:
 
 python
-    mass_converter(1000, "milligram", "gram", True)
+    mass_converter(1000, "milligram", "gram", with_unit=True)
 
 - Converting 1000 milligrams (mg) to grams (g) with the unit in the result and rounding the result:
 
 python
-    mass_converter(1000, "milligram", "gram", True, True)
+    mass_converter(1000, "milligram", "gram", with_unit=True, rounded_result=True)
 
 ### Error Handling:
 - If either from_unit or to_unit is not recognized (i.e., not in the supported unit_list), the function raises a ValueError.
@@ -90,8 +90,8 @@ def mass_converter(
 
     Example usage:
         mass_converter(1000, "milligram", "gram")  # Converts 1000 milligrams to grams
-        mass_converter(1000, "milligram", "gram", True)  # Converts 1000 milligrams to grams and includes the unit in the result
-        mass_converter(1000, "milligram", "gram", True, True)  # Converts 1000 milligrams to grams, includes the unit in the result, and rounds the value
+        mass_converter(1000, "milligram", "gram", with_unit=True)  # Converts 1000 milligrams to grams and includes the unit in the result
+        mass_converter(1000, "milligram", "gram", rounded_result=True, with_unit=True)  # Converts 1000 milligrams to grams, includes the unit in the result, and rounds the value
     """
 
     if humanized_input:

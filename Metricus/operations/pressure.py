@@ -28,12 +28,12 @@ The conversion is performed by leveraging the `pressure_formulas` module, which 
 
 - Converting 101325 pascals (Pa) to atmospheres (atm) with the unit in the result:
     ```python
-    pressure_converter(101325, "pascal", "atmosphere", True)
+    pressure_converter(101325, "pascal", "atmosphere", with_unit=True)
     ```
 
 - Converting 101325 pascals (Pa) to atmospheres (atm) with the unit in the result and rounding the result:
     ```python
-    pressure_converter(101325, "pascal", "atmosphere", True, True)
+    pressure_converter(101325, "pascal", "atmosphere", with_unit=True, rounded_result=True)
     ```
 
 ### Error Handling:
@@ -83,8 +83,8 @@ def pressure_converter(
 
     Example usage:
         pressure_converter(101325, "pascal", "atmosphere")  # Converts 101325 pascals to atmospheres
-        pressure_converter(101325, "pascal", "atmosphere", True)  # Converts 101325 pascals to atmospheres and includes the unit in the result
-        pressure_converter(101325, "pascal", "atmosphere", True, True)  # Converts 101325 pascals to atmospheres, includes the unit in the result, and rounds the value
+        pressure_converter(101325, "pascal", "atmosphere", with_unit=True)  # Converts 101325 pascals to atmospheres and includes the unit in the result
+        pressure_converter(101325, "pascal", "atmosphere", rounded_result=True, with_unit=True)  # Converts 101325 pascals to atmospheres, includes the unit in the result, and rounds the value
     """
 
     if humanized_input:
