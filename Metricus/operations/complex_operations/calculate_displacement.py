@@ -75,6 +75,7 @@ from typing import Union
 from Metricus._formulas.complex_formulas import displacement_calculator
 from Metricus.operations import length as len
 from Metricus.operations import speed as sp
+from Metricus.utilities import round_number
 
 dc = displacement_calculator.displacement_calculator
 
@@ -85,6 +86,7 @@ def calculate_displacement(
     time_unit: str = "hour",
     length_unit: str = "kilometer",
     speed_unit: str = "km/h",
+    rounded_result: bool = False,
     with_unit: bool = False,
 ) -> Union[float, str]:
     """
@@ -132,4 +134,5 @@ def calculate_displacement(
         sp.speed_converter(speed, speed_unit, "km/h") if speed_unit != "km/h" else speed
     )
 
-    return dc(kilometer, kmh, time_unit=time_unit, with_unit=with_unit)
+    result = dc(kilometer, kmh, time_unit=time_unit, with_unit=with_unit)
+    return round_number(result) if rounded_result else result
