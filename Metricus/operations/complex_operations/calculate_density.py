@@ -57,6 +57,7 @@ from typing import Union
 from Metricus._formulas.complex_formulas import density_calculator
 from Metricus.operations import mass as m
 from Metricus.operations import volume as v
+from Metricus.utilities import round_number
 
 dec = density_calculator.density_calculator
 
@@ -67,6 +68,7 @@ def calculate_density(
     density_unit: str = "kg/m³",
     mass_unit: str = "kilogram",
     volume_unit: str = "m3",
+    rounded_result: bool = False,
     with_unit: bool = False,
 ) -> Union[float, str]:
     """
@@ -108,4 +110,6 @@ def calculate_density(
         else volume
     )
 
-    return dec(kilogram, cubic_meter, density_unit=density_unit, with_unit=with_unit)
+    result = dec(kilogram, cubic_meter, density_unit=density_unit, with_unit=with_unit)
+
+    return round_number(result) if rounded_result else result
