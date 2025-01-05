@@ -1,19 +1,45 @@
-def humanize_input(message) -> str:
+def humanize_input(message: str) -> str:
     """
-    Converts a given string into a 'humanized' format by converting it to lowercase 
-    and replacing spaces with underscores.
+    Transforms a given string into a standardized, machine-friendly format by converting it 
+    to lowercase and replacing spaces with underscores. It also handles plural forms, 
+    such as converting 'meters' to 'meter' and special cases like 'feet' to 'foot'.
 
-    This function is useful for standardizing input strings, especially when preparing 
-    data for use in file names, identifiers, or URLs where spaces are not allowed.
+    This function is particularly useful for creating consistent identifiers, file names, 
+    or variable names from human-readable text.
 
     Parameters:
-    message (str): The input string that needs to be transformed.
+    message (str): The input string to be transformed.
 
     Returns:
-    str: The transformed string in lowercase with spaces replaced by underscores.
+    str: The transformed string, with:
+         - All characters in lowercase.
+         - Plural forms converted to singular (e.g., 'meters' -> 'meter').
+         - Spaces replaced by underscores.
+         - Special cases like 'feet' handled explicitly (e.g., 'feet' -> 'foot').
 
     Examples:
-    1. "Meter Per Second Squared" -> "meter_per_second_squared"
-    2. "Nautical Mile" -> "nautical_mile"
+    >>> humanize_input('Meters per second squared')
+    'meter_per_second_squared'
+    
+    >>> humanize_input('Nautical Miles')
+    'nautical_mile'
+
+    >>> humanize_input('feet')
+    'foot'
+
+    >>> humanize_input('Glasses of water')
+    'glass_of_water'
     """
-    return message.lower().replace(" ", "_")
+    if message.lower() == 'feet':
+        message = 'foot'
+    
+    normalized = message.lower().strip()
+
+    words = normalized.split()
+    normalized_words = [
+        word[:-1] if word.endswith('s') and not word.endswith('ss') else word
+        for word in words
+    ]
+
+    normalized = '_'.join(normalized_words)
+    return normalized

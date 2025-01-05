@@ -5,7 +5,7 @@ with open("README.md", "r", encoding='utf-8') as arq:
 
 setup(
     name="metricus",
-    version="1.0.0",
+    version="1.0.1",
     packages=find_packages(),
     install_requires=["matplotlib"],
     long_description=readme,

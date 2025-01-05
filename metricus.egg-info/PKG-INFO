@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: metricus
-Version: 1.0.0
+Version: 1.0.1
 Summary: Python unit converter with a Tkinter interface for easy and precise conversions across various measurements such as force, length, and mass
 Home-page: https://github.com/guifreschi/Metricus
 Author: Guilherme Freschi, Yaron Buchler
