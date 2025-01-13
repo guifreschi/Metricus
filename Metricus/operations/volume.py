@@ -120,7 +120,7 @@ def volume_converter(
 
     # Conversion logic based on the 'from_unit'
     if from_unit == to_unit:
-        result = round_number(volume) if rounded_result else volume
+        result = vf.Volume(num=volume, with_unit=with_unit).format_result(volume, from_unit)
     elif from_unit == "mL":
         result = vf.Milliliter(volume, with_unit=with_unit).mL_to(to_unit)
     elif from_unit in {"cm3", "cm³"}:

@@ -21,7 +21,7 @@ def humanize_input(message: str) -> str:
     elif message.lower() == 'siemens':
         return 'siemens'  # No change for 'siemens'
     elif message.lower() == 'celsius':
-        return'celsius'  # No change for 'celsius'
+        return 'celsius'  # No change for 'celsius'
     elif message.lower() == 'm/s':
         return 'meter_per_second'  # Handle 'm/s' directly
     

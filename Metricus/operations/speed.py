@@ -93,7 +93,7 @@ def speed_converter(
         raise ValueError("The measurement has an unknown unit")
 
     if from_unit == to_unit:
-        result = round_number(speed) if rounded_result else speed
+        result = sf.Speed(num=speed, with_unit=with_unit).format_result(speed, from_unit)
     elif from_unit == "m/s":
         result = sf.MetersPerSecond(speed, with_unit=with_unit).mps_to(to_unit)
     elif from_unit == "km/h":

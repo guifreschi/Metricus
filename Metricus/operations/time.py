@@ -111,7 +111,7 @@ def time_converter(
 
     # Conversion logic based on the 'from_unit'
     if from_unit == to_unit:
-        result = round_number(time) if rounded_result else time
+        result = timef.TimeUnit(num=time, with_unit=with_unit).format_result(time, from_unit)
     elif from_unit == "millisecond":
         result = timef.Millisecond(time, with_unit=with_unit).millisecond_to(to_unit)
     elif from_unit == "second":

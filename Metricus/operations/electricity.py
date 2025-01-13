@@ -120,7 +120,7 @@ def electricity_converter(
         raise ValueError("The measurement has an unknown unit")
 
     elif from_unit == to_unit:
-        result = round_number(elec) if rounded_result else elec
+        result = ef.ElectricalUnit(num=elec, with_unit=with_unit).format_result(elec, from_unit)
 
     elif from_unit == "ampere":
         result = ef.Ampere(elec, with_unit=with_unit).ampere_to(
@@ -170,4 +170,3 @@ def electricity_converter(
         raise ValueError("The measurement has an unknown unit")
     
     return round_number(result) if rounded_result else result
-

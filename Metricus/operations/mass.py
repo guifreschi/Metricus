@@ -103,7 +103,7 @@ def mass_converter(
 
     # Conversion logic based on the 'from_unit'
     if from_unit == to_unit:
-        result = round_number(mass) if rounded_result else mass
+        result = mf.WeightUnit(num=mass, with_unit=with_unit).format_result(mass, from_unit)
     elif from_unit == "milligram":
         result = mf.Milligram(mass, with_unit=with_unit).milligram_to(to_unit)
     elif from_unit == "carat":

@@ -100,7 +100,7 @@ def pressure_converter(
 
     # Conversion logic based on the 'from_unit'
     if from_unit == to_unit:
-        result = round_number(pressure) if rounded_result else pressure
+        result = pf.PressureUnit(num=pressure, with_unit=with_unit).format_result(pressure, from_unit)
     elif from_unit == "pascal":
         result = pf.Pascal(pressure, with_unit=with_unit).pascal_to(to_unit)
     elif from_unit == "mmHg":

@@ -110,7 +110,7 @@ def area_converter(
         raise ValueError("The measurement has an unknown unit")
 
     if from_unit == to_unit:
-        result = round_number(area) if rounded_result else area
+        result = af.Area(num=area, with_unit=with_unit).format_result(area, from_unit)
     elif from_unit == "square_centimeter":
         result = af.SquareCentimeter(area, with_unit=with_unit).square_centimeter_to(
             to_unit

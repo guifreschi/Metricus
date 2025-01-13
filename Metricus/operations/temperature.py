@@ -86,8 +86,8 @@ def temperature_converter(
 
     # Conversion logic based on the 'from_unit'
     if from_unit == to_unit:
-        result = round_number(temp) if rounded_result else temp
-    if from_unit == "celsius":
+        result = tf.TemperatureUnit(num=temp, with_unit=with_unit).format_result(temp, from_unit)
+    elif from_unit == "celsius":
         result = tf.Celsius(temp, with_unit=with_unit).celsius_to(to_unit)
     elif from_unit == "fahrenheit":
         result = tf.Fahrenheit(temp, with_unit=with_unit).fahrenheit_to(to_unit)

@@ -105,7 +105,7 @@ def length_converter(
 
     # Conversion logic based on the 'from_unit'
     if from_unit == to_unit:
-        result = round_number(length) if rounded_result else length
+        result = lf.LengthUnit(num=length, with_unit=with_unit).format_result(length, from_unit)
     elif from_unit == "millimeter":
         result = lf.Millimeter(length, with_unit=with_unit).millimeter_to(to_unit)
     elif from_unit == "centimeter":
