@@ -1,4 +1,3 @@
-import Metricus.gui
 from Metricus.operations import (
     acceleration_converter, 
     area_converter, 
